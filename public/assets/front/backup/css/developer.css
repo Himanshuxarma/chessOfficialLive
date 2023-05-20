@@ -1,0 +1,175 @@
+/* Ramesh Singh Shekhawat*/
+.container-demo h2 {
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #37517e;
+}
+
+.container-demo h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  /* left: calc(50% - 60px); */
+}
+
+.container-demo h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #be8241;
+  bottom: 0;
+  left: calc(3.5%);
+}
+
+.container-demo h2::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  /* left: calc(50% - 60px); */
+}
+
+/*  course booking course hadding only container h1  Ramesh Singh Shekhawat*/
+.container-demo h1 {
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color: #37517e;
+}
+
+.container-demo h1::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  /* left: calc(50% - 60px); */
+}
+
+.container-demo h1::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #e78a26;
+  bottom: 0;
+  left: calc(0.5%);
+}
+
+.container-demo h1::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  /* left: calc(50% - 60px); */
+}
+
+
+/* 
+.coupon {
+  background-color: #e78a26;
+  padding: 7px 9px 1px 10px;
+  margin-top:50px;
+  color:white;
+
+
+} */
+.box change-border-color2{
+  position: relative;
+}
+
+.box-s-1{
+  background-color: #e78a26;
+  padding: 7px;
+  display:inline-block;
+  position:absolute;
+  top: 0;
+  left:67%;
+  border-bottom-left-radius: 35%;
+  border-top-right-radius: 10%;
+  width: 106px;
+}
+.box-s-1 p{
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  
+}
+.box-s-1 p {
+	margin-top: 0;
+	margin-bottom: 0rem;
+}
+.Product__UpdatedOfferTitle-sc-11dk8zk-2{
+   ::before, ::after {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(37 111 239 / .5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+  }
+}
+
+
+
+  
