@@ -54,8 +54,9 @@ use App\Http\Controllers\Auth\LoginController;
         //Frontend Pages
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/setCountry', [HomeController::class, 'setCountry'])->name('setCountry');
-        Route::get('/course-detail/{id}', [App\Http\Controllers\Front\CourseDetailController::class, 'index'])->name('courseDetails');
-        Route::post('/book_a_demo', [App\Http\Controllers\Front\CourseDetailController::class, 'bookDemo'])->name('book-a-demo');
+        Route::get('/course', [App\Http\Controllers\Front\CourseController::class, 'index'])->name('courseList');
+        Route::get('/course-detail/{id}', [App\Http\Controllers\Front\CourseController::class, 'courseDetails'])->name('courseDetails');
+        Route::post('/book_a_demo', [App\Http\Controllers\Front\CourseController::class, 'bookDemo'])->name('book-a-demo');
         Route::get('/pages/guidelines', [App\Http\Controllers\Front\PageController::class, 'guidelines'])->name("class.guidelines");
         Route::get('/pages/terms-conditions', [App\Http\Controllers\Front\PageController::class, 'terms_conditions'])->name("terms.conditions");
         Route::get('/pages/privacy-policy', [App\Http\Controllers\Front\PageController::class, 'privacy_policy'])->name("privacy.policy");

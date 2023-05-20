@@ -31,51 +31,7 @@
 									<section class="">
 										<div class="container">
 
-											<div class="sc_content main ">
-												<div class="columnsWrap sc_columns sc_columns_count_5">
-													<div class="columns1_5 sc_column_item sc_column_item_1 odd first">
-														<a href="#">
-															<div class="sc_title_icon sc_title_top sc_size_huge">
-																<img src="{{asset('assets/front/images/137x137.png')}}" alt=""/>
-															</div>
-															<h6 class="sc_title sc_title_iconed style_1">Funny educational games</h6>
-														</a>
-													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_2 even">
-														<a href="#">
-															<div class="sc_title_icon sc_title_top sc_size_huge">
-																<img src="{{asset('assets/front/images/137x137.png')}}" alt=""/>
-															</div>
-															<h6 class="sc_title sc_title_iconed style_1">Outside activities</h6>
-														</a>
-													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_3 odd">
-														<a href="#">
-															<div class="sc_title_icon sc_title_top sc_size_huge">
-																<img src="{{asset('assets/front/images/137x137.png')}}" alt=""/>
-															</div>
-															<h6 class="sc_title sc_title_iconed style_1">Babysitter last minute service</h6>
-														</a>
-													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_4 even">
-														<a href="#">
-															<div class="sc_title_icon sc_title_top sc_size_huge">
-																<img src="{{asset('assets/front/images/137x137.png')}}" alt=""/>
-															</div>
-															<h6 class="sc_title sc_title_iconed style_1">Drawing, coloring, and painting</h6>
-														</a>
-													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_5 odd">
-														<a href="#">
-															<div class="sc_title_icon sc_title_top sc_size_huge">
-																<img src="{{asset('assets/front/images/137x137.png')}}" alt=""/>
-															</div>
-															<h6 class="sc_title sc_title_iconed style_1">Book a Sitter!</h6>
-														</a>
-													</div>
-												</div>
-												<div class="sc_line sc_line_style_wavy margin_top_big margin_bottom_big"></div>
-											</div>
+											
 
 											<div class="sc_content main ">
 												<div class="aligncenter margin_bottom_middle">
@@ -84,43 +40,31 @@
 												</div>
 												<div class="sc_blogger sc_blogger_horizontal style_image style_image_classes">
 													<div class="columnsWrap">
-														<div class="columns1_3 column_item_1 odd first">
+														@foreach($courses as $course)
+														<div class="columns1_3 column_item_{{$course->id}} odd first">
 															<article class="sc_blogger_item">
 																<div class="thumb">
-																	<a href="#">
-																		<img alt="Babysitting: Dealing With Temper Tantrums" src="{{asset('assets/front/images/714x402.png')}}">
+																	<a href="javascript:void(0);">
+																	@php $courseImg = "asset('assets/front/images/714x402.png')"; @endphp
+																	@if(file_exists(public_path('/uploads/course/').$course->image))
+																	@php $courseImg = asset('/uploads/course').'/'.$course->image; @endphp
+																	@endif
+																		<img alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 																		<div class="sc_blogger_content">
 																			<div class="sc_blogger_content_inner">Nunc ac justo hendrerit, elementum nisi elementum, semper arcu. Nam egestas pellentesque...</div>
 																		</div>
 																	</a>
 																</div>
 																<h4 class="sc_blogger_title sc_title">
-																<a href="#">Babysitting: Dealing With Temper Tantrums</a>
+																<a href="#">{{$course->title}}</a>
 																</h4>
 																<div class="reviews_summary blog_reviews">
 																	<div class="classes_price">
-																		<p>$185
-																			<strong>/mo</strong>
+																		<p>${{$course->price}}
+																			<!-- <strong>Session {{$course->class}}</strong> -->
 																		</p>
 																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="50">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
+																	
 																</div>
 																<div class="sc_blogger_content">
 																</div>
@@ -138,276 +82,10 @@
 																</div>
 															</article>
 														</div>
-														<div class="columns1_3 column_item_2 even">
-															<article class="sc_blogger_item">
-																<div class="thumb">
-																	<a href="#">
-																		<img alt="10 Healthy Lunch Ideas for Kids" src="{{asset('assets/front/images/714x402.png')}}">
-																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">Hello All, Firstly, thank you so much for the great template! I have spent around 10hrs looking...</div>
-																		</div>
-																	</a>
-																</div>
-																<h4 class="sc_blogger_title sc_title">
-																<a href="#">10 Healthy Lunch Ideas for Kids</a>
-																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>$185
-																			<strong>/mo</strong>
-																		</p>
-																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="60">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
-																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">228</span>
-																	</div>
-																</div>
-															</article>
-														</div>
-														<div class="columns1_3 column_item_3 odd">
-															<article class="sc_blogger_item">
-																<div class="thumb">
-																	<a href="#">
-																		<img alt="Common Vaccination Myths Busted" src="{{asset('assets/front/images/714x402.png')}}">
-																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">
-																				<p>Best purchase i made in envato.</p>
-																			</div>
-																		</div>
-																	</a>
-																</div>
-																<h4 class="sc_blogger_title sc_title">
-																<a href="#">Common Vaccination Myths Busted</a>
-																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>$200</p>
-																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="70">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
-																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">130</span>
-																	</div>
-																</div>
-															</article>
-														</div>
-														<div class="columns1_3 column_item_4 even">
-															<article class="sc_blogger_item">
-																<div class="thumb">
-																	<a href="#">
-																		<img alt="Does Your Child Have a Cold or the Flu?" src="{{asset('assets/front/images/714x402.png')}}">
-																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">Maecenas tristique sem ante. Donec imperdiet pretium sodales. Sed in eros fermentum, facilisis...</div>
-																		</div>
-																	</a>
-																</div>
-																<h4 class="sc_blogger_title sc_title">
-																<a href="#">Does Your Child Have a Cold or the Flu?</a>
-																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>FREE!</p>
-																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="80">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
-																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">50</span>
-																	</div>
-																</div>
-															</article>
-														</div>
-														<div class="columns1_3 column_item_5 odd">
-															<article class="sc_blogger_item">
-																<div class="thumb">
-																	<a href="#">
-																		<img alt="When Your Child Has a Cold" src="{{asset('assets/front/images/714x402.png')}}">
-																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">Vivamus pharetra justo eget placerat commodo. Class aptent taciti sociosqu ad litora torquent...</div>
-																		</div>
-																	</a>
-																</div>
-																<h4 class="sc_blogger_title sc_title">
-																<a href="#">When Your Child Has a Cold</a>
-																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>$85
-																			<strong>/mo</strong>
-																		</p>
-																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="90">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
-																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">78</span>
-																	</div>
-																</div>
-															</article>
-														</div>
-														<div class="columns1_3 column_item_6 even columns_last">
-															<article class="sc_blogger_item sc_blogger_item_last">
-																<div class="thumb">
-																	<a href="#">
-																		<img alt="Detecting Learning Disabilities" src="{{asset('assets/front/images/714x402.png')}}">
-																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">Ut vitae lacus pretium, molestie massa a, placerat urna. Donec viverra nisl id nisl accumsan, ac...</div>
-																		</div>
-																	</a>
-																</div>
-																<h4 class="sc_blogger_title sc_title">
-																<a href="#">Detecting Learning Disabilities</a>
-																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>$115
-																			<strong>/mo</strong>
-																		</p>
-																	</div>
-																	<div class="criteria_summary criteria_row">
-																		<div class="ratingItem" data-mark="100">
-																			<div class="starDefault">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																			<div class="starHover">
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																				<span class="starReview"></span>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
-																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">42</span>
-																	</div>
-																</div>
-															</article>
-														</div>
+														@endforeach
 													</div>
 												</div>
+
 												<div class="sc_section bg_tint_none sc_aligncenter margin_top_middle">
 													<div class="">
 														<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner">
@@ -430,14 +108,19 @@
 													</div>
 													<div class="sc_team no_padding">
 														<div class="sc_columns columnsWrap">
+															@foreach($testimonials as $data)
 															<div class="columns1_3">
 																<div class="sc_team_item sc_team_item_1 odd first">
 																	<div class="sc_team_item_avatar">
-																		<img alt="team-5.jpg" src="{{asset('assets/front/images/370x370.png')}}">
+																	@php $testimonialsImg = '/assets/front/img/default_product.png'; @endphp
+																	@if(file_exists(public_path('/uploads/testimonials/').$data->image))
+																	@php $testimonialsImg = asset('/uploads/testimonials').'/'.$data->image; @endphp
+																	@endif
+																		<img alt="team-5.jpg" src="{{$testimonialsImg}}">
 																		<div class="sc_team_item_description">Lorem ipsum dolor sit amet consectetur adipiscing elit morbi lobortis odio sapien.</div>
 																	</div>
 																	<div class="sc_team_item_info">
-																		<h3 class="sc_team_item_title"><a href="#">Lisa Kudrow</a></h3>
+																		<h3 class="sc_team_item_title"><a href="#">{{$data->title}}</a></h3>
 																		<div class="sc_team_item_position theme_accent2">oil painting</div>
 																		<ul class="sc_team_item_socials">
 																			<li>
@@ -459,69 +142,8 @@
 																	</div>
 																</div>
 															</div>
-															<div class="columns1_3">
-																<div class="sc_team_item sc_team_item_2 even">
-																	<div class="sc_team_item_avatar">
-																		<img alt="team-6.jpg" src="{{asset('assets/front/images/370x370.png')}}">
-																		<div class="sc_team_item_description">Lorem ipsum dolor sit amet consectetur adipiscing elit morbi lobortis odio sapien.</div>
-																	</div>
-																	<div class="sc_team_item_info">
-																		<h3 class="sc_team_item_title"><a href="#">David Doe</a></h3>
-																		<div class="sc_team_item_position theme_accent2">languages</div>
-																		<ul class="sc_team_item_socials">
-																			<li>
-																				<a href="#" class="social_icons social_facebook facebook facebook_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																			<li>
-																				<a href="#" class="social_icons social_twitter twitter twitter_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																			<li>
-																				<a href="#" class="social_icons social_gplus gplus gplus_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																			<li>
-																				<a href="#" class="social_icons social_dribbble  dribbble dribbble_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
-															<div class="columns1_3">
-																<div class="sc_team_item sc_team_item_3 odd">
-																	<div class="sc_team_item_avatar">
-																		<img alt="team-7.jpg" src="{{asset('assets/front/images/370x370.png')}}">
-																		<div class="sc_team_item_description">Lorem ipsum dolor sit amet consectetur adipiscing elit morbi lobortis odio sapien.</div>
-																	</div>
-																	<div class="sc_team_item_info">
-																		<h3 class="sc_team_item_title"><a href="#">Matthew Perry</a></h3>
-																		<div class="sc_team_item_position theme_accent2">cooking</div>
-																		<ul class="sc_team_item_socials">
-																			<li>
-																				<a href="#" class="social_icons social_facebook facebook facebook_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																			<li>
-																				<a href="#" class="social_icons social_twitter twitter twitter_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																			<li>
-																				<a href="#" class="social_icons social_gplus gplus gplus_image" target="_blank">
-																					<span></span>
-																				</a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-															</div>
+															@endforeach
+															
 														</div>
 													</div>
 												</div>

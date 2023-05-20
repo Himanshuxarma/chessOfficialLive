@@ -25,192 +25,22 @@
 							<nav role="navigation" class="menuTopWrap topMenuStyleLine">
 								<ul id="mainmenu" class="">
 									<li class="menu-item current-menu-ancestor menu-item-has-children">
-										<a href="{{url('/')}}">Homepage</a>
-										<!-- <ul class="sub-menu">
-											<li class="menu-item">
-												<a href="index.html">Homepage (Babysitter)</a>
-											</li>
-											<li class="menu-item">
-												<a href="index2.html">Homepage (Health Care)</a>
-											</li>
-											<li class="menu-item current-menu-item">
-												<a href="index3.html">Homepage (Learn &#038; Play)</a>
-											</li>
-											<li class="menu-item">
-												<a href="index4.html">Homepage (Toy Store)</a>
-											</li>
-										</ul> -->
+										<a href="{{url('/')}}">Home</a>
 									</li>
-									<!-- <li class="menu-item menu-item-has-children">
-										<a href="index.html">Headers</a>
-										<ul class="sub-menu">
-											<li class="menu-item">
-												<a href="headers-standard.html">Standard</a>
-											</li>
-											<li class="menu-item">
-												<a href="headers-transparent.html">Transparent</a>
-											</li>
-											<li class="menu-item">
-												<a href="headers-central-menu.html">Central menu</a>
-											</li>
-											<li class="menu-item">
-												<a href="headers-video.html">Video header</a>
-											</li>
-										</ul>
-									</li> -->
-									<!-- <li class="menu-item menu-item-has-children columns custom_view_item">
-										<a title="Tools and Pages" href="#">
-											<span class="menu_icon icon-params"> </span>
-											Features
-										</a>
-										<ul class="menu-panel columns">
-											<li>
-												<ul class="custom-menu-style columns sub-menu">
-													<li class="menu-item menu-item-has-children">
-														<a href="#">
-															<span class="menu_icon icon-wrench"> </span>
-															Tools
-															<span class="menu_item_description">Standard theme instruments</span>
-														</a>
-														<ul class="sub-menu">
-															<li class="menu-item">
-																<a href="features-tools-typography.html">Typography</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-tools-shortcodes-accordion.html">Shortcodes</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-tools-post-formats-n-all-widgets.html">Post formats &#038; All widgets</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-tools-events-calendar.html">Events Calendar</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-tools-pricing-tables.html">Pricing Tables</a>
-															</li>
-															<li class="menu-item">
-																<a target="_blank" href="doc/index.html">Documentation</a>
-															</li>
-														</ul>
-													</li>
-													<li class="menu-item menu-item-has-children">
-														<a href="#">
-															<span class="menu_icon icon-doc-inv-1"></span>
-															Pages
-															<span class="menu_item_description">Sample theme pages</span>
-														</a>
-														<ul class="sub-menu">
-															<li class="menu-item">
-																<a href="features-pages-shop.html">Shop page</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-product-page.html">Product page</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-about-us.html">About Us</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-contact-us.html">Contact Us</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-donation.html">Donation</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-faq.html">FAQ</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-404.html">Page 404</a>
-															</li>
-															<li class="menu-item">
-																<a href="features-pages-under-constraction.html">Under Construction</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li> -->
+									
 									<li class="menu-item menu-item-has-children">
-										<a title="Layouts and hovers" href="javascript:void(0);">
+										<a title="Layouts and hovers" href="{{route('courseList')}}">
 											<span class="menu_icon icon-thumbs-up"></span>
 											Courses
 										</a>
-										<!-- <ul class="sub-menu">
-											<li class="menu-item menu-item-has-children">
-												<a href="#">Classic Style</a>
-												<ul class="sub-menu">
-													<li class="menu-item">
-														<a href="portfolio-classic-1-column.html">1 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-classic-2-columns.html">2 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-classic-2-columns-with-sidebar.html">2 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-classic-3-columns.html">3 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-classic-3-columns-with-sidebar.html">3 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-classic-4-columns.html">4 columns</a>
-													</li>
-												</ul>
-											</li>
-											<li class="menu-item menu-item-has-children">
-												<a href="#">Masonry style</a>
-												<ul class="sub-menu">
-													<li class="menu-item">
-														<a href="portfolio-masonry-2-columns.html">2 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-masonry-2-columns-with-sidebar.html">2 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-masonry-3-columns.html">3 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-masonry-3-columns-with-sidebar.html">3 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-masonry-4-columns.html">4 columns</a>
-													</li>
-												</ul>
-											</li>
-											<li class="menu-item menu-item-has-children">
-												<a href="#">Grid Style</a>
-												<ul class="sub-menu">
-													<li class="menu-item">
-														<a href="portfolio-grid-2-columns.html">2 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-grid-2-columns-with-sidebar.html">2 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-grid-3-columns.html">3 columns</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-grid-3-columns-with-sidebar.html">3 columns with sidebar</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-grid-4-columns.html">4 columns</a>
-													</li>
-												</ul>
-											</li>
-											<li class="menu-item menu-item-has-children">
-												<a href="#">Portfolio post</a>
-												<ul class="sub-menu">
-													<li class="menu-item">
-														<a href="portfolio-post-standard.html">Standard</a>
-													</li>
-													<li class="menu-item">
-														<a href="portfolio-post-fullscreen.html">Fullscreen</a>
-													</li>
-												</ul>
-											</li>
-										</ul> -->
+										
+									</li>
+									<li class="menu-item menu-item-has-children">
+										<a title="Layouts and hovers" href="javascript:void(0);">
+											<span class="menu_icon icon-thumbs-up"></span>
+											Faq
+										</a>
+										
 									</li>
 									<li class="menu-item menu-item-has-children">
 										<a title="Posts pages" href="#">

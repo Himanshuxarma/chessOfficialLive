@@ -7,13 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\courseCurriculum;
 
-class CourseDetailController extends Controller
+class CourseController extends Controller
 {
-    public function index($id){
-         $courses = Course::find($id);
-         $curriculum = CourseCurriculum::where('course_id', $id)->where('status',1)->get();
-          return view('front.course_detail.index',compact('courses','curriculum'));
+    public function index(){
+        $courses = Course::all();
+          return view('front.course.index',compact('courses'));
     }
+
+    public function courseDetails($id){
+        $courses = Course::find($id);
+        $curriculum = CourseCurriculum::where('course_id', $id)->where('status',1)->get();
+         return view('front.course_detail.index',compact('courses','curriculum'));
+   }
+
 
     /**
      * Himanshu Sharma
