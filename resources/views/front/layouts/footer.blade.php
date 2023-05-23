@@ -1,27 +1,36 @@
+<?php 
+	$settings = App\Helpers\Helper::getSettings();
+?>
 <div class="footerContentWrap">
 				<footer class="footerWrap footerStyleLight contactFooterWrap">
 					<div class="main contactFooter">
 						<section>
 							<div class="logo">
-								<a href="index.html">
-									<img src="images/245x43.png" alt="">
+								<a href="javascript:void(0);">
+									<img src="{{asset('assets/front/images/245x43.png')}}" alt="">
 								</a>
 							</div>
 							<div class="contactAddress">
 								<address class="addressRight">
-									Phone: 1.800.123.4567<br>
+									Phone: {{$settings->phone1}}<br>
 									Fax: 1.800.123.4566 
 								</address>
 								<address class="addressLeft">
-									San Francisco, CA 94102, US<br>
-									1234, Some Str. 
+									{{$settings->address}}<br> 
 								</address>
 							</div>
 							<div class="contactTtextLine">Share this page with friends who need help in 2015, too.</div>
 							<div class="contactShare">
+							@php
+								$TwitterLink = isset($settings) && !empty($settings->twitter_link) ? $settings->twitter_link:'javascript:void(0);';
+								$FBLink = isset($settings) && !empty($settings->facebook_link) ? $settings->facebook_link :'javascript:void(0);';
+								$LinkedinLink = isset($settings) && !empty($settings->linkedin_link) ? $settings->linkedin_link:'javascript:void(0);';
+								$InstagramLink = isset($settings) && !empty($settings->instagram_link) ? $settings->instagram_link:'javascript:void(0);';
+								$GoogleLink = isset($settings) && !empty($settings->google_link) ? $settings->google_link:'javascript:void(0);';
+							@endphp
 								<ul>
 									<li>
-										<a class="social_icons fShare facebook_image" href="http://facebook.com" target="_blank" title="facebook">
+										<a class="social_icons fShare facebook_image" href="{{$FBLink}}" target="_blank" title="facebook">
 											<span></span>
 										</a>
 									</li>
@@ -31,17 +40,17 @@
 										</a>
 									</li>
 									<li>
-										<a class="social_icons fShare twitter_image" href="http://twitter.com" target="_blank" title="twitter">
+										<a class="social_icons fShare twitter_image" href="{{$TwitterLink}}" target="_blank" title="twitter">
 											<span></span>
 										</a>
 									</li>
 									<li>
-										<a class="social_icons fShare gplus_image" href="http://gplus.com" target="_blank" title="gplus">
+										<a class="social_icons fShare gplus_image" href="{{$GoogleLink}}" target="_blank" title="gplus">
 											<span></span>
 										</a>
 									</li>
 									<li>
-										<a class="social_icons fShare linkedin_image" href="http://linkedin.com" target="_blank" title="Linkedin">
+										<a class="social_icons fShare linkedin_image" href="{{$LinkedinLink}}" target="_blank" title="Linkedin">
 											<span></span>
 										</a>
 									</li>
@@ -50,6 +59,11 @@
 											<span></span>
 										</a>
 									</li>
+									<!-- <li>
+										<a class="social_icons fShare whatsapp_image" href="http://vimeo.com" target="_blank" title="Whatsapp">
+											<span></span>
+										</a>
+									</li> -->
 								</ul>
 							</div>
 						</section>
@@ -59,9 +73,9 @@
 				<div class="copyWrap">
 					<div class="copy main">
 						<div class="copyright">
-							<a href="http://themeforest.net/user/axiomthemes/portfolio">Axiom</a> &copy; 2015 All Rights Reserved
-							<a href="#">Terms of Use</a>
-							and <a href="#">Privacy Policy</a>
+							<a href="javascript:void(0);">ChessOfficial</a> &copy; 2023 All Rights Reserved
+							<a href="{{route('terms.conditions')}}">Terms of Use</a>
+							and <a href="{{route('privacy.policy')}}">Privacy Policy</a>
 						</div>
 						<div class="copy_socials socPage">
 							<ul>

@@ -2424,6 +2424,10 @@ p.pd-sm {padding-bottom: 10px;}
 .vimeo_image,
 .vimeo_image > span {background-image: url(../images/vimeo.png);}
 
+/* Ramesh singh Shekhawat */
+.whatsapp_image,
+.whatsapp_image > span {background-image: url(../images/whatsapp.png);}
+
 .rss_image,
 .rss_image > span {background-image: url(../images/rss.png);}
 

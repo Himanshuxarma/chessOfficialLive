@@ -8,5 +8,6 @@
 	<script type='text/javascript' src='{{asset("assets/front/js/custom/shortcodes_init.js")}}'></script>
 	<script type='text/javascript' src='{{asset("assets/front/js/custom/_utils.js")}}'></script>
 	<script type='text/javascript' src='{{asset("assets/front/js/custom/_front.js")}}'></script>
+	<script type='text/javascript' src="{{asset('assets/front/js/vendor/diagram/diagram.raphael.min.js')}}"></script>
 
 	<!--<script type='text/javascript' src='custom_tools/js/_customizer.js'></script>-->

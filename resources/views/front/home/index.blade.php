@@ -44,42 +44,35 @@
 														<div class="columns1_3 column_item_{{$course->id}} odd first">
 															<article class="sc_blogger_item">
 																<div class="thumb">
-																	<a href="javascript:void(0);">
-																	@php $courseImg = "asset('assets/front/images/714x402.png')"; @endphp
-																	@if(file_exists(public_path('/uploads/course/').$course->image))
+																	<a href="{{route('courseDetails',$course->id)}}">
+																	
+																	@if($course->image)
 																	@php $courseImg = asset('/uploads/course').'/'.$course->image; @endphp
+																	@else 
+																	@php $courseImg = "assets/front/images/default.png"; @endphp
 																	@endif
-																		<img alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
+																		<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 																		<div class="sc_blogger_content">
-																			<div class="sc_blogger_content_inner">Nunc ac justo hendrerit, elementum nisi elementum, semper arcu. Nam egestas pellentesque...</div>
+																			<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
 																		</div>
 																	</a>
 																</div>
 																<h4 class="sc_blogger_title sc_title">
-																<a href="#">{{$course->title}}</a>
+																<a href="{{route('courseDetails',$course->id)}}">{{$course->title}}</a>
+																<span class="course_price" >₹{{$course->price}}</<span>	
 																</h4>
-																<div class="reviews_summary blog_reviews">
-																	<div class="classes_price">
-																		<p>${{$course->price}}
-																			<!-- <strong>Session {{$course->class}}</strong> -->
-																		</p>
+																@php 
+																	$price = !empty($course) && !empty($course->price) ? $course->price : 0;
+																	$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+																	$perSessionPrice =  round( (float)$price/$classes) 
+																@endphp
+																	<div class="session_per_price">
+																		<p>Session Per Peice : ₹{{$perSessionPrice}}</p>
 																	</div>
-																	
-																</div>
-																<div class="sc_blogger_content">
-																</div>
-																<div class="sc_blogger_info">
-																	<div class="squareButton light ico sc_blogger_more">
-																		<a class="icon-link" title="" href="#">More</a>
+																	<div class="course_session">
+																		<span>Session {{$course->class}}</span>
 																	</div>
-																	<div class="sc_blogger_author">
-																		Posted by
-																		<a href="#" class="post_author">admin</a>
-																		<span class="separator">|</span>
-																		Views
-																		<span class="comments_number">176</span>
-																	</div>
-																</div>
+																
 															</article>
 														</div>
 														@endforeach
@@ -89,7 +82,7 @@
 												<div class="sc_section bg_tint_none sc_aligncenter margin_top_middle">
 													<div class="">
 														<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner">
-															<a href="#" class="">More cool classes</a>
+															<a href="{{route('courseList')}}" class="">More Courses</a>
 														</div>
 													</div>
 												</div>
@@ -112,29 +105,31 @@
 															<div class="columns1_3">
 																<div class="sc_team_item sc_team_item_1 odd first">
 																	<div class="sc_team_item_avatar">
-																	@php $testimonialsImg = '/assets/front/img/default_product.png'; @endphp
-																	@if(file_exists(public_path('/uploads/testimonials/').$data->image))
+																	
+																	@if(!empty($data->image))
 																	@php $testimonialsImg = asset('/uploads/testimonials').'/'.$data->image; @endphp
+																	@else
+																	@php $testimonialsImg = '/assets/front/images/370x370.png'; @endphp
 																	@endif
 																		<img alt="team-5.jpg" src="{{$testimonialsImg}}">
 																		<div class="sc_team_item_description">Lorem ipsum dolor sit amet consectetur adipiscing elit morbi lobortis odio sapien.</div>
 																	</div>
 																	<div class="sc_team_item_info">
-																		<h3 class="sc_team_item_title"><a href="#">{{$data->title}}</a></h3>
-																		<div class="sc_team_item_position theme_accent2">oil painting</div>
+																		<h3 class="sc_team_item_title"><a href="javascript:void(0);">{{$data->title}}</a></h3>
+																		<div class="sc_team_item_position theme_accent2">{{ strlen(strip_tags($data->description) < 100 ) ? substr(strip_tags($data->description), 0, 50).' ...' : strip_tags($data->description)}}</div>
 																		<ul class="sc_team_item_socials">
 																			<li>
-																				<a href="#" class="social_icons social_twitter twitter twitter_image" target="_blank">
+																				<a href="javascript:void(0);" class="social_icons social_twitter twitter twitter_image" target="_blank">
 																					<span></span>
 																				</a>
 																			</li>
 																			<li>
-																				<a href="#" class="social_icons social_facebook facebook facebook_image" target="_blank">
+																				<a href="javascript:void(0);" class="social_icons social_facebook facebook facebook_image" target="_blank">
 																					<span></span>
 																				</a>
 																			</li>
 																			<li>
-																				<a href="#" class="social_icons social_gplus gplus gplus_image" target="_blank">
+																				<a href="javascript:void(0);" class="social_icons social_gplus gplus gplus_image" target="_blank">
 																					<span></span>
 																				</a>
 																			</li>

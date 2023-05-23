@@ -3,17 +3,14 @@
 			<div id="topOfPage" class="topTabsWrap">
 				<div class="main">
 					<div class="speedBar">
-						<a class="home" href="index.html">Home</a>
+						<a class="home" href="javascript:void(0);">Home</a>
 						<span class="breadcrumbs_delimiter">
 							<i class="icon-right-open-mini"></i>
 						</span>
-						<a class="all" href="#">All Posts</a>
-						<span class="breadcrumbs_delimiter">
-							<i class="icon-right-open-mini"></i>
-						</span>
-						<span class="current">Classic (3 columns)</span>
+						<a class="all" href="javascript:void(0);">All Course</a>
+						<!-- <span class="current">Classic (3 columns)</span> -->
 					</div>
-					<h3 class="pageTitle h3">Classic (3 columns)</h3>
+					<!-- <h3 class="pageTitle h3">Classic (3 columns)</h3> -->
 				</div>
 			</div>
 
@@ -27,41 +24,62 @@
 									<div class="isotopeFiltr">
 										<ul>
 											<li class="squareButton active">
-												<a href="#" data-filter="*">All</a>
+												<a href="javascript:void(0);" data-filter="*">All</a>
 											</li>
                                             
 											<li class="squareButton">
-												<a href="#" data-filter=".flt_71">business</a>
+												<a href="javascript:void(0);" data-filter=".article_main_course">Main Courses</a>
+											</li>
+                                            <li class="squareButton">
+												<a href="javascript:void(0);" data-filter=".article_academy_course">Academy Courses</a>
 											</li>
                                             
 											
 										</ul>
 									</div>
 									<section class="masonry isotope" data-columns="3">
-                                        @foreach($courses as $data)
-										<article class="isotopeElement post_format_standard odd flt_71 flt_66 flt_61">
+										@foreach($courses as $key=>$data)
+										@php $courseFeatured = \Helper::getcourseFeaturedbycourse($data->id); @endphp
+										<article class="isotopeElement post_format_standard odd article_{{$data->type}} flt_71 flt_66 flt_61">
 											<div class="isotopePadding">
-												<div class="thumb hoverIncrease" data-image="{{asset('assets/front/images/1317x2000.png')}}" data-title="Summer Childcare Questions">
-													<img alt="Summer Childcare Questions" src="{{asset('assets/front/images/1150x647.png')}}">
+												@if(!empty($data->image))
+													@php $courseImg = asset('/uploads/course').'/'.$data->image; @endphp
+													@else 
+													@php $courseImg = "assets/front/images/coursedefault.jpg"; @endphp
+
+												@endif
+												<div class="thumb hoverIncrease" data-image="{{$courseImg}}" data-title="{{$data->title}}">
+												
+													<img class="course-list-page" alt="{{$data->title}}" src="{{$courseImg}}">
 												</div>
-												<h4>
-												<a href="#">{{$data->title}}</a>
-												</h4>
-												<p>Proin dictum tellus magna, id semper elit rhoncus a. Nullam gravida lectus vel nunc sagittis consectetur. Cras dictum, elit sit amet imperdiet posuere, nunc eros cursus tellus, sit amet mollis risus massa vel augue. Nulla sed nunc quis odio facilisis eleifend. Vestibulum feugiat ipsum at interdum fringilla. Donec dictum pharetra velit, eget convallis metus pharetra </p>
+												<h4><a href="{{route('courseDetails', $data->id)}}">{{$data->title}}</a></h4>
+												<ul class=" list-style-dot">
+													@if(!empty($courseFeatured))
+														@foreach($courseFeatured as $featured)
+															<li class=""><span class="feature_span">{{$featured->feature}}</span></li>
+														@endforeach
+													@else
+														<li>No Features Available</li>
+													@endif
+												</ul>
 												<div class="masonryInfo">
-													Posted
-													<a href="#" class="post_date">August 29, 2014</a>
+													Price <a href="javascript:void(0);" class="post_date">₹{{$data->price}}</a>
 												</div>
 												<div class="masonryMore">
 													<ul>
 														<li class="squareButton light ico">
-															<a class="icon-link" title="More" href="{{route('courseDetails', $data->id)}}">View Details</a>
+															<a  href="{{route('courseDetails', $data->id)}}">View Details</a>
 														</li>
 														<li class="squareButton light ico">
-															<a class="icon-eye" title="Views - 142" href="#">Price</a>
+															<a  href="javascript:void(0);"><span>{{$data->class}}</span> Session</a>
 														</li>
+														@php 
+														$price = !empty($data) && !empty($data->price) ? $data->price : 0;
+														$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
+														$perSessionPrice =  round( (float)$price/$classes) 
+														@endphp
 														<li class="squareButton light ico">
-															<a class="icon-comment-1" title="Comments - 0" href="#">Price Per Session</a>
+															<a  href="javascript:void(0);"> {{$perSessionPrice}} Price Per Session</a>
 														</li>
 													</ul>
 												</div>

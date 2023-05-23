@@ -45,7 +45,7 @@
                         @foreach ($course as $data)
                         <tr>
                             <td>{{ $data->id }}</td>
-                            <td>{{ $data->type }}</td>
+                            <td>{{ ucFirst(str_replace('_',' ', $data->type)) }}</td>
                             <td>{{ $data->title }}</td>
                             <td>{{ $data->class}}</td>
                             <td>{{ $data->price}}</td>

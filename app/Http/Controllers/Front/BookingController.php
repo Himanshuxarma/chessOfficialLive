@@ -19,11 +19,11 @@ use Hash;
 
 class BookingController extends Controller
 {
-    public function index($id){
-        $CourseId = Course::find($id);
+    public function index(){
+        $Course = Course::all();
         $country = Country::all();
         $timezone = CountryTimezone::all();
-        return view('front.booking.booking_a_demo',compact('CourseId','country','timezone'));      
+        return view('front.booking.booking_a_demo',compact('Course','country','timezone'));      
     }
 
     public function storeTimezone(Request $request){
@@ -49,6 +49,7 @@ class BookingController extends Controller
      * @return response()
      */
     public function demo_booking(Request $request){
+        dd("singh");
         if(Auth::guard('customer')->check()){
             $validatedData = $request->validate([
                 'country_id' => 'required',
