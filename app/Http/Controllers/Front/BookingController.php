@@ -16,6 +16,9 @@ use App\Models\Order;
 use App\Models\CountryTimezone;
 use App\Models\CardDetail;
 use Hash;
+use Razorpay\Api\Api;
+use Session;
+use Exception;
 
 class BookingController extends Controller
 {
@@ -202,5 +205,51 @@ class BookingController extends Controller
             return redirect()->route('login')->with('error', 'Please login first.');
         }
 
+    }
+
+
+     /**
+     * Write code on Method
+     * @return response()
+     */
+    public function bookingDemo() {
+        return view('front.razorpay.index');
+    }
+
+    /**
+     * Write code on Method
+     * @return response()
+     */
+    public function bookingDemoStore(Request $request) {
+        $RAZORPAY_KEY = env('RAZORPAY_KEY');
+        $RAZORPAY_SECRET = env('RAZORPAY_SECRET');
+
+        $input = $request->all();
+
+        $api = new Api($RAZORPAY_KEY, $RAZORPAY_SECRET);
+
+        $payment = $api->payment->fetch($input['razorpay_payment_id']);
+
+        if (count($input) && !empty($input['razorpay_payment_id'])) {
+
+            try {
+                dump($payment);
+                $response = $api->payment->fetch($input['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
+                dd($response);
+            } catch (Exception $e) {
+
+                return $e->getMessage();
+
+                Session::put('error', $e->getMessage());
+
+                return redirect()->back();
+            }
+        }
+
+
+
+        Session::put('success', 'Payment successful');
+
+        return redirect()->back();
     }
 }

@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseCurriculumsTable extends Migration
-{
+class CreateCourseCurriculumsTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('course_curriculums', function (Blueprint $table) {
             $table->id();
             $table->string('course_id');
@@ -28,8 +27,8 @@ class CreateCourseCurriculumsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('course_curriculums');
     }
+
 }

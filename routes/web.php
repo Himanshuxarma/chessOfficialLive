@@ -67,6 +67,9 @@ use App\Http\Controllers\Auth\LoginController;
         Route::get('/buy-course/{id}',[App\Http\Controllers\Front\BookingController::class,'buy_course'])->name("Buy.Course");
         Route::post('/store-Buy-course',[App\Http\Controllers\Front\BookingController::class,'storeBuycourse'])->name("Store.Buy.Course");
 
+        Route::get('/booking-demo',[App\Http\Controllers\Front\BookingController::class,'bookingDemo'])->name("booking.demo");
+        Route::post('/booking-store',[App\Http\Controllers\Front\BookingController::class,'bookingDemoStore'])->name("booking.demo.store");
+
 
     Route::prefix("/admin")->namespace("Admin")->group(function(){
          Route::namespace("Auth")->group(function(){
