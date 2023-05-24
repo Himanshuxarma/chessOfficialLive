@@ -67,6 +67,8 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post('/fetch_timezone', [App\Http\Controllers\Front\BookingController::class, 'storeTimezone'])->name("store.timezone");
         Route::get('/buy-course/{id}',[App\Http\Controllers\Front\BookingController::class,'buy_course'])->name("Buy.Course");
         Route::post('/store-Buy-course',[App\Http\Controllers\Front\BookingController::class,'storeBuycourse'])->name("Store.Buy.Course");
+        Route::get('/contact-us', [App\Http\Controllers\Front\EnquiriesController::class, 'index'])->name("contactForm");
+        Route::post('contact/store', [App\Http\Controllers\Front\EnquiriesController::class, 'sendEmail'])->name('contactsSave');
 
 
     Route::prefix("/admin")->namespace("Admin")->group(function(){

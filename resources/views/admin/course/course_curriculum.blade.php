@@ -33,6 +33,7 @@
                                         <label for="image"> Image {{$i}} </label>
                                         <input type="file" name="data[{{$i}}][image]" class="form-control"
                                             value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->image) ? $courseCurriculum[$i]->image : 0}}"require>
+                                            
                                     </div>
                                 </div>
                                 <div class="col-md-3 mt-4">

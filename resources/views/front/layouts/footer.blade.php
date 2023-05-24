@@ -69,7 +69,8 @@
 						</section>
 					</div>
 				</footer>
-
+				
+				
 				<div class="copyWrap">
 					<div class="copy main">
 						<div class="copyright">
@@ -77,6 +78,7 @@
 							<a href="{{route('terms.conditions')}}">Terms of Use</a>
 							and <a href="{{route('privacy.policy')}}">Privacy Policy</a>
 						</div>
+					
 						<div class="copy_socials socPage">
 							<ul>
 								<li>
@@ -110,6 +112,18 @@
 									</a>
 								</li>
 							</ul>
+						</div>
+						
+						<div class="chat_us">
+							<div class="chat_img">
+							<img src="{{asset('assets/front/images/whatsapp.png')}}" height="20px"> 
+							
+							</div>
+							<div class="chat_text">
+							<a href="https://wa.me/{{!empty($settings->whatsapp_no)  ? $settings->whatsapp_no : '+91 8005517323'}}"><span>Chat with us</span></a>
+							</div>
+							
+						
 						</div>
 					</div>
 				</div>

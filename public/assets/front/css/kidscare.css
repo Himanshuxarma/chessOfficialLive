@@ -1217,7 +1217,7 @@ header.fixedTopMenu .topWrap .menuTopWrap.topMenuStyleLine > ul#mainmenu > li > 
 
 /* Footer
 ------------------------------------------------------------------- */
-.footerWrap.footerStyleLight {background: #f9fafb url("../images/pattern_7.png") repeat 50% 100%; border: none;}
+/* .footerWrap.footerStyleLight {background: #f9fafb url("../images/pattern_7.png") repeat 50% 100%; border: none;} */
 .footerWrap.footerStyleDark {}
 
 /*.theme_skin_kidscare .contactFooterWrap.footerStyleLight {background: #ea624c url("../images/object_1.png") no-repeat 50% 100%; color: #ffffff;}*/
@@ -1783,7 +1783,7 @@ Button Animation v1 .squareButton:not(.curveButton)
 .squareButton.light:not(.curveButton) > button:after,
 .squareButton.light:not(.curveButton) > span:after,
 .squareButton.light:not(.curveButton) > span:after {
-    background-color: #eeeeee;
+    background-color: #1BB4B9;
 }
 
 .squareButton.global:not(.curveButton) > a:hover {color: #ffffff !important; border-color: #292929 !important;}
