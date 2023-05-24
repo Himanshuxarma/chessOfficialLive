@@ -37,8 +37,8 @@ class HomeController extends Controller
             $defaultCountry = 6;
         }
         
-        $courses = Course::where('type','Main Course')->where('status',1)->get();
-        $academy = Course::where('type','Academy')->where('status',1)->get();
+        $courses = Course::where('type','main_course')->where('status',1)->get();
+        $academy = Course::where('type','academy_course')->where('status',1)->get();
         $testimonials = Testimonial::where('status',1)->get();
         $aboutPage = Page::where('slug', 'about-us')->first();
         $academyDescription = Page::where('slug', 'academy-description')->first();

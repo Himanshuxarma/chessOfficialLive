@@ -12,11 +12,11 @@
 							</div>
 							<div class="contactAddress">
 								<address class="addressRight">
-									Phone: {{$settings->phone1}}<br>
+									Phone: {{!empty($settings->phone1) ? $settings->phone1 : ''}}<br>
 									Fax: 1.800.123.4566 
 								</address>
 								<address class="addressLeft">
-									{{$settings->address}}<br> 
+									{{!empty($settings->address) ? $settings->address : ''}}<br> 
 								</address>
 							</div>
 							<div class="contactTtextLine">Share this page with friends who need help in 2015, too.</div>
