@@ -230,23 +230,28 @@ class CourseController extends Controller
 	}
 
 	public function store_course_curriculum(Request $request){
+		// dd($request);
 		if($request){
 			$data = [];
 			// dd($request);
 			foreach($request['data'] as $postData){
 				// dd($postData);
-				// if ($request->hasFile('image')) {
-				// 	$fileName = time() . '.' . $request->image->getClientOriginalExtension();
-				// 	$request->image->move(public_path('uploads/course_curriculum'), $fileName);
-				// }
-				$data[] = [
+				if(!empty( $postData['image'])){
+					$fileName = time() . '.' . $postData['image']->getClientOriginalExtension();
+					$postData['image']->move(public_path('uploads/course_curriculum'), $fileName);
+					$postData['image'] = $fileName;
+				}
+					$data[] = [
 					'course_id'=>$request->course_id,
 					'title'=>isset($postData['title']) && !empty($postData['title']) ? $postData['title'] : '',
 					'description'=>isset($postData['description']) && !empty($postData['description']) ? $postData['description'] : '',
-					'status'=>isset($postData['status']) && !empty($postData['status']) ? $postData['status'] : 0
+					'image'=>isset($postData['image']) && !empty($postData['image']) ? $postData['image'] : '',
+					'status'=>isset($postData['status']) && !empty($postData['status']) ? $postData['status'] : 0,
+					
 				];
+				
 			}
-			dd($data);
+			// dd($data);
 			if(!empty($data)){
 				CourseCurriculum::where('course_id', $request->course_id)->delete();
 				if(CourseCurriculum::insert($data)){

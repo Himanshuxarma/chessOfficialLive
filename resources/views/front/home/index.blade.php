@@ -30,9 +30,6 @@
 
 									<section class="">
 										<div class="container">
-
-											
-
 											<div class="sc_content main ">
 												<div class="aligncenter margin_bottom_middle">
 													<h2 class="sc_title style_2 sc_title_regular">Our Classes</h2>
@@ -58,21 +55,21 @@
 																	</a>
 																</div>
 																<h4 class="sc_blogger_title sc_title">
-																<a href="{{route('courseDetails',$course->id)}}">{{$course->title}}</a>
-																<span class="course_price" >₹{{$course->price}}</<span>	
+																	<a href="{{route('courseDetails',$course->id)}}">{{$course->title}}</a>
 																</h4>
-																@php 
-																	$price = !empty($course) && !empty($course->price) ? $course->price : 0;
-																	$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
-																	$perSessionPrice =  round( (float)$price/$classes) 
-																@endphp
-																	<div class="session_per_price">
-																		<p>Session Per Peice : ₹{{$perSessionPrice}}</p>
+																<div class="reviews_summary blog_reviews">
+																	<div class="classes_price">
+																		<p class="course_price">₹{{$course->price}}</p>
 																	</div>
-																	<div class="course_session">
-																		<span>Session {{$course->class}}</span>
+																	@php 
+																		$price = !empty($course) && !empty($course->price) ? $course->price : 0;
+																		$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+																		$perSessionPrice =  round( (float)$price/$classes) 
+																	@endphp
+																	<div class="criteria_summary criteria_row">
+																			<p><strong>{{$classes}} Sessions</strong></p>
 																	</div>
-																
+																</div>
 															</article>
 														</div>
 														@endforeach
