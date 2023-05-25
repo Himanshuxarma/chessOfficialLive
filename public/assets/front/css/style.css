@@ -338,7 +338,7 @@ body.boxed .boxedWrap { width: 1250px; margin: 0 auto; }
 
 /*position*/	 
 .alignleft { display: inline; float: left; margin: 0 30px 15px 0;}
-.alignright { display: inline; float: right; margin:0 0 15px 30px;}
+.alignright { display: inline; float: right; margin:15px 50px 30px 0px;}
 .aligncenter { clear: both; display: block; margin: 0 auto; text-align: center;}
 	
 .feedBlock { text-align: center; color: #fff; font-size: 18px; line-height: 25px; font-weight: 400;}
@@ -393,6 +393,8 @@ section:not(.no_padding) > .container.container_style_2 {padding-top: 75px; padd
 section.with_testimonials > .container {padding-bottom: 85px;}
 section.with_pricetable > .container {padding-bottom: 90px;}
 
+.default_columns_1 { margin: 0 4.1666% 0 0 ; width:45.8334%;}
+.default_columns_2 {  width:45.8334%;}
 .columns1,
 .columns1_1 { margin: 0 4.1666% 0 0 ; width:95.8334%;}
 .columns1_2 { float:left; margin: 0 4.1666% 0 0 ; width:45.8334%; }
@@ -494,8 +496,9 @@ input[type="button"],
 .nav_comments span,
 .comments_list a.comment-edit-link,
 .topWrap .search .ajaxSearchResults,
-input[type="text"],
+input[type="text"],input[type="date"],input[type="time"],
 input[type="password"],
+select,
 textarea,
 .sc_infobox,
 .sc_tabs_style_1 .sc_tabs_content + .sc_tabs_content,
@@ -732,14 +735,19 @@ ul.sc_list_style_disk li:before
 
 /*form*/
 input[type="text"],
+input[type="date"],input[type="time"],
+select,
 input[type="password"] { height:36px; line-height:36px; padding:0 15px; box-sizing: border-box; -moz-box-sizing: border-box; }
 textarea { padding:15px; resize:vertical; box-sizing: border-box;}
 textarea.textAreaSize{ max-height: 500px !important;}
-input[type="text"],
+input[type="text"],input[type="date"],input[type="time"],
 input[type="password"],
-textarea { font-family: inherit; font-size: 14px; outline:none; color:#888888; background-color:#fafafa; border: 1px solid #ddd; margin: 0;}
+select,
+textarea { font-family: inherit; font-size: 14px; outline:none; color:#888888; background-color:#fafafa; border: 1px solid #ddd; margin: 0; width:100%}
 input[type="text"]:focus,
+input[type="date"]:focus,input[type="time"]:focus,
 input[type="password"]:focus,
+select:focus,
 textarea:focus{ border-color:#bebebe;	}
 button:focus {outline: none; border: none;}
 button::-moz-focus-inner { border: 0;}
@@ -801,7 +809,7 @@ body.boxed .boxedWrap,
 .fullScreenSlider .sliderHomeBullets .order a,
 .widget .tagcloud a
 .widgetWrap .tagcloud a
- {
+{
 	-webkit-transition: all 0.3s ease-out;
 	   -moz-transition: all 0.3s ease-out;
 	    -ms-transition: all 0.3s ease-out;
@@ -1791,7 +1799,7 @@ ul#mainmenu .menu-panel ul.columns>li ul{max-width:260px; }
 .itemPageFullWrapper .itemInfo .postSharing {float: right; padding: 0 0 0 50px;}
 
 .itemPageFull{ position:relative; overflow:hidden;}
-.itemPageFull:after{ content:""; display:block; clear:both; height:0;}{}
+.itemPageFull:after{ content:""; display:block; clear:both; height:0;}
 .itemPageFull .thumb{ width:100%; height:100%; overflow:hidden;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
@@ -2015,7 +2023,7 @@ body:not(.single):not(.page) .with_sidebar .content .post .postSharing { float:r
 .reviewBlock .infoTotal{background: #eeeeee; padding: 10px; }
 .reviewBlock .infoTotal p { padding:0; }
 .reviewBlock .infoTotal .infoRat {font-size: 12px; border-bottom: 1px solid #ddd; padding: 0 0 20px 0; margin: 0 0 10px 0;}
-.reviewBlock .infoTotal .totalWrap{ }
+/* .reviewBlock .infoTotal .totalWrap{ } */
 .reviewBlock .infoTotal .totalWrap:after{clear: both; height: 0; display: block; content: '';}
 .reviewBlock .infoTotal .totalWrap .totalRating{ width: 50%; height: 16px; line-height: 16px; padding: 5px 0; text-align: center; border-right: 1px solid #ddd;}
 .reviewBlock .infoTotal .totalWrap .totalStar{ width: 50%; height: 16px; float: right;  padding: 5px 0;}
