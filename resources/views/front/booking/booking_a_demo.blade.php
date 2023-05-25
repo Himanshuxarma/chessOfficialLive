@@ -8,9 +8,6 @@
                 <div class="sc_contact_form sc_contact_form_contact contact_form_1">
                     <h2 class="title">Address</h2>
                     <form class="contact_1" method="post" action="include/contact-form.php">
-                        
-                    <div class="row mt-4">
-                             <div class="col-75">
                         <div class="columnsWrap">
                             
                             <div class="columns1_3">
@@ -22,8 +19,6 @@
                                 <input type="text" name="name" id="contact_form_username">
                             </div>
                            
-                        </div>
-                        </div>
                         </div>
 
                         <div class="result sc_infobox"></div>

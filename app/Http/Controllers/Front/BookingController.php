@@ -19,11 +19,13 @@ use Hash;
 
 class BookingController extends Controller
 {
-    public function index(){
-        $Course = Course::all();
+    public function index($id){
+       
+        $CourseId = Course::find($id);
+
         $country = Country::all();
         $timezone = CountryTimezone::all();
-        return view('front.booking.booking_a_demo',compact('Course','country','timezone'));      
+        return view('front.booking.booking_a_demo',compact('CourseId','country','timezone'));      
     }
 
     public function storeTimezone(Request $request){
@@ -123,6 +125,14 @@ class BookingController extends Controller
    */
   
     public function buy_course($id){ 
+        dd("singh");
+        $isCouse = false;
+        if(!empty($id)){
+            $isCouse = true;
+        }else{
+            $isCouse = false;
+        }
+        dd("singh");
         $CourseId = Course::find($id);    
         $country = Country::all();
         return view('front.booking.buy_course',compact('country','CourseId')); 

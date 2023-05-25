@@ -12,7 +12,8 @@
 	height: 315px;
 }
 .sc_contact_form.sc_contact_form_contact.contact_form_1 {
-	margin-left: 189px;
+
+	width: 100%;
 }
 .selected-country img{
 	width: 20px;
@@ -151,8 +152,9 @@ input[type="submit"], input[type="button"], .squareButton {
 	position: relative;
 	/* float: left; */
 	font-family: 'Fredoka One', cursive;
-	text-transform: lowercase!important;
+	/* text-transform: lowercase!important; */
 }
+
 .course_detail_button a {
 	z-index: 1 !important;
 	font-size: 14px !important;
@@ -223,4 +225,35 @@ input[type="submit"], input[type="button"], .squareButton {
     
 }
 
+
+/* contact form  */
+.columns2_3 {
+	float: left;
+	margin: 0 4.1666% 0 0;
+	width: 100%;
+}
+.commentsForm .message, .comment-respond .message, .sc_contact_form .message {
+	clear: both;
+	padding: 0 0 5px 0;
+	width: 65%;
+}
+.commentsForm .enterBlock .squareButton, .comment-respond .enterBlock .squareButton, .sc_contact_form .sc_contact_form_button .squareButton {
+	float: right;
+	right: 560px;
+}
+.sc_contact_form.sc_contact_form_contact.contact_form_1 {
+	position: relative;
+	left: 19% !important;
+}
+
+@media screen and (min-width: 428px) {
+	.sc_contact_form.sc_contact_form_contact.contact_form_1 {
+		position: relative;
+		left: 13% !important;
+	}
+	.sc_contact_form.sc_contact_form_contact.contact_form_1 {
+		/* margin-left: 189px; */
+		width:90% !important;
+	}
+  }
 
