@@ -1,71 +1,49 @@
 @extends('front.layouts.master')
 @section('content')
-<section class="no_padding">
+<!-- contact page start -->
+<section class="contact-details">
+    <div class="form-left">
+    <h3>Contact Form</h3>
 
-    <div class="container">
-        <div class="columnsWrap sc_columns sc_columns_count_3 margin_top_middle margin_bottom_middle">
-            <div class=" sc_column_item sc_column_item_1 odd first span_2">
-                <div class="sc_contact_form sc_contact_form_contact contact_form_1">
-                    <h2 class="title">Address</h2>
-                    <form class="contact_1" method="post" action="include/contact-form.php">
-                        
-                    <div class="row mt-4">
-                             <div class="col-75">
-                        <div class="columnsWrap">
-                            
-                            <div class="columns1_3">
-                                <label class="required" for="contact_form_username">Country</label>
-                                <input type="text" name="name" id="contact_form_username">
-                            </div>
-                            <div class="columns1_3">
-                                <label class="required" for="contact_form_username">TimeZone</label>
-                                <input type="text" name="name" id="contact_form_username">
-                            </div>
-                           
-                        </div>
-                        </div>
-                        </div>
+<div class="container">
+  <form action="/action_page.php">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
-                        <div class="result sc_infobox"></div>
-                    </form>
-                </div>
-                <div class="sc_contact_form sc_contact_form_contact contact_form_1">
-                    <h2 class="title">Booking Info</h2>
-                    <form class="contact_1" method="post" action="include/contact-form.php">
-                        
-                    <div class="row mt-4">
-                             <div class="col-75">
-                        <div class="columnsWrap">
-                            
-                            <div class="columns1_3">
-                                <label class="required" for="contact_form_username">Date Of Demo</label>
-                                <input type="text" name="name" id="contact_form_username">
-                            </div>
-                            <div class="columns1_3">
-                                <label class="required" for="contact_form_username">Time Of Damo</label>
-                                <input type="text" name="name" id="contact_form_username">
-                            </div>
-                           
-                        </div>
-                        </div>
-                        </div>
+   
 
-                        <div class="sc_contact_form_button">
-                            <div class="squareButton sc_button_size sc_button_style_global global ico">
-                                <button type="submit" name="contact_submit"
-                                    class="contact_form_submit icon-comment-1">Send Message</button>
-                            </div>
-                        </div>
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+    <div class="btns-with-submit">
+        <a href="#">Submit</a>
+    </div>
+  </form>
+</div>
 
-                        <div class="result sc_infobox"></div>
-                    </form>
-                </div>
-            </div>
+    </div>
+    <div class="form-right">
+        <div class="secound-name">
+    <h3></h3>
 
-        </div>
+<div class="container">
+  <form action="/action_page.php">
+    
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
     </div>
     
+     
+  </form>
+</div>
+</div>
+
 </section>
+<!-- contact page end -->
 <script>
      $(document).ready(function () {
             $('#country_id').on('change', function () {

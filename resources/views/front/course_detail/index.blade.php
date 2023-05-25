@@ -64,7 +64,7 @@
 								<div class="booking-demo-1">
 									<ul>
 									<li class="squareButton light ico ">
-                                    <a href="#">Book A Demo</a>
+                                    <a href="{{url('booking/'.$courses->id)}}">Book A Demo</a>                                                                                                                                                                                                                  ">Book A Demo</a>
                                 </li>
 								<li class="squareButton light ico ">
 								<a href="#">Buy A Course</a>
