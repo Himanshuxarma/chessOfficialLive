@@ -43,7 +43,8 @@
 </div>
 
 </section>
-<!-- contact page end -->
+@endsection
+@section('customscript')
 <script>
      $(document).ready(function () {
             $('#country_id').on('change', function () {
