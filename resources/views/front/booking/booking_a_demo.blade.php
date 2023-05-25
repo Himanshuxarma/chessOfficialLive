@@ -1,6 +1,9 @@
 @extends('front.layouts.master')
 @section('content')
-<section class="no_padding">
+<!-- contact page start -->
+<section class="contact-details">
+    <div class="form-left">
+    <h3>Contact Form</h3>
 
     <div class="container">
         <div class="columnsWrap sc_columns sc_columns_count_3 margin_top_middle margin_bottom_middle">
@@ -8,6 +11,9 @@
                 <div class="sc_contact_form sc_contact_form_contact contact_form_1">
                     <h2 class="title">Address</h2>
                     <form class="contact_1" method="post" action="include/contact-form.php">
+                        
+                    <div class="row mt-4">
+                             <div class="col-75">
                         <div class="columnsWrap">
                             
                             <div class="columns1_3">
@@ -19,6 +25,8 @@
                                 <input type="text" name="name" id="contact_form_username">
                             </div>
                            
+                        </div>
+                        </div>
                         </div>
 
                         <div class="result sc_infobox"></div>
@@ -57,10 +65,9 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-    
 </section>
+@endsection
+@section('customscript')
 <script>
      $(document).ready(function () {
             $('#country_id').on('change', function () {
