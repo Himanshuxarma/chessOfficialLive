@@ -125,6 +125,10 @@ font-weight: 100;
 	float: right;
 }
 
+.course_perday_price {
+	float: right;
+}
+
 .list-style-dot li:before {
   content: '';
   background-image: url('/assets/front/images/demo.png');

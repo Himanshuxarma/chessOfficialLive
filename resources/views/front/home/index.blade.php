@@ -55,6 +55,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																	@else 
 																	@php $courseImg = "assets/front/images/default.png"; @endphp
 																	@endif
+																	@php $offers = \Helper::getoffersbycourse($course->id); @endphp
+                                									@php $priceData =  $course->coursePrice($course->id); @endphp
 																		<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 																		<div class="sc_blogger_content">
 																			<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
@@ -66,7 +68,9 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																</h4>
 																<div class="reviews_summary blog_reviews">
 																	<div class="classes_price">
-																		<p class="course_price">₹{{$course->price}}</p>
+																		<p class="course_price">
+																		{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}</strong></sup>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}	
+																		</p>
 																	</div>
 																	@php 
 																		$price = !empty($course) && !empty($course->price) ? $course->price : 0;

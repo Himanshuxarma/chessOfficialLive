@@ -1,5 +1,12 @@
 @extends('front.layouts.master')
 @section('content') 
+@php 
+$countryId = 6;
+if(session()->has('SiteCountry')){
+$countryId = session()->get('SiteCountry');
+}
+$countryDetails = App\Helpers\Helper::getCountryData($countryId); 
+@endphp
 			<div id="topOfPage" class="topTabsWrap">
 				<div class="main">
 					<div class="speedBar">
@@ -40,6 +47,8 @@
 									<section class="masonry isotope" data-columns="3">
 										@foreach($courses as $key=>$data)
 										@php $courseFeatured = \Helper::getcourseFeaturedbycourse($data->id); @endphp
+										@php $offers = \Helper::getoffersbycourse($data->id); @endphp
+                                		@php $priceData =  $data->coursePrice($data->id); @endphp
 										<article class="isotopeElement post_format_standard odd article_{{$data->type}} flt_71 flt_66 flt_61">
 											<div class="isotopePadding">
 												@if(!empty($data->image))
@@ -62,8 +71,30 @@
 														<li>No Features Available</li>
 													@endif
 												</ul>
+												@php 
+													$price = !empty($data) && !empty($data->price) ? $data->price : 0;
+													$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
+													$perSessionPrice =  round( (float)$price/$classes) 
+												@endphp
 												<div class="masonryInfo">
-													Price <a href="javascript:void(0);" class="post_date">₹{{$data->price}}</a>
+													<a href="javascript:void(0);" class="post_date">
+														Price
+														<strong>
+															<sup>
+																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+															</sup>
+															{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}
+														</strong>
+													</a>
+													<a href="javascript:void(0);" class="course_perday_price"> 
+														Price Per Session
+														<strong>
+															<sup>
+																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '$')}} 
+															</sup>
+															{{$perSessionPrice}} 
+														</strong>
+													</a>
 												</div>
 												<div class="masonryMore">
 													<ul>
@@ -72,14 +103,6 @@
 														</li>
 														<li class="squareButton light ico">
 															<a  href="javascript:void(0);"><span>{{$data->class}}</span> Session</a>
-														</li>
-														@php 
-														$price = !empty($data) && !empty($data->price) ? $data->price : 0;
-														$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
-														$perSessionPrice =  round( (float)$price/$classes) 
-														@endphp
-														<li class="squareButton light ico">
-															<a  href="javascript:void(0);"> {{$perSessionPrice}} Price Per Session</a>
 														</li>
 													</ul>
 												</div>

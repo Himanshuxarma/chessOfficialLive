@@ -55,7 +55,6 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(Request $request){
-        dd("singh");
         if(Route::current()->getPrefix()=='admin'){
             // dd($request);
             if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){

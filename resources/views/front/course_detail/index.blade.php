@@ -1,5 +1,12 @@
 @extends('front.layouts.master')
 @section('content')
+@php 
+$countryId = 6;
+if(session()->has('SiteCountry')){
+$countryId = session()->get('SiteCountry');
+}
+$countryDetails = App\Helpers\Helper::getCountryData($countryId); 
+@endphp
 <div class="widgetTabs">
     <div id="topOfPage" class="topTabsWrap">
         <div class="main">
@@ -26,6 +33,8 @@
                                 <img class="course-details-page" alt="Babysitter and Nanny Hiring Resources" src="{{$courseImg}}">
                             </a>
                         </div>
+                        @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
+                         @php $priceData =  $courses->coursePrice($courses->id); @endphp
                         <div class="postStandard">
                             <p>{{$courses->description}} </p>
                         </div>
@@ -35,11 +44,15 @@
                                     <a href="javascript:void(0);"> {{$courses->class}} Session</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-eye" title="Views - 198"
-                                        href="javascript:void(0);">{{$courses->price}} Price</a>
+                                    <a class="icon-money" title="Views - 198" href="javascript:void(0);">
+                                        <strong>
+                                        {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+                                        </strong>
+                                        {{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}	
+                                    </a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-comment-1" title="Comments - 1"
+                                    <a class="icon-calendar-1" title="Comments - 1"
                                         href="javascript:void(0);">{{$courses->age}} Age</a>
                                 </li>
                                 <li class="squareButton light ico">

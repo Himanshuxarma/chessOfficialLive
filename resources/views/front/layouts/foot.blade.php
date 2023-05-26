@@ -15,7 +15,6 @@
 <script>
     jQuery(document).on('change', '.change_country', function(){
         let countrySelected = jQuery(this).data('language');
-        alert(countrySelected);
     });
 </script>
 @yield('customscript')

@@ -54,7 +54,7 @@
       if(countryId != ""){
         jQuery.ajax({
           headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
           },
           type:'get',
           url: ajaxUrl+'/setCountry',
