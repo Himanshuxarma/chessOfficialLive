@@ -1,5 +1,12 @@
 @extends('front.layouts.master')
 @section('content')
+@php 
+$countryId = 6;
+if(session()->has('SiteCountry')){
+$countryId = session()->get('SiteCountry');
+}
+$countryDetails = App\Helpers\Helper::getCountryData($countryId); 
+@endphp
 <div class="mainWrap without_sidebar">
 				<div class="content">
 					<div class="">

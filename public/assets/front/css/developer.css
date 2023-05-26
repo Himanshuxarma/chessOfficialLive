@@ -127,7 +127,7 @@ font-weight: 100;
 
 .list-style-dot li:before {
   content: '';
-  background-image: url('/assets/front/images/myfeatured.svg');
+  background-image: url('/assets/front/images/demo.png');
   float: left;
   margin-left: -1.5em;
   width: 15px;
@@ -299,4 +299,48 @@ background-color: #45a049;
 
 .course-price{
 	margin: 0px 4% 30px 0px;
+}
+/* .login a{
+background-color: #1BB4B9;
+display: inline-block;
+padding:7px 15px;
+color:white;
+font-size:14px;
+font-weight:500;
+border-radius: 4px;
+text-transform: uppercase; */
+
+
+
+/* }
+.login a:hover{
+	color:white;
+	
+	
+	
+	} */
+.login
+{
+	margin-left:20px;
+
+
+}
+.login-forms-1{
+	height: 600px;
+	width: 100%;
+	
+	display:flex;
+	padding:2% 9%;
+	}
+
+.form-login-1{
+	width: 40%;
+	height: 500px;
+}
+
+.form-register-1{
+	
+	width:40%;
+	height:500px;
+	
 }

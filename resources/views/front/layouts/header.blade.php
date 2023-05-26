@@ -51,18 +51,38 @@ $settings = App\Helpers\Helper::getSettings();
                         </li>
                         
                     </ul>
+                    @php
+                        $countryId = 6;
+                        if(session()->has('SiteCountry')){
+                            $countryId = session()->get('SiteCountry');
+                        }
+                        $countryDetails = App\Helpers\Helper::getCountryData($countryId);
+                        $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
+                    @endphp
 					<div class="menu-item country-wrap">
-						<div class="selected-country"><img alt="" src="{{asset('assets/front/images/india.png')}}">IN</div>
+						<div class="selected-country"><a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}"><img alt="" src="/uploads/country/{{$countryFlag}}">{{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}</a></div>
 						<div class="country-listing">
 							<ul>
                             @if(!empty($countries))
                                 @foreach($countries as $country)
-								<li><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</li>
+                                <li> <a href="javascript:void(0);"  class="change_country" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
 								@endforeach
                                 @endif
 							</ul>
 						</div>
 				    </div>
+                    <!-- <div class="login">
+                        <a href="#">Login</a>
+                    </div> -->
+
+                    <ul id="mainmenu" class="">
+                    <li class="{{Request::path() =='login' ? 'current-menu-ancestor' : ''}} login menu-item">
+                            <a title="Layouts and hovers" href="{{route('frontLogin')}}">
+                                <span class="menu_icon icon-thumbs-up"></span>
+                                Login
+                            </a>
+                        </li>
+                    </ul>
                 </nav>
 
 				

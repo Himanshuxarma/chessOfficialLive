@@ -12,4 +12,10 @@
 <script type='text/javascript' src="{{asset('assets/front/js/vendor/diagram/diagram.raphael.min.js')}}"></script>
 
 <!--<script type='text/javascript' src='custom_tools/js/_customizer.js'></script>-->
+<script>
+    jQuery(document).on('change', '.change_country', function(){
+        let countrySelected = jQuery(this).data('language');
+        alert(countrySelected);
+    });
+</script>
 @yield('customscript')

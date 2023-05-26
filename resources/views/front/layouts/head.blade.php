@@ -3,6 +3,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="format-detection" content="telephone=no">
 	<title>ChessOfficial</title>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" type="image/x-icon" href="{{asset('assets/front/images/favicon5.png')}}"/>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5.js" type="text/javascript"></script>

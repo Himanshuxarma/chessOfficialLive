@@ -41,7 +41,7 @@ class LoginController extends Controller
                 'loginRoute' => 'adminLogin',
             ]);
         } else {
-            return view('auth.login',[
+            return view('auth.front.login',[
                 'title' => 'Customer Login  - ' . config('app.name'),
                 'loginRoute' => 'login',
             ]);
@@ -55,6 +55,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(Request $request){
+        dd("singh");
         if(Route::current()->getPrefix()=='admin'){
             // dd($request);
             if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){

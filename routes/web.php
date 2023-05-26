@@ -34,6 +34,7 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
         //Frontend Login
+        Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontLogin');
         Route::post("postLogin", [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('postLogin');
         Route::post("postForgotPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postForgetPasswordForm'])->name('postForgotPassword');
         Route::get("resetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
@@ -62,7 +63,7 @@ use App\Http\Controllers\Auth\LoginController;
         Route::get('/pages/privacy-policy', [App\Http\Controllers\Front\PageController::class, 'privacy_policy'])->name("privacy.policy");
         Route::get('/pages/about-us', [App\Http\Controllers\Front\PageController::class, 'about_us'])->name("about.us");
         Route::get('/faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name("faqsDeatail");
-        Route::get('/booking/{id}',[App\Http\Controllers\Front\BookingController::class,'index'])->name("booking.Deatail");
+        Route::get('/booking',[App\Http\Controllers\Front\BookingController::class,'index'])->name("booking.Deatail");
         Route::post('/demo_booking',[App\Http\Controllers\Front\BookingController::class,'demo_booking'])->name("demo.Booking");
         Route::post('/fetch_timezone', [App\Http\Controllers\Front\BookingController::class, 'storeTimezone'])->name("store.timezone");
         Route::get('/buy-course/{id}',[App\Http\Controllers\Front\BookingController::class,'buy_course'])->name("Buy.Course");

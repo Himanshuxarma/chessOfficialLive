@@ -56,15 +56,15 @@
                                 @endif
                             </div>
                             <div class="columns1_3 margin_top_mini margin_bottom_mini">
-                                <label for="phone"><i class="fa fa-phone"></i> Country</label>
-                                <select id="country_id" class="form-control" name="country_id" >
-                                    <option value="">--Select Country--</option>
-                                    @foreach($country as $data)
-                                        <option value="{{$data->id}}">{{ $data->country }}</option>
+                                <label for="course_id"><i class="fa fa-phone"></i> Course</label>
+                                <select id="course_id" class="form-control" name="course_id" >
+                                    <option value="">--Select Course--</option>
+                                    @foreach($course as $data)
+                                        <option value="{{$data->id}}">{{ $data->title }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('country_id'))
-                                <span class="text-danger">{{ $errors->first('country_id') }}</span>
+                                @if ($errors->has('course_id'))
+                                <span class="text-danger">{{ $errors->first('course_id') }}</span>
                                 @endif
                             </div>
                             <div class="columns1_2 margin_top_mini margin_bottom_mini">

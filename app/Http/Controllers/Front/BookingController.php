@@ -19,13 +19,22 @@ use Hash;
 
 class BookingController extends Controller
 {
-    public function index($id){
-       
-        $CourseId = Course::find($id);
-
-        $country = Country::all();
+    public function index(Request $request){
+        // dd("ssd");
+        $url = $request->path("id");
+        
+        // dd($url);
+          if(!empty($url)){
+           dd("s");
+        }else{
+            dd("sdd");
+        }
+        dd("singh");
+         $CourseId = Course::find($id);
+         $country = Country::all();
+         $course = Course::all();
         $timezone = CountryTimezone::all();
-        return view('front.booking.booking_a_demo',compact('CourseId','country','timezone'));      
+        return view('front.booking.booking_a_demo',compact('CourseId','country','timezone','course'));      
     }
 
     public function storeTimezone(Request $request){
@@ -51,7 +60,6 @@ class BookingController extends Controller
      * @return response()
      */
     public function demo_booking(Request $request){
-        dd("singh");
         if(Auth::guard('customer')->check()){
             $validatedData = $request->validate([
                 'country_id' => 'required',
@@ -59,7 +67,8 @@ class BookingController extends Controller
                 'date_of_demo' => 'required',
                 'time_of_demo' => 'required'
             ]);
-        } else {
+        }
+         else {
             $validatedData = $request->validate([
                 'full_name' => 'required',
                 'email' => 'required|unique:users,email',
@@ -98,7 +107,6 @@ class BookingController extends Controller
             $demoBoking->date_of_demo = $request->date_of_demo;
             $demoBoking->time_of_demo = $request->time_of_demo;
             $demoBoking->customer_id = $customerId ? $customerId : "0";
-            
             if($demoBoking->save()){
                 $user = User::where('id', $customerId)->first();
 
@@ -125,14 +133,13 @@ class BookingController extends Controller
    */
   
     public function buy_course($id){ 
-        dd("singh");
-        $isCouse = false;
-        if(!empty($id)){
-            $isCouse = true;
-        }else{
-            $isCouse = false;
-        }
-        dd("singh");
+        // $isCouse = false;
+        // if(!empty($id)){
+        //     $isCouse = true;
+        // }else{
+        //     $isCouse = false;
+        // }
+        // dd("singh");
         $CourseId = Course::find($id);    
         $country = Country::all();
         return view('front.booking.buy_course',compact('country','CourseId')); 
