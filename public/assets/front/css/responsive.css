@@ -1587,7 +1587,7 @@
 	.upToScroll a.scrollToTop { display:block;  }
 
 	.pagination .squareButton,
-	.squareButton {margin: 0 0 7px 0;}
+	.squareButton {margin: 0 12px 15px 0;}
 	.pagination .squareButton + .squareButton,
 	.squareButton + .squareButton{ margin: 0 0 7px 7px;}
 
