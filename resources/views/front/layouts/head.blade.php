@@ -15,7 +15,6 @@
 	<link rel='stylesheet' href='{{asset("assets/front/css/developer.css")}}' type='text/css' media='all'/>
 	<link rel='stylesheet' href='{{asset("assets/front/css/shortcodes.css")}}' type='text/css' media='all'/>
 	<link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/learnplay.css")}}' type='text/css' media='all'/>
-	<style id='theme-skin-inline-css' type='text/css'></style>
 	<link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/kidscare.css")}}' type='text/css' media='all'/>
 	<link rel='stylesheet' href='{{asset("assets/front/css/responsive.css")}}' type='text/css' media='all'/>
 

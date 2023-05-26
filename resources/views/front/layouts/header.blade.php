@@ -1,5 +1,6 @@
 <?php 
 $countries = App\Helpers\Helper::getCountry();
+$settings = App\Helpers\Helper::getSettings();
 ?>
 <header class="noFixMenu menu_right without_user_menu">
     <div class="topWrapFixed"></div>
@@ -7,9 +8,12 @@ $countries = App\Helpers\Helper::getCountry();
         <div class="mainmenu_area">
             <div class="main with_logo_left">
                 <div class="logo logo_left">
-                    <a href="{{url('/')}}">
-                        <img src="{{asset('assets/front/images/185x33.png')}}" class="logo_main" alt="">
-                        <img src="{{asset('assets/front/images/185x33.png')}}" class="logo_fixed" alt="">
+                    <a href="{{url('/')}}">\
+                        @php
+                             $headerLogo = !empty($settings) && !empty($settings->header_logo) ? $settings->header_logo : '';
+                        @endphp
+                        <img src="/uploads/settings/{{$headerLogo}}" class="logo_main" alt="">
+                        <img src="/uploads/settings/{{$headerLogo}}" class="logo_fixed" alt="">
                         <span class="logo_slogan"></span>
                     </a>
                 </div>

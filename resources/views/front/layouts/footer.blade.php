@@ -7,7 +7,10 @@
 			<section>
 				<div class="logo">
 					<a href="javascript:void(0);">
-						<img src="{{asset('assets/front/images/245x43.png')}}" alt="">
+					@php
+                             $footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
+                        @endphp
+						<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
 					</a>
 				</div>
 				<div class="contactAddress">

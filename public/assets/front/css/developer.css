@@ -276,16 +276,11 @@ input[type=text], select, textarea {
 	background-color: #45a049;
   }
   
-  .container {
-	border-radius: 5px;
-	background-color: #f2f2f2;
-	padding: 20px;
-  }
-  .container {
+  /* .container {
     border-radius: 5px;
     background-color: #ffffff;
     padding: 20px;
-}
+} */
 .btns-with-submit a{
 	background-color: #1BB4B9;
 	padding: 6px 18px;
@@ -332,5 +327,10 @@ input[type=text], select, textarea {
 		/* margin-left: 189px; */
 		width:90% !important;
 	}
+  }
+  .my-footer-image img{
+	height: 150px;
+	width: 150px;
+
   }
 
