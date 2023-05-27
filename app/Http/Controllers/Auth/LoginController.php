@@ -34,14 +34,18 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function login()
-    {
-        return view('admin.auth.login',[
-            'title' => 'Admin Login  - ' . config('app.name'),
-            'loginRoute' => 'login',
-            //'forgotPasswordRoute' => 'admin.password.request',   
-        ]);
-        
+    public function login(){
+        if(Route::current()->getPrefix()=='admin'){
+            return view('auth.admin.login',[
+                'title' => 'Admin Login  - ' . config('app.name'),
+                'loginRoute' => 'adminLogin',
+            ]);
+        } else {
+            return view('auth.front.login',[
+                'title' => 'Customer Login  - ' . config('app.name'),
+                'loginRoute' => 'login',
+            ]);
+        }
     }
 
     /**
@@ -52,6 +56,7 @@ class LoginController extends Controller
      */
     public function postLogin(Request $request){
         if(Route::current()->getPrefix()=='admin'){
+            // dd($request);
             if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
                 //Authentication passed...
                 //Check if authenticated user is admin only
@@ -137,7 +142,7 @@ class LoginController extends Controller
      */
     private function loginFailed(){
         return redirect()
-            ->back()
+            ->route('adminLogin')
             ->withInput()
             ->withErrors('Invalid Credentials, Login failed, please try again!');
     }

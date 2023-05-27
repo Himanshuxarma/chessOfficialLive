@@ -18,8 +18,8 @@
                                     <div class="form-group">
                                         <label for="type"> Course Type </label>
                                         <select class="form-control" name="type" id="type">
-                                            <option value="main_course"{{$course->type =="main_course" ? 'selected' : ''}}>Main Course</option>
-                                            <option value="academy" {{$course->type =="academy" ? 'selected' : ''}}>Academy</option>
+                                            <option value="main_course" {{$course->type =="main_course" ? 'selected' : ''}}>Main Course</option>
+                                            <option value="academy_course" {{$course->type =="academy_course" ? 'selected' : ''}}>Academy</option>
                                         </select>
                                     </div>
                                 </div>

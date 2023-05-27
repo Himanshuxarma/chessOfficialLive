@@ -43,6 +43,7 @@ class BannersController extends Controller{
 		$request->banner_image->move(public_path('/uploads/banners'), $fileName);
 		$banners->banner_image = $fileName;
 		$banners->status = $request->status;
+		dd($banners);
 		$banners->save();
 		return redirect()->route('bannersList')->with('success', 'Banner has been created successfully.');
 	}

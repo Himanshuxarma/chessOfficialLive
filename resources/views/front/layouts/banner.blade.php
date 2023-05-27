@@ -15,7 +15,7 @@
 								</div>
 								<div class="tp-caption _bs_slider_text tp-fade tp-resizeme rs-parallaxlevel-0" data-x="0" data-y="center" data-voffset="50" data-speed="700" data-start="2100" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">
 									<div class="sc_button sc_button_style_global sc_button_size_huge alignright curveButton squareButton global huge">
-										<a href="javascript:void(0);" class="">Book A Demo</a>
+										<a href="{{url('booking')}}" class="">Book A Demo</a>
 									</div>
 								</div>
 							</li>
@@ -57,7 +57,7 @@
 								</div>
 								<div class="tp-caption _bs_slider_text tp-fade tp-resizeme rs-parallaxlevel-0" data-x="center" data-hoffset="120" data-y="bottom" data-voffset="-180" data-speed="300" data-start="4500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.2" data-endelementdelay="0.1" data-endspeed="300">
 									<div class="sc_button sc_button_style_global sc_button_size_huge alignright curveButton right squareButton global huge">
-										<a href="javascript:void(0);" class="">Book A Demo</a>
+										<a href="{{url('booking')}}" class="">Book A Demo</a>
 									</div>
 								</div>
 								<div class="tp-caption tp-fade rs-parallaxlevel-0" data-x="center" data-hoffset="0" data-y="bottom" data-voffset="40" data-speed="300" data-start="0" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">
@@ -90,7 +90,7 @@
 								</div>
 								<div class="tp-caption _bs_slider_text tp-fade tp-resizeme rs-parallaxlevel-0" data-x="center" data-hoffset="-435" data-y="bottom" data-voffset="-200" data-speed="300" data-start="4500" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.2" data-endelementdelay="0.1" data-endspeed="300">
 									<div class="sc_button sc_button_style_global sc_button_size_banner alignright curveButton right squareButton global banner">
-										<a href="javascript:void" class="">Book A Demo</a>
+										<a href="{{url('booking')}}" class="">Book A Demo</a>
 									</div>
 								</div>
 								<div class="tp-caption tp-fade rs-parallaxlevel-0" data-x="center" data-hoffset="0" data-y="bottom" data-voffset="40" data-speed="300" data-start="0" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">

@@ -17,8 +17,8 @@
                                     <div class="form-group">
                                         <label for="type"> Course Type </label>
                                         <select class="form-control" name="type" id="type">
-                                            <option value="Main Course">Main Course</option>
-                                            <option value="Academy">Academy</option>
+                                            <option value="main_course">Main Course</option>
+                                            <option value="academy_course">Academy</option>
                                         </select>
                                     </div>
                                 </div>

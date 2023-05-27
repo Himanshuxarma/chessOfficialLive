@@ -13,7 +13,7 @@
                     {{ $message }}
                 </p>
                 @endif
-                <!-- <a class="btn btn-sm btn-success  " href="{{route('pageCreate')}}"> Create Pages</a> -->
+                <a class="btn btn-sm btn-success  " href="{{route('pageCreate')}}"> Create Pages</a>
                 <div class="card-tools">
 
                 </div>

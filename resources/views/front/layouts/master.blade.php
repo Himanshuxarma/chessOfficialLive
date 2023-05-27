@@ -47,6 +47,35 @@
 <!-- foot start  -->\
 @include('front.layouts.foot')
 <!-- foot end  -->
-
+<script>
+	
+    jQuery(document).on('click', '.change_country', function(){
+      let countryId = jQuery(this).data('country-id');
+      if(countryId != ""){
+        jQuery.ajax({
+          headers: {
+              'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+          },
+          type:'get',
+          url: ajaxUrl+'/setCountry',
+          data: {'country_id': countryId},
+          success: function(response){
+              // var response = $.parseJSON(response);
+              let countryData = response.data;
+              if(response.status){
+                jQuery('#selectedCountry').data('country-id', countryData.id);
+                let imgUrl = "/uploads/country/";
+                let newHtml = '<span><img width="24px" src="'+imgUrl+'/'+countryData.country_flag+'"> '+countryData.country_code+'</span>';
+                jQuery('#selectedCountry').html(newHtml);
+              }
+              location.reload();
+              // jQuery('.countryList').hide();
+          }, 
+          error: function(error){
+          }
+        });
+      }
+    });
+	</script>
 </body>
 </html>

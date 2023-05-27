@@ -23,4 +23,8 @@ class pageController extends Controller
         $policy = Page::where('slug', 'privacy-policy')->first();
           return view('front.pages.privacy_policy',compact('policy'));
     }
+    public function about_us(){
+      $aboutUs = Page::where('slug', 'about-us')->first();
+        return view('front.pages.about_us',compact('aboutUs'));
+  }
 }

@@ -1,0 +1,350 @@
+/* Ramesh Singh Shekhawat change course Img */
+.home-page-course {
+	max-width: 100%;
+	height: 236px;
+}
+.course-list-page {
+	max-width: 100%;
+	height: 199px;
+}
+.course-details-page {
+	max-width: 100%;
+	height: 315px;
+}
+/* .sc_contact_form.sc_contact_form_contact.contact_form_1 {
+	margin-left: 189px;
+} */
+.selected-country img{
+	width: 20px;
+	padding: 0px 6px 0px 8px;
+}
+.country-listing img{
+	width: 20px;
+	padding: 0px 15px 0px 8px;
+}
+
+
+
+.country-wrap{
+	width: 100px;
+	
+	display:inline-block;
+	border:solid 1px #ccc;
+	border-radius:5px;
+	position:relative;
+	cursor:pointer;
+	margin-left:10px;
+}
+
+.country-wrap .selected-country{
+	display:flex;
+	padding:10px 0px;
+	align-items:center;
+	color:#151515;
+	padding-right:28px;
+}
+.country-wrap .selected-country::before{
+	content:'\e824';
+	position:absolute;
+	right:5px;
+	top:7px;
+	z-index:2;
+	width:28px;
+	height:28px;
+	font-family: "fontello";
+	font-size:16px;
+	color:#151515;
+	line-height:29px;
+	text-align:center;	
+}
+
+.country-wrap .country-listing{
+	margin-top:10px;
+	visibility: hidden;
+	opacity:0;
+	position:absolute;
+	top:100%;
+	border-radius:5px;
+	width:100%;
+	left:0;
+	border:solid 1px #ccc;
+	transition: all 0.4s ease-in-out;
+	z-index: 999;
+}
+.country-wrap:hover .country-listing{
+	margin-top:0;
+	opacity:1;
+	visibility: visible;
+}
+.country-listing ul{
+	list-style: none;
+	padding:0px;
+	margin:0px;
+}
+.country-listing li{
+	display:flex;
+	background:#fff;
+	font-size:14px;
+	color:#151515;
+	align-items:center;
+	padding:5px 10px;
+}
+.d-flex {
+	display:flex;
+}
+.align-items-center{
+	align-items:center;
+}
+.country-listing li:first-child{
+	border-radius:5px 5px 0px 0px;
+}
+.country-listing li:last-child{
+	border-radius:0px 0px 5px 5px;
+}
+.country-listing li:hover{
+	background:#ccc;
+}
+/* Home Page Main Course Session   */
+
+.course_session {
+	float: right;
+	margin: -52px 269px 0 20px;
+	font-size: 13px;
+	font-family: 'Ubuntu', sans-serif;
+}
+.session_per_price {
+	float: right;
+max-width: 150px;
+margin: -17px 13px 0 20px !important;
+font-size: 13px !important;
+font-family: 'Ubuntu', sans-serif;
+font-weight: 100;
+}
+.course_price {
+	color: white;
+	float: right;
+}
+
+.course_perday_price {
+	float: right;
+}
+
+.list-style-dot li:before {
+  content: '';
+  background-image: url('/assets/front/images/demo.png');
+  float: left;
+  margin-left: -1.5em;
+  width: 15px;
+height: 15px;
+margin-top: 10px;
+background-size: 100%;
+background-repeat: no-repeat;
+}
+ .list-style-dot li {
+	list-style:none;
+}
+.feature_span{
+line-height: 1.5;
+}
+/* Course Page Uppercase to lowercase  */
+input[type="submit"], input[type="button"], .squareButton {
+	height: 40px;
+	list-style: none;
+	display: inline-block;
+	vertical-align: bottom;
+	position: relative;
+	/* float: left; */
+	font-family: 'Fredoka One', cursive;
+	/* text-transform: lowercase!important; */
+}
+
+.course_detail_button a {
+	z-index: 1 !important;
+	font-size: 14px !important;
+}
+
+.course_curriculum img {
+	max-width: 100%;
+	height: 350px!important;
+}
+
+.theme_skin_learnplay .sc_team .sc_team_item_position {
+	font-size: 12px;
+	color: #878787;
+	text-transform: uppercase;
+	text-align: left;
+}
+.chat_us{
+	position:fixed;
+	z-index:999;
+	bottom:15%;
+	right:8px;
+	color:black;
+	font-size:13px;
+	background-color:#1BB4B9;
+	height:50px;
+	width:150px;
+	border-radius: 50px;
+	transition: all 0.4s;
+	/* padding: 7px 15px; */
+	/* display:inline-block; */
+	display:flex;
+	align-items:center;
+	
+
+}
+.chat_img{
+	width:25px;
+	height:25px;
+	margin-left:15px;
+
+
+}
+.chat_text a{
+	font-size:14px;
+	margin-left:10px;
+	color:#fff!important;
+}
+.booking_demo{
+	margin-bottom: 10px;
+	width:100%;
+	height:50px;
+	display:flex;
+	justify-content:end;
+}
+.booking_demo a {
+    background-color: #1BB4B9;
+    margin: 10px;
+    height: 41px;
+    width: 119px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 23px;
+    color: #fff;
+	
+}
+.booking_demo a:hover{
+    color:#fff;
+    
+}
+
+/* contact page start */
+.form-container {
+	padding: 0 10% 0 10%;
+}
+
+
+/* .contact-details{
+	background-color: rgb(255, 255, 255);
+	width: 100%;
+	height: 400px;
+	padding: 0px 50px;
+	display: flex;
+}
+
+.form-left{
+	background-color: rgb(255, 255, 255);
+	width: 45%;
+	height: auto;
+	margin: 10px;
+	
+}
+.form-right{
+	background-color: rgb(255, 255, 255);
+	width: 45%;
+	height: auto;
+	margin: 10px;
+	
+	
+}
+.secound-name {
+    margin-top: 27px;
+}
+input[type=text], select, textarea {
+width: 100%;
+padding: 12px;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+margin-top: 6px;
+margin-bottom: 16px;
+resize: vertical;
+} 
+
+input[type=submit] {
+background-color: #04AA6D;
+color: white;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type=submit]:hover {
+background-color: #45a049;
+}
+
+
+.btns-with-submit a{
+	background-color: #1BB4B9;
+	padding: 6px 18px;
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 3px;
+}
+.btns-with-submit a:hover{
+	color: #fff;
+} */
+/* contact page end */
+
+
+.course-price{
+	margin: 0px 4% 30px 0px;
+}
+/* .login a{
+background-color: #1BB4B9;
+display: inline-block;
+padding:7px 15px;
+color:white;
+font-size:14px;
+font-weight:500;
+border-radius: 4px;
+text-transform: uppercase; */
+
+
+
+/* }
+.login a:hover{
+	color:white;
+	
+	
+	
+	} */
+.login
+{
+	margin-left:20px;
+
+
+}
+.login-forms-1{
+	height: 600px;
+	width: 100%;
+	
+	display:flex;
+	padding:2% 9%;
+	}
+
+.form-login-1{
+	width: 40%;
+	height: 500px;
+}
+
+.form-register-1{
+	
+	width:40%;
+	height:500px;
+	
+}

@@ -25,12 +25,8 @@ class EnquiriesController extends Controller{
 	*	Function to render Enquiry and it's content Enquiry dynamically
 	*/
     public function index(){
-		$aboutPage = Page::where('slug','about-us')->first();
-		$services = Service::where('status',1)->get();
-		$testimonials =Testimonial::where('status',1)->get();
-		$category = Category:: where('status',1)->get();
-		$employees = Employee ::where('status',1)->get();
-        return view('front.home.index', compact('aboutPage','services','testimonials','category','employees'));
+		
+        return view('front.pages.enquiries');
     }
 
 	/**

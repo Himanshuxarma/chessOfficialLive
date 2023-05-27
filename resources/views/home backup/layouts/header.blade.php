@@ -6,7 +6,7 @@ $settings = App\Helpers\Helper::getSettings();
 
 <header id="header" class="{{Request::is('/') ? 'fixed-top' : 'header-inner-pages'}} change-background-color">
     <div class="container d-flex align-items-center">
-    @php
+             @php
                  $logo = !empty($settings) && !empty($settings->header_logo) ? $settings->header_logo : '';
                 @endphp
       <h1 class="logo me-auto"><a href="{{url('/')}}" ><img class="img-fluid" src="/uploads/settings/{{$logo}}" ></a></h1>
