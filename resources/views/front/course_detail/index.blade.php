@@ -3,7 +3,7 @@
 @php 
 $countryId = 6;
 if(session()->has('SiteCountry')){
-$countryId = session()->get('SiteCountry');
+    $countryId = session()->get('SiteCountry');
 }
 $countryDetails = App\Helpers\Helper::getCountryData($countryId); 
 @endphp
@@ -34,7 +34,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             </a>
                         </div>
                         @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
-                         @php $priceData =  $courses->coursePrice($courses->id); @endphp
+                        @php $priceData =  $courses->coursePrice($courses->id); @endphp
                         <div class="postStandard">
                             <p>{{$courses->description}} </p>
                         </div>
@@ -48,15 +48,15 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                         <strong>
                                         {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                                         </strong>
-                                        {{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}	
+                                        {{!empty($priceData) && !empty($priceData->price) ? $priceData->price : ($courses->price ? $courses->price : 0)}}	
                                     </a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-calendar-1" title="Comments - 1"
+                                    <a class="icon-year" title="Comments - 1"
                                         href="javascript:void(0);">{{$courses->age}} Age</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-comment-1" title="Comments - 1"
+                                    <a class="icon-classroom" title="Comments - 1"
                                         href="javascript:void(0);">{{$courses->batch}} Batch</a>
                                 </li>
                                 <li class="squareButton light ico">
@@ -68,7 +68,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                         href="javascript:void(0);">{{$courses->format}} Format</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-comment-1" title="Comments - 1"
+                                    <a class="icon-clock" title="Comments - 1"
                                         href="javascript:void(0);">{{$courses->duration}} Duration</a>
                                 </li>
 								
@@ -76,18 +76,15 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							<div class="booking_demo">
 								<div class="booking-demo-1">
 									<ul>
-									<li class="squareButton light ico ">
-                                    <a href="{{url('booking/'.$courses->id)}}">Book A Demo</a>
-                                </li>
-								<li class="squareButton light ico ">
-								<a href="{{route('Buy.Course',$courses->id)}}">Buy A Course</a>
-                                </li>
-								</ul>
-								
-									
+                                        <li class="squareButton light ico ">
+                                            <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
+                                        </li>
+                                        <li class="squareButton light ico ">
+                                            <a href="{{route('Buy.Course',$courses->id)}}">Buy A Course</a>
+                                        </li>
+								    </ul>
 								</div>
-							 </div>
-						
+                            </div>
                     </article>
 
                     @if (!empty($curriculum))

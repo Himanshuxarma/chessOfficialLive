@@ -12,14 +12,15 @@
 <br>
 
 We received an email regarding a demo booking, our staff will look into it and will get back to you soon.
-
+<br><br>
 Until then you can login with the detail already sent you and complete your profile.
-
+<br><br>
 Details we received from in the demo booking are as follows : 
-
+<br><br>
 <strong>full_name: </strong>{{ $user->full_name }} <br>
 
 <strong>Email: </strong>{{ $user->email }} <br>
+
 <strong>paasdsd: </strong>{{ $user->uncreyptedPass }} <br>
 
 <strong>Course: </strong>{{ $demo->course_id }} <br><br>

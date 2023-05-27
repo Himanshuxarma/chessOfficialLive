@@ -15,8 +15,6 @@
 
 <strong>Phone: </strong>{{ $user->phone }} <br><br>
 
-<strong>Password: </strong>{{ $user->decryptedPass }} <br><br>
-
 
 Please do not share this password to anyone, You can login using this password and can change your password.
   

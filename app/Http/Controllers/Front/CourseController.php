@@ -17,7 +17,7 @@ class CourseController extends Controller
     public function courseDetails($id){
         $courses = Course::find($id);
         $curriculum = CourseCurriculum::where('course_id', $id)->where('status',1)->get();
-         return view('front.course_detail.index',compact('courses','curriculum'));
+        return view('front.course_detail.index',compact('courses','curriculum'));
    }
 
 

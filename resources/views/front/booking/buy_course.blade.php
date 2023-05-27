@@ -1,5 +1,6 @@
 @extends('front.layouts.master')
 @section('content')
+<?php $countryId = Session::get('SiteCountry'); ?>
 <section>
     <div class="container">
         <div class="form-container sc_columns">
@@ -7,7 +8,13 @@
                 <div class="sc_contact_form sc_contact_form_contact">
                     <h2 class="title">
                         Buy A Course
-                        <span class="alignright course-price">$1200</span>
+                        @php $priceData =  $courseData->coursePrice($courseData->id); @endphp
+                        <span class="alignright course-price">
+                            <strong>
+                                {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+                            </strong>
+                            {{$priceData && $priceData->price ? $priceData->price : ($courseData->price ? $courseData->price : 0.00) }}
+                        </span>
                     </h2>
                     <form action="{{route('demo.Booking')}}" method="post">
                         {{ csrf_field() }}
@@ -39,7 +46,7 @@
                                 <select id="country_id" class="form-control" name="country_id" >
                                     <option value="">--Select Country--</option>
                                     @foreach($country as $data)
-                                        <option value="{{$data->id}}">{{ $data->country }}</option>
+                                        <option value="{{$data->id}}" @if($countryId && $countryId == $data->id) selected="selected" @endif >{{ $data->country }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('country_id'))
@@ -50,6 +57,10 @@
                             <div class="columns1_3 margin_top_mini margin_bottom_mini">
                                 <label for="timezone_id"><i class="fa fa-clock-o"></i> TimeZone</label>
                                 <select id="timezone_id" class="form-control" name="timezone_id" >
+                                    <option value="">--Select Timezone--</option>
+                                    @foreach($timezones as $data)
+                                        <option value="{{$data->id}}">{{ $data->timezone }}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('timezone_id'))
                                 <span class="text-danger">{{ $errors->first('timezone_id') }}</span>
@@ -57,14 +68,14 @@
                             </div>
                             <div class="columns1_3 margin_top_mini margin_bottom_mini">
                                 <label for="phone"><i class="fa fa-phone"></i> Course</label>
-                                <select id="country_id" class="form-control" name="country_id" >
-                                    <option value="">--Select Country--</option>
-                                    @foreach($country as $data)
-                                        <option value="{{$data->id}}">{{ $data->country }}</option>
-                                    @endforeach
+                                <select id="course_id" class="form-control" name="course_id" >
+                                    <option value="">--Select Course--</option>
+                                    @foreach($course as $data)
+                                        <option value="{{$data->id}}" @if($courseData && $courseData->id == $data->id) selected="selected" @endif >{{ $data->title }}</option>
+                                    @endforeach 
                                 </select>
-                                @if ($errors->has('country_id'))
-                                <span class="text-danger">{{ $errors->first('country_id') }}</span>
+                                @if ($errors->has('course_id'))
+                                <span class="text-danger">{{ $errors->first('course_id') }}</span>
                                 @endif
                             </div>
                             <div class="columns1_2 margin_top_mini margin_bottom_mini">

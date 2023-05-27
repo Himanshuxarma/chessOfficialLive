@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 use Auth;
 use Mail;
+use Session;
 use App\Mail\newCustomerMail;
 use App\Mail\demoBookingMail;
 use App\Mail\ordersMail;
@@ -19,27 +20,17 @@ use Hash;
 
 class BookingController extends Controller
 {
-    public function index(Request $request){
-        // dd("ssd");
-        $url = $request->path("id");
-        
-        // dd($url);
-          if(!empty($url)){
-           dd("s");
-        }else{
-            dd("sdd");
-        }
-        dd("singh");
-         $CourseId = Course::find($id);
-         $country = Country::all();
-         $course = Course::all();
-        $timezone = CountryTimezone::all();
-        return view('front.booking.booking_a_demo',compact('CourseId','country','timezone','course'));      
+    public function index($id=null){
+        $countryId = Session::get('SiteCountry');
+        $courseData = Course::find($id);
+        $country = Country::all();
+        $course = Course::all();
+        $timezones = CountryTimezone::where('country_id', $countryId)->get();
+        return view('front.booking.booking_a_demo',compact('courseData','country','timezones','course'));
     }
 
     public function storeTimezone(Request $request){
         if($request->isMethod('post') && $request->ajax()){
-            
             $timezones = CountryTimezone::where("country_id", $request->country_id)->pluck('timezone', 'id');
             $data = [
                 'status'=>true,
@@ -87,7 +78,6 @@ class BookingController extends Controller
                 'full_name' => $data['full_name'],
                 'email' => $data['email'],
                 'phone' => $data['phone'],
-                'decryptedPass' => $password, 
                 'password' => Hash::make($password),
                 'role'=>'customer'
             ]);
@@ -131,7 +121,6 @@ class BookingController extends Controller
    *
 
    */
-  
     public function buy_course($id){ 
         // $isCouse = false;
         // if(!empty($id)){
@@ -140,9 +129,12 @@ class BookingController extends Controller
         //     $isCouse = false;
         // }
         // dd("singh");
-        $CourseId = Course::find($id);    
+        $countryId = Session::get('SiteCountry');
+        $courseData = Course::find($id);
         $country = Country::all();
-        return view('front.booking.buy_course',compact('country','CourseId')); 
+        $course = Course::all();
+        $timezones = CountryTimezone::where('country_id', $countryId)->get();
+        return view('front.booking.buy_course',compact('courseData','country','timezones','course'));
     }
         
   /**
