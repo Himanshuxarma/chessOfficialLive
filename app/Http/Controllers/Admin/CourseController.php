@@ -178,17 +178,19 @@ class CourseController extends Controller
 			$data = [];
 			foreach($request->country_id as $postData){
 				$data[] = [
-					'course_id'=>$request->course_id,
-					'country_id'=>$postData,
-					'price'=>$request->price[$postData],
-					'status'=>$request->status[$postData]
+					'course_id'=>!empty($request->course_id) ? $request->course_id : '',
+					'country_id'=>!empty($postData) ? $postData : '',
+					'price'=>!empty($request->price[$postData]) ? $request->price[$postData] : 0,
+					'status'=>!empty($request->status[$postData]) ? $request->status[$postData] : 0
 				];
 			}
-			// dd($data);
-			if(CoursePrice::insert($data)){
-				return redirect()->route('coursesList')->with('success', 'Course Prices for countries have been saved successfully.');
-			} else {
-				return redirect()->route('coursesList')->with('error', 'Something went wrong.');
+			if(!empty($data)){
+			    CoursePrice::where('course_id', $request->course_id)->delete();
+    			if(CoursePrice::insert($data)){
+    				return redirect()->route('coursesList')->with('success', 'Course Prices for countries have been saved successfully.');
+    			} else {
+    				return redirect()->route('coursesList')->with('error', 'Something went wrong.');
+    			}
 			}
 		}
 	}

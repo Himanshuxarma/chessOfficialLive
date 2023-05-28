@@ -413,3 +413,7 @@ text-transform: uppercase; */
     background-color: #ffffff;
     padding: 20px;
 } */
+
+.text-danger{
+	color:#ff0000;
+}

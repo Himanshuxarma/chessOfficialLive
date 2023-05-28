@@ -25,7 +25,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														<div class="columns2_5 sc_column_item sc_column_item_4 even span_2 after_span_3">
 															<div class="">
 																<div class="sc_button sc_button_style_light sc_button_size_huge alignright squareButton light huge">
-																	<a href="#" class="style_1">Buy a Course</a>
+																	<a href="{{route('Buy.Course')}}" class="style_1">Buy a Course</a>
 																</div>
 															</div>
 														</div>
