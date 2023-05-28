@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Country;
-use App\Models\courseCurriculum;
+use App\Models\CourseCurriculum;
 
 class CourseController extends Controller
 {

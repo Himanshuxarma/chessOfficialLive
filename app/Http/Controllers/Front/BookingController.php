@@ -74,6 +74,7 @@ class BookingController extends Controller
             $validatedData = $request->validate([
                 'full_name' => 'required',
                 'email' => 'required|unique:users,email',
+                'password' => 'required',
                 'phone' => 'required',
                 'country_id' => 'required',
                 'timezone_id' => 'required',
@@ -89,7 +90,7 @@ class BookingController extends Controller
                 'full_name' => $data['full_name'],
                 'email' => $data['email'],
                 'phone' => $data['phone'],
-                'password' => Hash::make($password),
+                'password' => Hash::make($data['password']),
                 'role'=>'customer'
             ]);
             if($check->id){
@@ -203,8 +204,7 @@ class BookingController extends Controller
             if($check->id){
                 $customerId = $check->id;
                 $furtherProcess = true;
-                /* Ye last m open krne hai apne ko jab apni SMTP details add krdenge apn */
-                // Mail::to($data['email'])->send(new newCustomerMail($check));
+                Mail::to($data['email'])->send(new newCustomerMail($check));
             }
         } else {
             $customerId = Auth::guard('customer')->user()->id;
@@ -227,9 +227,9 @@ class BookingController extends Controller
             $courseDatail = Course::where('id', $request->course_id)->first();
             $coursePriceDatail = CoursePrice::where('course_id', $request->course_id)->where('country_id', $request->country_id)->first();
 
-            $price = !empty($request->course_price) ? $request->course_price : (!empty($coursePriceDatail) && !empty($coursePriceDatail->price) ? $coursePriceDatail->price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
+            $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->price) ? $coursePriceDatail->price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
             
-            $orders->course_type = !empty($request->course_type) ? $request->course_type : (!empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : '');
+            $orders->course_type = !empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : (!empty($request->course_type) ? $request->course_type : '');
             /* currency b mil rahi hai, check krlena thik hai */
             $orders->price = $price;
 
@@ -241,8 +241,7 @@ class BookingController extends Controller
             
             if($orders->save()){
                 $user = User::where('id', $customerId)->first();
-                /* Ye last m open krne hai apne ko jab apni SMTP details add krdenge apn */
-                // Mail::to($user['email'])->send(new ordersMail($user, $orders));
+                Mail::to($user['email'])->send(new ordersMail($user, $orders));
                 return redirect()->route('courseDetails', $request->course_id)->with('success', 'Your demo has been booked, Admin wil look into it and revert you back soon.');
             } else {
                 return redirect()->route('courseDetails', $request->course_id)->with('error', 'Something went wrong.');

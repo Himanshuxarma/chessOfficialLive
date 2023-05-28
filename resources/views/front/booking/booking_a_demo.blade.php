@@ -7,7 +7,7 @@
             <div class="sc_column_item">
                 <div class="sc_contact_form sc_contact_form_contact">
                     <h2 class="title">
-                        Book A Demo
+                        Book A Demo (Free Demo)
                         @php $priceData = $courseData && $courseData->coursePrice($courseData->id) ? $courseData->coursePrice($courseData->id) : ''; @endphp
                         <span class="alignright course-price">
                             <strong>
@@ -19,21 +19,28 @@
                     <form action="{{route('demo.Booking')}}" method="post">
                         {{ csrf_field() }}
                         @if(!Auth::guard('customer')->check())
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="full_name"><i class="fa fa-user"></i> Full Name</label>
                                 <input type="text" class="form-control" id="full_name" name="full_name">
                                 @if ($errors->has('full_name'))
                                 <span class="text-danger">{{ $errors->first('full_name') }}</span>
                                 @endif
                             </div>
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
                                 <input type="text" class="form-control" id="email" name="email">
                                 @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
                             </div>
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                <label for="password"><i class="fa fa-password"></i>Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                @if ($errors->has('password'))
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
+                            </div>
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="phone"><i class="fa fa-phone"></i> Phone</label>
                                 <input type="text" class="form-control" id="phone" name="phone">
                                 @if ($errors->has('phone'))
@@ -41,7 +48,7 @@
                                 @endif
                             </div>
                         @endif
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="country_id"><i class="fa fa-globe"></i> Country</label>
                                 <select id="country_id" class="form-control" name="country_id" >
                                     <option value="">--Select Country--</option>
@@ -54,7 +61,7 @@
                                 @endif
                             </div>
                             
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="timezone_id"><i class="fa fa-clock-o"></i> TimeZone</label>
                                 <select id="timezone_id" class="form-control" name="timezone_id">
                                     <option value="">--Select Timezone--</option>
@@ -66,7 +73,7 @@
                                 <span class="text-danger">{{ $errors->first('timezone_id') }}</span>
                                 @endif
                             </div>
-                            <div class="columns1_3 margin_top_mini margin_bottom_mini">
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
                                 <label for="course_id"><i class="fa fa-phone"></i> Course</label>
                                 <select id="course_id" class="form-control" name="course_id" >
                                     <option value="">--Select Course--</option>

@@ -16,30 +16,32 @@
                         <div class="card-body">
                             <?php 
                             if(!empty($countries)){
+                                $i=0;
                                 foreach($countries as $countryId=>$country){
                             ?>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="hidden" name="country_id[{{$countryId}}]" value="{{$countryId}}">
-                                            <input type="text" name="country[{{$countryId}}]" class="form-control" placeholder="Country" value="{{$country}}" readonly>
+                                            <input type="hidden" name="country_id[{{$i}}]" value="{{$countryId}}">
+                                            <input type="text" name="country[{{$i}}]" class="form-control" placeholder="Country" value="{{$country}}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <input type="text" name="price[{{$countryId}}]" class="form-control" placeholder="Course Price" value="{{!empty($coursePrices) && !empty($coursePrices[$countryId]) && $coursePrices[$countryId]->price ? $coursePrices[$countryId]->price : 0}}" require>
+                                            <input type="text" name="price[{{$i}}]" class="form-control" placeholder="Course Price" value="{{!empty($coursePrices) && !empty($coursePrices[$i]) && $coursePrices[$i]->price ? $coursePrices[$i]->price : 0}}" require>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                     <div class="form-group">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="status[{{$countryId}}]" value="1" type="checkbox" {{ isset($coursePrices[$countryId]->status) && $coursePrices[$countryId]->status == 1 ? 'checked': ''}}>
+                                            <input class="form-check-input" name="status[{{$i}}]" value="1" type="checkbox" {{ isset($coursePrices[$i]->status) && $coursePrices[$i]->status == 1 ? 'checked': ''}}>
                                             <label class="form-check-label">Status</label>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             <?php
+                                $i++;
                                 }
                             }
                             ?>

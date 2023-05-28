@@ -176,15 +176,18 @@ class CourseController extends Controller
 	public function store_course_prices(Request $request){
 		if($request){
 			$data = [];
-			foreach($request->country_id as $postData){
+			foreach($request->country_id as $key=>$postData){
+				$countryCurrency = Country::find($postData);
 				$data[] = [
 					'course_id'=>!empty($request->course_id) ? $request->course_id : '',
 					'country_id'=>!empty($postData) ? $postData : '',
-					'price'=>!empty($request->price[$postData]) ? $request->price[$postData] : 0,
-					'status'=>!empty($request->status[$postData]) ? $request->status[$postData] : 0
+					'currency'=> !empty($countryCurrency) && !empty($countryCurrency->currency) ? $countryCurrency->currency : '₹',
+					'price'=>!empty($request->price[$key]) ? $request->price[$key] : 0,
+					'status'=>!empty($request->status[$key]) ? $request->status[$key] : 0
 				];
 			}
 			if(!empty($data)){
+				// dd($data);
 			    CoursePrice::where('course_id', $request->course_id)->delete();
     			if(CoursePrice::insert($data)){
     				return redirect()->route('coursesList')->with('success', 'Course Prices for countries have been saved successfully.');
