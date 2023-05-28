@@ -60,7 +60,12 @@ $settings = App\Helpers\Helper::getSettings();
                         $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
                     @endphp
 					<div class="menu-item country-wrap">
-						<div class="selected-country"><a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex"><img alt="" src="/uploads/country/{{$countryFlag}}">{{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}</a></div>
+						<div class="selected-country">
+                            <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
+                                <img alt="" src="/uploads/country/{{$countryFlag}}">
+                                {{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}
+                            </a>
+                        </div>
 						<div class="country-listing">
 							<ul>
                             @if(!empty($countries))

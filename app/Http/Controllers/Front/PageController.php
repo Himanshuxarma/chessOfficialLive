@@ -17,7 +17,7 @@ class pageController extends Controller
     }
     public function terms_conditions(){
         $terms_conditions = Page::where('slug', 'terms-conditions')->first();
-          return view('front.pages.terms_conditions',compact('terms_conditions'));
+        return view('front.pages.terms_conditions',compact('terms_conditions'));
     }
     public function privacy_policy(){
         $policy = Page::where('slug', 'privacy-policy')->first();

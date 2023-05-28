@@ -41,7 +41,7 @@ class LoginController extends Controller
                 'loginRoute' => 'adminLogin',
             ]);
         } else {
-            return view('auth.front.login',[
+            return view('auth.login',[
                 'title' => 'Customer Login  - ' . config('app.name'),
                 'loginRoute' => 'login',
             ]);

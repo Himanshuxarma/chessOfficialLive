@@ -8,12 +8,12 @@
                 <div class="sc_contact_form sc_contact_form_contact">
                     <h2 class="title">
                         Book A Demo
-                        @php $priceData =  $courses->coursePrice($courses->id); @endphp
+                        @php $priceData = $courseData && $courseData->coursePrice($courseData->id) ? $courseData->coursePrice($courseData->id) : ''; @endphp
                         <span class="alignright course-price">
                             <strong>
-                                {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+                                {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '')}}
                             </strong>
-                            {{$priceData && $priceData->price ? $priceData->price : ($courseData->price ? $courseData->price : 0.00) }}
+                            {{$priceData && $priceData->price ? $priceData->price : ($courseData && $courseData->price ? $courseData->price : '') }}
                         </span>
                     </h2>
                     <form action="{{route('demo.Booking')}}" method="post">
