@@ -71,6 +71,7 @@ use App\Http\Controllers\Auth\LoginController;
         Route::get('/contact-us', [App\Http\Controllers\Front\EnquiriesController::class, 'index'])->name("contactForm");
         Route::post('contact/store', [App\Http\Controllers\Front\EnquiriesController::class, 'sendEmail'])->name('contactsSave');
 
+        Route::post('booking-payment-online', [App\Http\Controllers\Front\BookingController::class, 'bookingPaymentOnline'])->name('booking.payment.online');
 
     Route::prefix("/admin")->namespace("Admin")->group(function(){
          Route::namespace("Auth")->group(function(){

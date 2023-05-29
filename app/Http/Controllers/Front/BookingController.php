@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Front;
+
 use Auth;
 use Mail;
 use Session;
@@ -20,57 +21,57 @@ use App\Models\CardDetail;
 use Hash;
 use Razorpay\Api\Api;
 use Exception;
+use DB;
+use Validator;
+use App\Models\Transaction;
 
-class BookingController extends Controller
-{
+class BookingController extends Controller {
 
-    public function __construct(){
+    public function __construct() {
         $countryData = Country::where('id', 6)->where('status', 1)->first();
-        $countryId = !empty($countryData) && $countryData->id ? $countryData->id : 6 ;
+        $countryId = !empty($countryData) && $countryData->id ? $countryData->id : 6;
         Session::put('SiteCountry', $countryId);
         // $this->middleware('auth:admin');
     }
 
-    public function index($id=null){
+    public function index($id = null) {
         $countryId = Session::get('SiteCountry');
         $courseData = Course::find($id);
         $country = Country::all();
         $course = Course::all();
         $timezones = CountryTimezone::where('country_id', $countryId)->get();
-        return view('front.booking.booking_a_demo',compact('courseData','country','timezones','course'));
+        return view('front.booking.booking_a_demo', compact('courseData', 'country', 'timezones', 'course'));
     }
 
-    public function storeTimezone(Request $request){
-        if($request->isMethod('post') && $request->ajax()){
+    public function storeTimezone(Request $request) {
+        if ($request->isMethod('post') && $request->ajax()) {
             $timezones = CountryTimezone::where("country_id", $request->country_id)->pluck('timezone', 'id');
             $data = [
-                'status'=>true,
-                'data'=>$timezones
+                'status' => true,
+                'data' => $timezones
             ];
         } else {
             $data = [
-                'status'=>false
+                'status' => false
             ];
         }
         return response()->json($data);
     }
-
 
     /**
      * Write code on Method
      *
      * @return response()
      */
-    public function demo_booking(Request $request){
-        if(Auth::guard('customer')->check()){
+    public function demo_booking(Request $request) {
+        if (Auth::guard('customer')->check()) {
             $validatedData = $request->validate([
                 'country_id' => 'required',
                 'timezone_id' => 'required',
                 'date_of_demo' => 'required',
                 'time_of_demo' => 'required'
             ]);
-        }
-         else {
+        } else {
             $validatedData = $request->validate([
                 'full_name' => 'required',
                 'email' => 'required|unique:users,email',
@@ -83,17 +84,17 @@ class BookingController extends Controller
             ]);
         }
         $customerId = 0;
-        if(!Auth::guard('customer')->check()){
+        if (!Auth::guard('customer')->check()) {
             $data = $request->all();
-            $password = substr(md5(rand()),0,5);
+            $password = substr(md5(rand()), 0, 5);
             $check = User::create([
-                'full_name' => $data['full_name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'],
-                'password' => Hash::make($data['password']),
-                'role'=>'customer'
+                        'full_name' => $data['full_name'],
+                        'email' => $data['email'],
+                        'phone' => $data['phone'],
+                        'password' => Hash::make($data['password']),
+                        'role' => 'customer'
             ]);
-            if($check->id){
+            if ($check->id) {
                 $customerId = $check->id;
                 $furtherProcess = true;
                 Mail::to($data['email'])->send(new newCustomerMail($check));
@@ -101,7 +102,7 @@ class BookingController extends Controller
         } else {
             $customerId = Auth::guard('customer')->user()->id;
         }
-        if(!empty($customerId) && $customerId != 0){
+        if (!empty($customerId) && $customerId != 0) {
             $demoBoking = new Demo;
             $demoBoking->course_id = $request->course_id;
             $demoBoking->country_id = $request->country_id;
@@ -109,7 +110,7 @@ class BookingController extends Controller
             $demoBoking->date_of_demo = $request->date_of_demo;
             $demoBoking->time_of_demo = $request->time_of_demo;
             $demoBoking->customer_id = $customerId ? $customerId : "0";
-            if($demoBoking->save()){
+            if ($demoBoking->save()) {
                 $user = User::where('id', $customerId)->first();
 
                 Mail::to($user['email'])->send(new demoBookingMail($user, $demoBoking));
@@ -121,19 +122,16 @@ class BookingController extends Controller
         } else {
             return redirect()->route('login')->with('error', 'Please login first.');
         }
-        
-        
-    
     }
 
-      /**
+    /**
 
-   *  Buy Course
+     *  Buy Course
 
-   *
+     *
 
-   */
-    public function buy_course($id=null){ 
+     */
+    public function buy_course($id = null) {
         // $isCouse = false;
         // if(!empty($id)){
         //     $isCouse = true;
@@ -146,34 +144,28 @@ class BookingController extends Controller
         $country = Country::all();
         $course = Course::all();
         $timezones = CountryTimezone::where('country_id', $countryId)->get();
-        return view('front.booking.buy_course',compact('courseData','country','timezones','course'));
+        return view('front.booking.buy_course', compact('courseData', 'country', 'timezones', 'course'));
     }
-        
-  /**
 
-   * Store Buy Course
+    /**
 
-   *
+     * Store Buy Course
 
-   */
+     *
 
-    public function storeBuycourse(Request $request){
-        if(Auth::guard('customer')->check()){
-            $validatedData = $request->validate([
+     */
+    public function storeBuycourse(Request $request) {
+        $data = $request->all();
+        if (Auth::guard('customer')->check()) {
+            $valiKey = [
                 'country_id' => 'required',
                 'timezone_id' => 'required',
                 'course_id' => 'required',
                 'date_of_demo' => 'required',
                 'time_of_demo' => 'required',
-                // 'name' => 'required',
-                // 'card_number' => 'required',
-                // 'exp_month' => 'required',
-                // 'exp_year' => 'required',
-                // 'cvv' => 'required',
-            ]);
-        }
-         else {
-            $validatedData = $request->validate([
+            ];
+        } else {
+            $valiKey = [
                 'full_name' => 'required',
                 'email' => 'required|unique:users,email',
                 'password' => 'required',
@@ -183,77 +175,213 @@ class BookingController extends Controller
                 'course_id' => 'required',
                 'date_of_demo' => 'required',
                 'time_of_demo' => 'required',
-                // 'name' => 'required',
-                // 'card_number' => 'required',
-                // 'exp_month' => 'required',
-                // 'exp_year' => 'required',
-                // 'cvv' => 'required',
-            ]);
+            ];
         }
-        $customerId = 0;
-        if(!Auth::guard('customer')->check()){
-            $data = $request->all();
-            // $password = substr(md5(rand()),0,5);
-            $check = User::create([
-                'full_name' => $data['full_name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'], 
-                'password' => Hash::make($data['password']),
-                'role'=>'customer'
-            ]);
-            if($check->id){
-                $customerId = $check->id;
-                $furtherProcess = true;
-                Mail::to($data['email'])->send(new newCustomerMail($check));
-            }
-        } else {
-            $customerId = Auth::guard('customer')->user()->id;
+        $validator = Validator::make($data, $valiKey);
+        if ($validator->fails()) {
+            return json_encode(['status' => 401, 'errors' => $validator->messages()]);
         }
-
-        if(!empty($customerId) && $customerId != 0){
-            $cardDetails = new CardDetail;
-            $cardDetails->name = !empty($request->name) ? $request->name : '';
-            $cardDetails->card_number = !empty($request->card_number) ? $request->card_number : '';
-            $cardDetails->exp_month = !empty($request->exp_month) ? $request->exp_month : '';
-            $cardDetails->exp_year = !empty($request->exp_year) ? $request->exp_year : '';
-            $cardDetails->cvv = !empty($request->cvv) ? $request->cvv : '';
-            $cardDetails->status = $request->status ? $request->status : 0;
-            $cardDetails->customer_id = $customerId ? $customerId : 0;
-            $cardDetails->save();
-        }
-        if(!empty($customerId) && $customerId != 0){
-            $orders = new Order;
-            $orders->course_id = $request->course_id;
-            $courseDatail = Course::where('id', $request->course_id)->first();
-            $coursePriceDatail = CoursePrice::where('course_id', $request->course_id)->where('country_id', $request->country_id)->first();
-
-            $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->price) ? $coursePriceDatail->price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
-            
-            $orders->course_type = !empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : (!empty($request->course_type) ? $request->course_type : '');
-            /* currency b mil rahi hai, check krlena thik hai */
-            $orders->price = $price;
-
-            $orders->country_id = $request->country_id;
-            $orders->timezone_id = $request->timezone_id;
-            $orders->date_of_demo = $request->date_of_demo;
-            $orders->time_of_demo = $request->time_of_demo;
-            $orders->customer_id = $customerId ? $customerId : "0";
-            
-            if($orders->save()){
-                $user = User::where('id', $customerId)->first();
-                Mail::to($user['email'])->send(new ordersMail($user, $orders));
-                return redirect()->route('courseDetails', $request->course_id)->with('success', 'Your demo has been booked, Admin wil look into it and revert you back soon.');
+        try {
+            DB::beginTransaction();
+            $customerId = 0;
+            if (!Auth::guard('customer')->check()) {
+                $data = $request->all();
+                // $password = substr(md5(rand()),0,5);
+                $check = User::create([
+                            'full_name' => $data['full_name'],
+                            'email' => $data['email'],
+                            'phone' => $data['phone'],
+                            'password' => Hash::make($data['password']),
+                            'role' => 'customer'
+                ]);
+                if ($check->id) {
+                    $customerId = $check->id;
+                    $furtherProcess = true;
+                    try {
+                        Mail::to($data['email'])->send(new newCustomerMail($check));
+                    } catch (Exception $ex) {
+                        
+                    }
+                }
             } else {
-                return redirect()->route('courseDetails', $request->course_id)->with('error', 'Something went wrong.');
+                $customerId = Auth::guard('customer')->user()->id;
             }
-        } else {
-            return redirect()->route('login')->with('error', 'Please login first.');
-        }
 
+//            if (!empty($customerId) && $customerId != 0) {
+//                $cardDetails = new CardDetail;
+//                $cardDetails->name = !empty($request->name) ? $request->name : '';
+//                $cardDetails->card_number = !empty($request->card_number) ? $request->card_number : '';
+//                $cardDetails->exp_month = !empty($request->exp_month) ? $request->exp_month : '';
+//                $cardDetails->exp_year = !empty($request->exp_year) ? $request->exp_year : '';
+//                $cardDetails->cvv = !empty($request->cvv) ? $request->cvv : '';
+//                $cardDetails->status = $request->status ? $request->status : 0;
+//                $cardDetails->customer_id = $customerId ? $customerId : 0;
+//                $cardDetails->save();
+//            }
+            if (!empty($customerId) && $customerId != 0) {
+                $orders = new Order;
+                $orders->course_id = $request->course_id;
+                $courseDatail = Course::where('id', $request->course_id)->first();
+                $coursePriceDatail = CoursePrice::where('course_id', $request->course_id)->where('country_id', $request->country_id)->first();
+
+                $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->price) ? $coursePriceDatail->price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
+
+                $orders->course_type = !empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : (!empty($request->course_type) ? $request->course_type : '');
+                /* currency b mil rahi hai, check krlena thik hai */
+                $orders->price = $price;
+
+                $orders->country_id = $request->country_id;
+                $orders->timezone_id = $request->timezone_id;
+                $orders->date_of_demo = $request->date_of_demo;
+                $orders->time_of_demo = $request->time_of_demo;
+                $orders->customer_id = $customerId ? $customerId : "0";
+                $orders->payment_status = "pending";
+
+                if ($orders->save()) {
+                    $user = User::where('id', $customerId)->first();
+                    try {
+                        Mail::to($user['email'])->send(new ordersMail($user, $orders));
+                    } catch (Exception $ex) {
+                        
+                    }
+                    //return redirect()->route('courseDetails', $request->course_id)->with('success', 'Your demo has been booked, Admin wil look into it and revert you back soon.');
+                    $url = route("courseDetails", [$request->course_id]);
+
+                    $price = $price;
+                    $course_id = $request->course_id;
+                    $order_id = $orders->id;
+                    $currency = "INR";
+                    DB::commit();
+
+                    return json_encode(
+                            [
+                                'status' => 200,
+                                'msg' => 'Your demo has been booked, Admin wil look into it and revert you back soon.',
+                                'data' => '',
+                                'url' => $url,
+                                'price' => $price,
+                                'course_id' => $course_id,
+                                'order_id' => $order_id,
+                                'user_id' => @$customerId,
+                                'currency' => $currency,
+                            ]
+                    );
+                } else {
+                    DB::rollback();
+                    $url = route("courseDetails", [$request->course_id]);
+                    //return redirect()->route('courseDetails', $request->course_id)->with('error', 'Something went wrong.');
+                    return json_encode(
+                            [
+                                'status' => 500,
+                                'msg' => 'Something went wrong!',
+                                'data' => '',
+                                'url' => $url,
+                                'price' => "",
+                                'course_id' => "",
+                                'order_id' => "",
+                                'user_id' => "",
+                                'currency' => "",
+                            ]
+                    );
+                }
+            } else {
+                DB::rollback();
+                //return redirect()->route('login')->with('error', 'Please login first.');
+                return json_encode(
+                        [
+                            'status' => 500,
+                            'msg' => 'Please login first!',
+                            'data' => '',
+                            'url' => '',
+                            'price' => "",
+                            'course_id' => "",
+                            'order_id' => "",
+                            'user_id' => "",
+                            'currency' => "",
+                        ]
+                );
+            }
+        } catch (Exception $ex) {
+            DB::rollback();
+            return json_encode(
+                    [
+                        'status' => 500,
+                        'msg' => 'Either something went wrong or invalid access!',
+                        'data' => '',
+                        'url' => '',
+                        'price' => "",
+                        'course_id' => "",
+                        'order_id' => "",
+                        'user_id' => "",
+                        'currency' => "",
+                    ]
+            );
+        }
     }
 
+    public function bookingPaymentOnline(Request $request) {
+        $data = $request->all();
+        $RAZORPAY_KEY = env("RAZORPAY_KEY");
+        $RAZORPAY_SECRET = env("RAZORPAY_SECRET");
+        $api = new Api($RAZORPAY_KEY, $RAZORPAY_SECRET);
+        $payment = $api->payment->fetch($data['razorpay_payment_id']);
+        if (count($data) && !empty($data['razorpay_payment_id'])) {
+            try {
+                DB::beginTransaction();
+                $response = $api->payment->fetch($data['razorpay_payment_id'])->capture(array('amount' => $payment['amount']));
+                if (@$response->id && @$response->status == "captured") {
+                    $transections = [
+                        "user_id" => @$data['user_id'],
+                        "course_id" => @$data['courseId'],
+                        "order_id" => @$data['orderId'],
+                        "transaction_id" => @$data['razorpay_payment_id'],
+                        "currency" => @$data['currency'],
+                        "amount" => $data['price'],
+                        "payment_status" => @$response->status,
+                        "payment_response" => (@$response) ? json_encode(@$response) : null,
+                        "status" => "1",
+                    ];
+                    Transaction::create($transections);
 
-     /**
+                    $order = Order::where("id", @$data['orderId'])->first();
+                    if (isset($order) && !empty($order)) {
+                        $order->payment_status = @$response->status;
+                        $order->save();
+                    }
+                    DB::commit();
+                    $url = route("courseDetails", [@$data['courseId']]);
+                    return json_encode([
+                        'status' => 200,
+                        'msg' => 'Your demo has been booked, Admin wil look into it and revert you back soon.',
+                        'url' => $url
+                    ]);
+                } else {
+                    DB::rollback();
+                    return json_encode([
+                        'status' => 500,
+                        'msg' => 'Error! Either something went wrong or invalid access!',
+                        'data' => ''
+                    ]);
+                }
+            } catch (Exception $e) {
+                DB::rollback();
+                return json_encode([
+                    'status' => 500,
+                    'msg' => 'Error!' . $e->getMessage(),
+                    'data' => ''
+                ]);
+            }
+        } else {
+            DB::rollback();
+            return json_encode([
+                'status' => 500,
+                'msg' => 'Error! Either something went wrong or invalid access!',
+                'data' => ''
+            ]);
+        }
+    }
+
+    /**
      * Write code on Method
      * @return response()
      */
@@ -297,4 +425,5 @@ class BookingController extends Controller
 
         return redirect()->back();
     }
+
 }

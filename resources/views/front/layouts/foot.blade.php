@@ -17,4 +17,7 @@
         let countrySelected = jQuery(this).data('language');
     });
 </script>
+
+<script type='text/javascript' src="{{asset('/custom/assets/js/toastr.min.js')}}"></script>
+<script type='text/javascript' src="{{asset('/custom/assets/js/sweetalert-dev.js')}}"></script>
 @yield('customscript')
