@@ -207,17 +207,6 @@ class BookingController extends Controller {
                 $customerId = Auth::guard('customer')->user()->id;
             }
 
-//            if (!empty($customerId) && $customerId != 0) {
-//                $cardDetails = new CardDetail;
-//                $cardDetails->name = !empty($request->name) ? $request->name : '';
-//                $cardDetails->card_number = !empty($request->card_number) ? $request->card_number : '';
-//                $cardDetails->exp_month = !empty($request->exp_month) ? $request->exp_month : '';
-//                $cardDetails->exp_year = !empty($request->exp_year) ? $request->exp_year : '';
-//                $cardDetails->cvv = !empty($request->cvv) ? $request->cvv : '';
-//                $cardDetails->status = $request->status ? $request->status : 0;
-//                $cardDetails->customer_id = $customerId ? $customerId : 0;
-//                $cardDetails->save();
-//            }
             if (!empty($customerId) && $customerId != 0) {
                 $orders = new Order;
                 $orders->course_id = $request->course_id;
@@ -335,8 +324,8 @@ class BookingController extends Controller {
                         "course_id" => @$data['courseId'],
                         "order_id" => @$data['orderId'],
                         "transaction_id" => @$data['razorpay_payment_id'],
-                        "currency" => @$data['currency'],
-                        "amount" => $data['price'],
+                        "currency" => 'INR', //@$data['currency'],
+                        "amount" => '1.00', //$data['price'],
                         "payment_status" => @$response->status,
                         "payment_response" => (@$response) ? json_encode(@$response) : null,
                         "status" => "1",
@@ -352,7 +341,7 @@ class BookingController extends Controller {
                     $url = route("courseDetails", [@$data['courseId']]);
                     return json_encode([
                         'status' => 200,
-                        'msg' => 'Your demo has been booked, Admin wil look into it and revert you back soon.',
+                        'msg' => 'Your payment has been done, Admin will look into your course purchase and revert you back soon with the details that you purchased',
                         'url' => $url
                     ]);
                 } else {

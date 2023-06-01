@@ -1,61 +1,30 @@
 @extends('front.layouts.master')
 @section('content')
 <div id="app">
-
     <main class="py-4">
-
         <div class="container">
-
             <div class="row">
-
                 <div class="col-md-6 offset-3 col-md-offset-6">
-
-
-
                     @if($message = Session::get('error'))
-
                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
-
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
                             <span aria-hidden="true">×</span>
-
                         </button>
-
                         <strong>Error!</strong> {{ $message }}
-
                     </div>
-
                     @endif
-
-
-
                     @if($message = Session::get('success'))
-
                     <div class="alert alert-success alert-dismissible fade {{ Session::has('success') ? 'show' : 'in' }}" role="alert">
-
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
                             <span aria-hidden="true">×</span>
-
                         </button>
-
                         <strong>Success!</strong> {{ $message }}
-
                     </div>
-
                     @endif
-
-
-
                     <div class="card card-default">
-
                         <div class="card-header">
-
                             Laravel - Razorpay Payment Gateway Integration
-
                         </div>
-
                         <div class="card-body text-center">
                             <form action="{{ route('booking.demo.store') }}" method="POST" >
                                 @csrf
@@ -77,100 +46,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </main>
-
 </div>
-
-
-
-
-
-<!--<div id="app">
-
-    <main class="py-4">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-6 offset-3 col-md-offset-6">
-
-                    @if($message = Session::get('error'))
-
-                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
-                            <span aria-hidden="true">×</span>
-
-                        </button>
-
-                        <strong>Error!</strong> {{ $message }}
-
-                    </div>
-
-                    @endif
-
-                    <div class="alert alert-success success-alert alert-dismissible fade show" role="alert" style="display: none;">
-
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-
-                            <span aria-hidden="true">×</span>
-
-                        </button>
-
-                        <strong>Success!</strong> <span class="success-message"></span>
-
-                    </div>
-
-                    {{ Session::forget('success') }}
-
-                    <div class="card card-default">
-
-                        <div class="card-header">
-
-                            Razorpay Example
-
-                        </div>
-
-
-                        <div class="card-body text-center">
-
-                            <div class="form-group mt-1 mb-1">
-
-                                <input type="text" name="amount" class="form-control amount" placeholder="Enter Amount">
-
-                            </div>
-
-                            <button id="rzp-button1" class="btn btn-success btn-lg">Pay</button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </main>
-
-</div>-->
-
-
-
 @endsection
 @section('js')
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
-
 $('body').on('click', '#rzp-button1', function (e) {
     e.preventDefault();
     var amount = $('.amount').val();
@@ -203,7 +86,6 @@ $('body').on('click', '#rzp-button1', function (e) {
                 }
             });
         },
-
         "prefill": {
             "name": "",
             "email": "",

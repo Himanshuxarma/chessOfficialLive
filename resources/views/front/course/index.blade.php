@@ -58,10 +58,13 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 
 												@endif
 												<div class="thumb hoverIncrease" data-image="{{$courseImg}}" data-title="{{$data->title}}">
-												
-													<img class="course-list-page" alt="{{$data->title}}" src="{{$courseImg}}">
+												    <a href="{{route('courseDetails', $data->id)}}"><img class="course-list-page" alt="{{$data->title}}" src="{{$courseImg}}"></a>
 												</div>
-												<h4><a href="{{route('courseDetails', $data->id)}}">{{$data->title}}</a></h4>
+												<div>
+												<h4>
+												    <a class="alignleft" href="{{route('courseDetails', $data->id)}}">{{$data->title}}</a> 
+												    <a class="alignright" style="margin:0 0 0 0" href="javascript:void(0);"><span>{{$data->class}}</span> Session</a>
+											    </h4>
 												<ul class=" list-style-dot">
 													@if(!empty($courseFeatured))
 														@foreach($courseFeatured as $featured)
@@ -72,9 +75,9 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 													@endif
 												</ul>
 												@php 
-													$price = !empty($data) && !empty($data->price) ? $data->price : 0;
+													$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 													$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
-													$perSessionPrice =  round( (float)$price/$classes) 
+													$perSessionPrice = (float)$price / (int)$classes;
 												@endphp
 												<div class="masonryInfo">
 													<a href="javascript:void(0);" class="post_date">
@@ -83,7 +86,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 															<sup>
 																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 															</sup>
-															{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}
+															{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
 														</strong>
 													</a>
 													<a href="javascript:void(0);" class="course_perday_price"> 
@@ -92,17 +95,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 															<sup>
 																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '$')}} 
 															</sup>
-															{{$perSessionPrice}} 
+															{{number_format($perSessionPrice, 2).'/-'}} 
 														</strong>
 													</a>
 												</div>
 												<div class="masonryMore">
 													<ul>
-														<li class="squareButton light ico">
+														<li class="squareButton light ico alignright">
 															<a  href="{{route('courseDetails', $data->id)}}">View Details</a>
-														</li>
-														<li class="squareButton light ico">
-															<a  href="javascript:void(0);"><span>{{$data->class}}</span> Session</a>
 														</li>
 													</ul>
 												</div>
@@ -128,10 +128,10 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																	<tbody>
 																		<tr>
 																			<td>
-																				<a href="#" class="active">1</a>
+																				<a href="javascript:void(0);" class="active">1</a>
 																			</td>
 																			<td>
-																				<a href="#">2</a>
+																				<a href="javascript:void(0);">2</a>
 																			</td>
 																		</tr>
 																	</tbody>
@@ -142,21 +142,21 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												</div>
 												<ul class="flex-direction-nav">
 													<li>
-														<a class="flex-prev" href="#">
+														<a class="flex-prev" href="javascript:void(0);">
 														</a>
 													</li>
 													<li>
-														<a class="flex-next" href="#">
+														<a class="flex-next" href="javascript:void(0);">
 														</a>
 													</li>
 												</ul>
 											</div>
 										</li>
 										<li class="pager_next ico right squareButton light">
-											<a href="#">Next </a>
+											<a href="javascript:void(0);">Next </a>
 										</li>
 										<li class="pager_last ico right squareButton light">
-											<a href="#">Last </a>
+											<a href="javascript:void(0);">Last </a>
 										</li>
 									</ul>
 								</div>
