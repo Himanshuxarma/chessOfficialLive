@@ -31,9 +31,9 @@ class OfferController extends Controller
     public function store(Request $request){
         // dd($request);
 		$request->validate([
-		'title' => 'required',
-		'description' => 'required',        
-		'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+			'title' => 'required',
+			'description' => 'required',        
+			'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
 		]);
 		$offers = new Offer;
 		$offers->title = $request->title;

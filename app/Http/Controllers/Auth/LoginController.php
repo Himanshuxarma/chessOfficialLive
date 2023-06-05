@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Validator;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
@@ -70,6 +71,20 @@ class LoginController extends Controller
                 }
             }
         } else {
+            // $data = $request->all();
+            // $valiKey = [
+            //     'email' => 'required|email',
+            //     'password' => 'required',
+            // ];
+            // $validator = Validator::make($data, $valiKey);
+            // //dd($validator);
+            // // if ($validator->fails()) {
+            // //     return json_encode(['status' => 401, 'errors' => $validator->messages()]);
+            // // }
+            $validatedData = $request->validate([
+                'email' => 'required|unique:users,email',
+                'password' => 'required',
+            ]);
             if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
                 //Authentication passed...
                 //Check if authenticated user is admin only
@@ -85,7 +100,7 @@ class LoginController extends Controller
                     return redirect()->route('front.dashboard')->with('success', 'You have Successfully loggedin');   
                 }
             } else {
-                return redirect(url('/'))->with('loginError', 'Invalid credentials');   
+                return redirect(url('/login'))->with('loginError', 'Invalid credentials');   
             } 
         }
         //Authentication failed...
@@ -140,9 +155,16 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     private function loginFailed(){
-        return redirect()
-            ->route('adminLogin')
-            ->withInput()
-            ->withErrors('Invalid Credentials, Login failed, please try again!');
+        if(Route::current()->getPrefix()=='admin'){
+            return redirect()
+                ->route('adminLogin')
+                ->withInput()
+                ->withErrors('Invalid Credentials, Login failed, please try again!');
+        } else {
+            return redirect()
+                ->route('frontLogin')
+                ->withInput()
+                ->withErrors('Invalid Credentials, Login failed, please try again!');
+        }
     }
 }

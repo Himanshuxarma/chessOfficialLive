@@ -49,45 +49,44 @@ $settings = App\Helpers\Helper::getSettings();
                                 About-Us
                             </a>
                         </li>
-                        
-                    </ul>
-                    @php
-                        $countryId = 6;
-                        if(session()->has('SiteCountry')){
-                            $countryId = session()->get('SiteCountry');
-                        }
-                        $countryDetails = App\Helpers\Helper::getCountryData($countryId);
-                        $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
-                    @endphp
-					<div class="menu-item country-wrap">
-						<div class="selected-country">
-                            <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
-                                <img alt="" src="/uploads/country/{{$countryFlag}}">
-                                {{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}
-                            </a>
-                        </div>
-						<div class="country-listing">
-							<ul>
-                            @if(!empty($countries))
-                                @foreach($countries as $country)
-                                <li> <a href="javascript:void(0);"  class="change_country d-flex" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
-								@endforeach
-                                @endif
-							</ul>
-						</div>
-				    </div>
-                    <!-- <div class="login">
-                        <a href="#">Login</a>
-                    </div> -->
-
-                    <ul id="mainmenu" class="">
-                    <li class="{{Request::path() =='login' ? 'current-menu-ancestor' : ''}} login menu-item">
+                        <li class="{{Request::path() =='login' ? 'current-menu-ancestor' : ''}} login menu-item">
                             <a title="Layouts and hovers" href="{{route('frontLogin')}}">
                                 <span class="menu_icon icon-thumbs-up"></span>
                                 Login
                             </a>
                         </li>
+                        <li>
+                            @php
+                                $countryId = 6;
+                                if(session()->has('SiteCountry')){
+                                    $countryId = session()->get('SiteCountry');
+                                }
+                                $countryDetails = App\Helpers\Helper::getCountryData($countryId);
+                                $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
+                            @endphp
+                            <div class="menu-item country-wrap">
+                                <div class="selected-country">
+                                    <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
+                                        <img alt="" src="/uploads/country/{{$countryFlag}}">
+                                        {{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}
+                                    </a>
+                                </div>
+                                <div class="country-listing">
+                                    <ul>
+                                    @if(!empty($countries))
+                                        @foreach($countries as $country)
+                                        <li> <a href="javascript:void(0);"  class="change_country d-flex" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
+                                        @endforeach
+                                    @endif
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
+                    
+                    <!-- <div class="login">
+                        <a href="#">Login</a>
+                    </div> -->
                 </nav>
 
 				

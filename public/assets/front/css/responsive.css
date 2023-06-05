@@ -2156,6 +2156,15 @@
 	div.facebook .pp_gallery .pp_arrow_previous,
 	div.facebook .pp_gallery .pp_arrow_next {display: none !important;}
 
+	/* Login page start */
+	.contact-details{
+		margin: auto;
+		width: 63%;
+		margin-bottom:5%;
+		margin-top:5%;
+		border: 5px solid #1bb4b9;
+	}
+
 }
 
 

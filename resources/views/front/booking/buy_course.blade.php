@@ -105,15 +105,14 @@
                             <span class="text-danger">{{ $errors->first('time_of_demo') }}</span>
                             @endif
                         </div>
+                        <div class="sc_button sc_button_style_light sc_button_size_huge alignright squareButton light huge">
+                            <button type="button" class="btn btn-warning fright mt-4 book_app_cls">Buy A Course</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="sc_button sc_button_style_light sc_button_size_huge alignright squareButton light huge">
-                    <button type="button" class="btn btn-warning fright mt-4 book_app_cls">Buy A Course</button>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
 </section>
 @endsection
 @section('customscript')
