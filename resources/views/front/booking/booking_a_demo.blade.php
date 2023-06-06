@@ -1,6 +1,9 @@
 @extends('front.layouts.master')
 @section('content')
-<?php $countryId = Session::get('SiteCountry'); ?>
+<?php 
+use Illuminate\Support\Facades\Session;
+$countryId = Session::get('SiteCountry'); 
+?>
 <section>
     <div class="container">
         <div class="form-container sc_columns">
