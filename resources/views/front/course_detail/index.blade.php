@@ -20,8 +20,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                 <aside id="tabBlog" class="blogContent">
                     <article class="post_format_standard postCenter hrShadow odd post">
 
-                        <h2 class="post_title">
+                        <h2 class="post_title d-flex">
+                            @php $priceData =  $courses->coursePrice($courses->id); @endphp
                             <a href="javascript:void(0);">{{$courses->title}}</a>
+                            <a class="icon-money" title="Views - 198" href="javascript:void(0);">
+                                <strong>{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}</strong>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : ($courses->price ? $courses->price : 0)}}	
+                            </a>
                         </h2>
                         <div class="sc_section columns1_2 post_thumb thumb">
                             <a href="javascript:void(0);">
@@ -34,7 +38,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             </a>
                         </div>
                         @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
-                        @php $priceData =  $courses->coursePrice($courses->id); @endphp
                         <div class="postStandard">
                             <p>{{$courses->description}} </p>
                         </div>
@@ -44,12 +47,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <a href="javascript:void(0);"> {{$courses->class}} Session</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-money" title="Views - 198" href="javascript:void(0);">
-                                        <strong>
-                                        {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-                                        </strong>
-                                        {{!empty($priceData) && !empty($priceData->price) ? $priceData->price : ($courses->price ? $courses->price : 0)}}	
-                                    </a>
+                                    
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-year" title="Comments - 1"

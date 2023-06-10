@@ -35,17 +35,22 @@ class PagesController extends Controller
 		$request->validate([
 		'title' => 'required',
 		'slug' => 'required',
-		'description' => 'required',
-		'banner_image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+		'description' => 'required'
 		]);
 		$pages = new Page;
 		$pages->title = $request->title;
 		$pages->slug = $request->slug;
 		$pages->description = $request->description;
-		$fileName = time() . '.' . $request->banner_image->getClientOriginalExtension();
-		$request->banner_image->move(public_path('uploads/pages'), $fileName);
-		$pages->banner_image = $fileName;
+		if(!empty($request->banner_image)){
+			$fileName = time() . '.' . $request->banner_image->getClientOriginalExtension();
+			$request->banner_image->move(public_path('uploads/pages'), $fileName);
+			$pages->banner_image = $fileName;
+		} else {
+			$pages->banner_image = '';	
+		}
+		
 		$pages->status = $request->status ? $request->status : 0;
+		
 		$pages->save();
 		return redirect()->route('pageList')->with('success', 'Page has been created successfully.');
 	}

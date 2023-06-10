@@ -63,27 +63,26 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     public function postRegistration(Request $request){
-        $request->validate([
+        $validatedData = $request->validate([
             'full_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'password' => 'required|min:6'
+            'register_email' => 'required|unique:users',
+            'phone' => 'required|unique:users',
+            'register_password' => 'required|min:6'
         ]);
-            $data = $request->all();
-            $check = User::create([
+        $data = $request->all();
+        $check = User::create([
             'full_name' => $data['full_name'],
-            'email' => $data['email'],
+            'email' => $data['register_email'],
             'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['register_password']),
             'role'=>'customer'
         ]);
         if($check->id){
             $customerId = $check->id;
             $furtherProcess = true;
-            $check->decryptedPass = $data['password'];
-            Mail::to($data['email'])->send(new newCustomerMail($check));
+            $check->decryptedPass = $data['register_password'];
+            Mail::to($data['register_email'])->send(new newCustomerMail($check));
         }
-        // $check = $this->create($data);
-         return redirect(route("home"))->withSuccess('Great! You have Successfully loggedin');
+        return redirect(route("frontLogin"))->withSuccess('Great! You have registered successfully.');
     }
 }

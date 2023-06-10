@@ -18,16 +18,16 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
- public function __construct(){
+    public function __construct(){
         // $this->middleware('auth:admin');
-        }
+    }
 
-        public function index(){
-            $enquiry = Enquiry::select('created_at')->get();
-            $settings = Setting::count();
-            $demoBooking = Demo::select('created_at')->get();
-            $orders = Order::select('created_at')->get();
-            return view('admin.dashboard.index',compact('enquiry','settings','demoBooking','orders'));
-        }
+    public function index(){
+        $enquiry = Enquiry::select('created_at')->get();
+        $settings = Setting::count();
+        $demoBooking = Demo::select('created_at')->get();
+        $orders = Order::select('created_at')->get();
+        return view('admin.dashboard.index',compact('enquiry','settings','demoBooking','orders'));
+    }
 }
 ?>

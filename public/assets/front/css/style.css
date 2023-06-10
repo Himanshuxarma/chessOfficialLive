@@ -2046,10 +2046,12 @@ body:not(.single):not(.page) .with_sidebar .content .post .postSharing { float:r
 
 .masonry .isotopePadding{margin: 0 50px 0 0; position: relative; background:#ffffff; }
 
-.masonry article {float: left; padding: 0 0 0 0; margin: 50px 0 0 0; background-color: #fff; opacity: 0;}
+.user-dashboard {border:2px solid #1bb4b9; padding: 2%; }
+.d-none{display: none !important;}
+.masonry article {/*float: left; */padding: 0 0 0 0; margin: 50px 0 0 0; background-color: #fff; opacity: 0;}
 .masonry article .thumb {width: 100%;}
 .masonry article .thumb img {width: 100%; display: block;}
-.masonry article h4 {padding: 30px 0 20px 0;}
+.masonry article h4 {padding: 30px 0 20px 0; margin-bottom:7%}
 .masonry article .sc_quote_title {font-size:18px; padding: 0 0 20px 0;}
 .masonry article p {padding: 0 0 20px 0; margin:0;}
 .masonry article .status {padding: 15px 10px; margin: 0 0 30px 0; color: #fff;}
@@ -3278,8 +3280,11 @@ border-radius: 100% / 100%;}
   -webkit-border-radius: 100% / 100%; 
      -moz-border-radius: 100% / 100%; 
           border-radius: 100% / 100%;}
-.inlineShadow:before{ content:''; height:20px; background:#fff; position:absolute; left:-5px; right: -5px; bottom:-3px; border-bottom: 1px solid #ebebeb; }
-
+/* .inlineShadow:before{ content:''; height:20px; background:#fff; position:absolute; left:-5px; right: -5px; bottom:-3px; border-bottom: 1px solid #ebebeb; } */
+.view-details-button{
+    float:right;
+    left:33.33%;
+}
 
 /*pagination*/
 .pagination { padding:0 0 50px 0;}
@@ -3413,6 +3418,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .widget_area article .post_thumb {width:75px; margin:0 10px 10px 0; float:left;}
 .widget_area article .post_thumb img {width:100%;}
 .widget_area article .post_title {display:block; position:relative; padding:0 0 6px 0; font-size:14px; line-height:17px; font-weight:400;}
+.icon-money {margin-left: 70%;}
 .widget_area article .post_info {margin-bottom: 10px; overflow:hidden;}
 .widget_area article .post_info .post_comments,
 .widget_area article .post_info .post_author,

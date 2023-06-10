@@ -18,10 +18,11 @@
     <link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/learnplay.css")}}' type='text/css' media='all'/>
     <link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/kidscare.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("assets/front/css/responsive.css")}}' type='text/css' media='all'/>
-
+    
     <!--<link rel='stylesheet' href='custom_tools/css/customizer.css' type='text/css' media='all'/>-->
 
     <link rel='stylesheet' href='{{asset("assets/front/css/responsive.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("/custom/assets/css/toastr.min.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("/custom/assets/css/sweetalert.css")}}' type='text/css' media='all'/>
+    @yield('customstyle')
 </head>

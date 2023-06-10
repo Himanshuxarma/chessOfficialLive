@@ -45,6 +45,9 @@
 	.with_sidebar .content .sc_video_player, .with_sidebar .content iframe { max-width:1050px; }
 
 	.masonry article .thumb {padding: 0;}
+	.masonry article .masonryInfo a{
+		width:100%;
+	}
 
 	.sliderHomeBullets { font-size:13px; }
 
@@ -1586,8 +1589,7 @@
 	.upToScroll a.addBookmark { border-bottom: 1px solid #dddddd; border-right-width:0;  }
 	.upToScroll a.scrollToTop { display:block;  }
 
-	.pagination .squareButton,
-	.squareButton {margin: 0 12px 15px 0;}
+	.pagination .squareButton{margin: 0 12px 15px 0;}
 	.pagination .squareButton + .squareButton,
 	.squareButton + .squareButton{ margin: 0 0 7px 7px;}
 
@@ -2158,7 +2160,16 @@
 
 	/* Login page start */
 
-
+	.alert-danger {
+		color: #fff;
+		background-color: #dc3545;
+		border-color: #d32535;
+		padding: 15px;
+		text-align: center;
+		margin-left: 11%;
+		margin-right: 11%;
+		margin-top: 2%;
+	}
 
 
 }

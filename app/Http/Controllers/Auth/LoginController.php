@@ -35,13 +35,13 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(){
-        if(Route::current()->getPrefix()=='admin'){
+        if(Route::current()->getPrefix() == '/admin'){
             return view('auth.admin.login',[
                 'title' => 'Admin Login  - ' . config('app.name'),
                 'loginRoute' => 'adminLogin',
             ]);
         } else {
-            return view('auth.login',[
+            return view('auth.login', [
                 'title' => 'Customer Login  - ' . config('app.name'),
                 'loginRoute' => 'login',
             ]);
@@ -55,7 +55,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin(Request $request){
-        if(Route::current()->getPrefix()=='admin'){
+        if(Route::current()->getPrefix()=='/admin'){
             // dd($request);
             if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
                 //Authentication passed...
@@ -67,22 +67,12 @@ class LoginController extends Controller
                     $request->session()->invalidate();
                     return redirect()->route('adminLogin')->with('error', 'You are not authorized to Login in admin.');
                 } else {
-                    return redirect()->intended(route('adminDashboard'))->with('success','You are Logged in as Admin!');
+                    return redirect()->route('adminDashboard')->with('success','You are Logged in as Admin!');
                 }
             }
         } else {
-            // $data = $request->all();
-            // $valiKey = [
-            //     'email' => 'required|email',
-            //     'password' => 'required',
-            // ];
-            // $validator = Validator::make($data, $valiKey);
-            // //dd($validator);
-            // // if ($validator->fails()) {
-            // //     return json_encode(['status' => 401, 'errors' => $validator->messages()]);
-            // // }
             $validatedData = $request->validate([
-                'email' => 'required|unique:users,email',
+                'email' => 'required',
                 'password' => 'required',
             ]);
             if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
@@ -100,7 +90,7 @@ class LoginController extends Controller
                     return redirect()->route('front.dashboard')->with('success', 'You have Successfully loggedin');   
                 }
             } else {
-                return redirect(url('/login'))->with('loginError', 'Invalid credentials');   
+                return redirect(url('/login'))->with(['loginError' => 'Invalid credentials']);   
             } 
         }
         //Authentication failed...

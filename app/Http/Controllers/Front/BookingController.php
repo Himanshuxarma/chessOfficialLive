@@ -35,10 +35,10 @@ class BookingController extends Controller {
     }
 
     public function index($id = null) {
-        $countryId = Session::get('SiteCountry');
         $courseData = Course::find($id);
         $country = Country::all();
         $course = Course::all();
+        $countryId = Session::get('SiteCountry');
         $timezones = CountryTimezone::where('country_id', $countryId)->get();
         return view('front.booking.booking_a_demo', compact('courseData', 'country', 'timezones', 'course'));
     }

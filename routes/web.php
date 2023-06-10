@@ -41,14 +41,14 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post("postResetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postResetPassword'])->name('postResetPassword');
 
         Route::get("logout", [App\Http\Controllers\Auth\LoginController::class, "logout",])->name("webLogout");
-        Route::get('registration', [App\Http\Controllers\Auth\RegisterController::class, 'registration'])->name('front.register');
+        // Route::get('registration', [App\Http\Controllers\Auth\RegisterController::class, 'registration'])->name('front.register');
         Route::post('post-registration', [App\Http\Controllers\Auth\RegisterController::class, 'postRegistration'])->name('register.post'); 
 
         
         //Frontend Dashboard
         Route::get('/dashboard', [App\Http\Controllers\Front\DashboardController::class, 'index'])->name('front.dashboard'); 
         Route::get('/dashboard/profile', [App\Http\Controllers\Front\DashboardController::class, 'profile'])->name('webuser.profile'); 
-        Route::post('dashboard/update/{id}', [App\Http\Controllers\Front\DashboardController::class, 'update'])->name('profile.Update');
+        Route::post('dashboard/update', [App\Http\Controllers\Front\DashboardController::class, 'update'])->name('profile.Update');
         Route::get('/dashboard/demos', [App\Http\Controllers\Front\DashboardController::class, 'demos'])->name('front.demo');
         Route::get('/dashboard/orders', [App\Http\Controllers\Front\DashboardController::class, 'orders'])->name('front.order');
 
@@ -60,6 +60,8 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post('/book_a_demo', [App\Http\Controllers\Front\CourseController::class, 'bookDemo'])->name('book-a-demo');
         Route::get('/pages/guidelines', [App\Http\Controllers\Front\PageController::class, 'guidelines'])->name("class.guidelines");
         Route::get('/pages/terms-conditions', [App\Http\Controllers\Front\PageController::class, 'terms_conditions'])->name("terms.conditions");
+        Route::get('/pages/chessofficial-academy', [App\Http\Controllers\Front\PageController::class, 'chess_official_academy'])->name("chess_official_academy");
+        Route::get('/pages/why-chessofficial', [App\Http\Controllers\Front\PageController::class, 'why_chessofficial'])->name("why_chessofficial");
         Route::get('/pages/privacy-policy', [App\Http\Controllers\Front\PageController::class, 'privacy_policy'])->name("privacy.policy");
         Route::get('/pages/about-us', [App\Http\Controllers\Front\PageController::class, 'about_us'])->name("about.us");
         Route::get('/faqs', [App\Http\Controllers\Front\FaqController::class, 'index'])->name("faqsDeatail");

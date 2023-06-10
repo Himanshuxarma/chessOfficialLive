@@ -92,14 +92,14 @@
                         <input type="hidden" name="course_price" value="{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($courseData->price) ? $courseData->price : 0.00) }}">
                         <input type="hidden" name="course_type" value="{{!empty($courseData) && !empty($courseData->type) ? $courseData->type : ''}}">
                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="date_of_demo"><i class="fa fa-calendar"></i> Date Of Demo</label>
+                            <label for="date_of_demo"><i class="fa fa-calendar"></i>Starting Date</label>
                             <input type="date" id="date_of_demo" name="date_of_demo" class="form-control">
                             @if ($errors->has('date_of_demo'))
                             <span class="text-danger">{{ $errors->first('date_of_demo') }}</span>
                             @endif
                         </div>
                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="time_of_demo"><i class="fa fa-clock-o"></i> Time Of Damo</label>
+                            <label for="time_of_demo"><i class="fa fa-clock-o"></i> Starting Time</label>
                             <input type="time" id="time_of_demo" name="time_of_demo" class="form-control">
                             @if ($errors->has('time_of_demo'))
                             <span class="text-danger">{{ $errors->first('time_of_demo') }}</span>

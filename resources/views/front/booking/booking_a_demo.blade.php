@@ -11,13 +11,13 @@ $countryId = Session::get('SiteCountry');
                 <div class="sc_contact_form sc_contact_form_contact">
                     <h2 class="title">
                         Book A Demo (Free Demo)
-                        @php $priceData = $courseData && $courseData->coursePrice($courseData->id) ? $courseData->coursePrice($courseData->id) : ''; @endphp
+                        <!-- @php $priceData = $courseData && $courseData->coursePrice($courseData->id) ? $courseData->coursePrice($courseData->id) : ''; @endphp
                         <span class="alignright course-price">
                             <strong>
                                 {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '')}}
                             </strong>
                             {{$priceData && $priceData->price ? $priceData->price : ($courseData && $courseData->price ? $courseData->price : '') }}
-                        </span>
+                        </span> -->
                     </h2>
                     <form action="{{route('demo.Booking')}}" method="post">
                         {{ csrf_field() }}

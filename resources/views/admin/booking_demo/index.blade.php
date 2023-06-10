@@ -27,6 +27,7 @@
                             <th scope="col" width="10%">TimeZone</th>
                             <th scope="col" width="10%">Date</th>
                             <th scope="col" width="10%">Time</th>
+                            <th scope="col" width="10%">Invitation Link</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,7 @@
                             <td>{{ (!empty($data->TimeZone) && $data->TimeZone->timezone != '') ? $data->TimeZone->timezone : 'N/A'}}</td>
                             <td>{{$data->date_of_demo}}</td>
                             <td>{{$data->time_of_demo}}</td>
+                            <td>{{$data->invitation_link}}</td>
                         </tr>
                         <?php $i++; ?>
                         @endforeach

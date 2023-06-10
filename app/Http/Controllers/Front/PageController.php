@@ -25,6 +25,11 @@ class pageController extends Controller
     }
     public function about_us(){
       $aboutUs = Page::where('slug', 'about-us')->first();
-        return view('front.pages.about_us',compact('aboutUs'));
-  }
+      return view('front.pages.about_us',compact('aboutUs'));
+    }
+
+    public function chess_official_academy(){
+      $chessOfficialAcademy = Page::where('slug', 'chessofficial-academy')->first();
+      return view('front.pages.chess_official_academy',compact('chessOfficialAcademy'));
+    }
 }

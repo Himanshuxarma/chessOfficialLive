@@ -7,8 +7,8 @@
 			<section>
 				<div class="logo">
 					<a href="javascript:void(0);">
-					@php
-                             $footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
+						@php
+                        	$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
                         @endphp
 						<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
 					</a>
@@ -21,6 +21,11 @@
 					<address class="addressLeft">
 						{{!empty($settings->address) ? $settings->address : ''}}<br> 
 					</address>
+				</div>
+				<div class="contactAddress">
+					<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>
 				</div>
 				<div class="contactTtextLine">Share this page with friends who need help in 2015, too.</div>
 				<div class="contactShare">

@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers\Front;
 use Auth;
+use Mail;
+use Session;
+use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Country;
 use App\Models\User;
-use App\Models\Order;
 use App\Models\Demo;
+use App\Models\Order;
+use App\Models\CountryTimezone;
 
 class DashboardController extends Controller
 {
+	public function __construct() {
+        $countryData = Country::where('id', 6)->where('status', 1)->first();
+        $countryId = !empty($countryData) && $countryData->id ? $countryData->id : 6;
+        Session::put('SiteCountry', $countryId);
+        // $this->middleware('auth:admin');
+    }
   
   	public function index(){
 		if(Auth::guard('customer')->check()){
-      		return view('front.dashboard.index');
+			$customer = Auth::guard('customer')->user();
+			$country = Country::all();
+			$countryId = Session::get('SiteCountry');
+        	$timezones = CountryTimezone::where('country_id', $countryId)->get();
+			$demos = Demo::all();
+			$orders = Order::all();
+      		return view('front.dashboard.index', compact('customer', 'country', 'timezones', 'demos','orders'));
 		} else {
 			return redirect(route('home'))->withSuccess('Opps! You do not have access');
 		}
@@ -26,44 +43,48 @@ class DashboardController extends Controller
 		}
   	}
 
-  	public function update($id,Request $request){
-		$request->validate([
-			// 'full_name' => 'required',
-			// 'country' => 'required',
-			// 'state' => 'required',
-			// 'city' => 'required',
-			// 'address' => 'required',
-			// 'dob' => 'required',
-			// 'phone' => 'required',
-			// 'email ' => 'required'
-			]);
-			// dd("singh");
-			$CustomerData = User::find($id);
-			$CustomerData->full_name = $request->full_name;
-			$CustomerData->country = $request->country;
-			$CustomerData->state = $request->state;
-			$CustomerData->city = $request->city;
-			$CustomerData->address = $request->address;
-			$CustomerData->dob = $request->dob;
-			$CustomerData->phone = $request->phone;
-			$CustomerData->email = $request->email;
-			if ($request->user_image != '') {
-				$path = public_path() . '/uploads/customer/';
-				//code for remove old file
-				if ($CustomerData->user_image != '' && $CustomerData->user_image != null) {
-				$file_old = $path . $CustomerData->user_image;
-				if (file_exists($file_old)) {
-				unlink($file_old);
-				}}
-				
-			if(!empty($request->user_image)){
-				$fileName = time().'_user_image.'.$request->user_image->getClientOriginalExtension();
-				$request->user_image->move(public_path('/uploads/customer'), $fileName);
-				$CustomerData->user_image = $fileName;
+  	public function update(Request $request){
+		//dd($request);
+		$validator = Validator::make($request->all(), [
+			'full_name' => 'required',
+			'email' => 'required',
+			'phone' => 'required',
+			'dob' => 'required',
+			'country' => 'required',
+			'state' => 'required',
+			'city' => 'required',
+			'address' => 'required'
+		]);
+		$errors = $validator->errors();
+		// dd($errors);
+		$customerId = $request->customer_id ? $request->customer_id : Auth::user()->id;
+		$CustomerData = User::find($customerId);
+		// dd($CustomerData);
+		$CustomerData->full_name = $request->full_name;
+		$CustomerData->country = $request->country;
+		$CustomerData->state = $request->state;
+		$CustomerData->city = $request->city;
+		$CustomerData->address = $request->address;
+		$CustomerData->dob = $request->dob;
+		$CustomerData->phone = $request->phone;
+		$CustomerData->email = $request->email;
+		if ($request->user_image != '') {
+			$path = public_path() . '/uploads/customer/';
+			//code for remove old file
+			if ($CustomerData->user_image != '' && $CustomerData->user_image != null) {
+			$file_old = $path . $CustomerData->user_image;
+			if (file_exists($file_old)) {
+			unlink($file_old);
 			}}
-			// dd($CustomerData);
-			$CustomerData->save();
-		return redirect()->route('webuser.profile')->with('success', 'Profile Has Been updated successfully');
+			
+		if(!empty($request->user_image)){
+			$fileName = time().'_user_image.'.$request->user_image->getClientOriginalExtension();
+			$request->user_image->move(public_path('/uploads/customer'), $fileName);
+			$CustomerData->user_image = $fileName;
+		}}
+		// dd($CustomerData);
+		$CustomerData->save();
+		return redirect()->route('front.dashboard')->with('success', 'Profile Has Been updated successfully');
 	}
 
 	public function demos(){
