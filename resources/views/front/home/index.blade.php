@@ -47,6 +47,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 											@foreach($courses as $course)
 											<div class="columns1_3 column_item_{{$course->id}} odd first">
 												<article class="sc_blogger_item">
+												<div class="offers-details">OFFER 20% OFF</div>
 													<div class="thumb">
 														<a href="{{route('courseDetails',$course->id)}}">
 														
@@ -59,6 +60,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														@php $priceData =  $course->coursePrice($course->id); @endphp
 															<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 															<div class="sc_blogger_content">
+															
 																<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
 															</div>
 														</a>
