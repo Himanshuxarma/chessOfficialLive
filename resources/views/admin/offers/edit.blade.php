@@ -21,19 +21,19 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="description">Description</label>
-                          <textarea id="summernote" name="description"> {{$offers->description}}</textarea>
-                        </div>
-                      </div>
+                                    <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="summernote" name="description"> {{$offers->description}}</textarea>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
-                          <div class="form-group">
-                              <label for="image">Image</label>
-                              <input type="file" name="image" class="form-control" id="image"require placeholder="Image">
-                              <img src="/uploads/offers/{{$offers->image}}" alt="{{$offers->image}}" width="20%" />
-                           </div>
-                        </div>
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" class="form-control" id="image"require placeholder="Image">
+                                    <img src="/uploads/offers/{{$offers->image}}" alt="{{$offers->image}}" width="20%" />
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="form-check">

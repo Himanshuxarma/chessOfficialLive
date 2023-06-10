@@ -86,7 +86,17 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												<sup>
 													{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 												</sup>
-												{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+												@if(!empty($offers) && !empty($offers->offer_id))
+													<?php 
+														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+														$offerPercentage = $offers->amount ? $offers->amount : 0;
+														$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+													?>
+													<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+													{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+												@else 
+													{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+												@endif
 											</strong>
 										</a>
 										<a href="javascript:void(0);" class="course_perday_price"> 
@@ -95,7 +105,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												<sup>
 													{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '$')}} 
 												</sup>
-												{{number_format($perSessionPrice, 2).'/-'}} 
+												@if(!empty($offers) && !empty($offers->offer_id))
+													<?php 
+														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+														$offerPercentage = $offers->amount ? $offers->amount : 0;
+														$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+														$newPerSessionPrice = (float)$newPrice / $classes;
+													?>
+													<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
+													{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
+												@else 
+													{{number_format($perSessionPrice, 2).'/-'}}
+												@endif
+												
 											</strong>
 										</a>
 									</div>

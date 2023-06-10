@@ -23,7 +23,7 @@
                             <th scope="col" width="10%">Offer</th>
                             <th scope="col" width="10%">Course</th>
                             <th scope="col" width="10%">Country</th>
-                            <th scope="col" width="10%">Amount</th>
+                            <th scope="col" width="10%">Percentage</th>
                             <th scope="col" width="10%">Start</th>
                             <th scope="col" width="10%">End</th>
                             <th scope="col" width="10%">Status</th>
@@ -37,7 +37,7 @@
                             <td>{{ (!empty($data->offer) && $data->offer->title != '') ? $data->offer->title : 'N/A'}}</td>
                             <td>{{ (!empty($data->course) && $data->course->title != '') ? $data->course->title : 'N/A'}}</td>
                             <td>{{ (!empty($data->CountryID) && $data->CountryID->country != '') ? $data->CountryID->country : 'N/A'}}</td>
-                            <td>{{ $data->amount }}</td>
+                            <td>{{ $data->amount ? $data->amount."%" : '0' }}</td>
                             <td>{{ $data->start }}</td>
                             <td>{{ $data->end }}</td>
                             @if($data->status == "1")

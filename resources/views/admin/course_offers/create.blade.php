@@ -43,8 +43,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="amount"> Amount </label>
-                                        <input type="text" name="amount" class="form-control" require placeholder="Enter  amount">
+                                        <label for="amount"> Percentage </label>
+                                        <input type="number" name="amount" class="form-control" require placeholder="Enter  amount">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

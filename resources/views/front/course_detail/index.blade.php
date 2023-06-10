@@ -21,10 +21,25 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                     <article class="post_format_standard postCenter hrShadow odd post">
 
                         <h2 class="post_title d-flex">
+                            @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
                             @php $priceData =  $courses->coursePrice($courses->id); @endphp
+
                             <a href="javascript:void(0);">{{$courses->title}}</a>
-                            <a class="icon-money" title="Views - 198" href="javascript:void(0);">
-                                <strong>{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}</strong>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : ($courses->price ? $courses->price : 0)}}	
+                            <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif" title="Views - 198" href="javascript:void(0);">
+                                <strong>
+                                    {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+                                </strong>
+                                @if(!empty($offers) && !empty($offers->offer_id))
+                                    <?php 
+                                        $priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+                                        $offerPercentage = $offers->amount ? $offers->amount : 0;
+                                        $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+                                    ?>
+                                    <s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+                                    {{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+                                @else 
+                                    {{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+                                @endif
                             </a>
                         </h2>
                         <div class="sc_section columns1_2 post_thumb thumb">

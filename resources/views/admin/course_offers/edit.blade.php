@@ -41,8 +41,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="amount"> Amount </label>
-                                        <input type="text" name="amount" class="form-control" require value="{{$courseoffers->amount}}">
+                                        <label for="amount"> Percentage </label>
+                                        <input type="number" name="amount" class="form-control" require value="{{$courseoffers->amount}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">

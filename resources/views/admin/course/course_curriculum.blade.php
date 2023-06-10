@@ -12,25 +12,25 @@
                         @csrf
                         <input type="hidden" name="course_id" value="{{$courseData->id}}">
                         <div class="card-body">
-                            @for($i= 1; $i < 9; $i++)
+                            @for($i= 0; $i < 8; $i++)
                              <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="title"> Title {{$i}} </label>
+                                        <label for="title"> Title {{$i+1}} </label>
                                         <input type="text" name="data[{{$i}}][title]" class="form-control"
                                             value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->title) ? $courseCurriculum[$i]->title : 0}}"require>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="description"> description {{$i}} </label>
+                                        <label for="description"> description {{$i+1}} </label>
                                         <input type="text" name="data[{{$i}}][description]" class="form-control"
                                             value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->description) ? $courseCurriculum[$i]->description : 0}}"require>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="image"> Image {{$i}} </label>
+                                        <label for="image"> Image {{$i+1}} </label>
                                         <input type="file" name="data[{{$i}}][image]" class="form-control"
                                             value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->image) ? $courseCurriculum[$i]->image : 0}}"require>
                                             
