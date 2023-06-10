@@ -51,6 +51,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							@php $priceData =  $data->coursePrice($data->id); @endphp
 							<article class="isotopeElement post_format_standard odd article_{{$data->type}} flt_71 flt_66 flt_61">
 								<div class="isotopePadding">
+									<div class="offers-details">OFFER 20% OFF</div>
 									@if(!empty($data->image))
 										@php $courseImg = asset('/uploads/course').'/'.$data->image; @endphp
 										@else 

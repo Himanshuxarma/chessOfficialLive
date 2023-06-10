@@ -4921,3 +4921,16 @@ Animation
     -webkit-animation-name: pulse;
     animation-name: pulse;
 }
+
+.offers-details {
+    background: #1bb4b9;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    z-index: 99;
+    padding: 1px 14px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 13px;
+    border-top-right-radius: 0px;
+}
