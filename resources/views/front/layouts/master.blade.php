@@ -65,9 +65,9 @@
         <!-- foot start  -->\
         @include('front.layouts.foot')
         <!-- foot end  -->
-        <div class="loading-box" style="display:none;">
+        <?php /* <div class="loading-box" style="display:none;">
             <img src="{{ asset("/custom/assets/images/loader.gif") }}" class="img-responsive" alt="Loader">
-        </div>
+        </div> */?>
         <script>
             function hideErrorMsg() {
                 setTimeout(function () {

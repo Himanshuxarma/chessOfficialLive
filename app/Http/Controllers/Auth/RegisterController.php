@@ -65,14 +65,14 @@ class RegisterController extends Controller
     public function postRegistration(Request $request){
         $validatedData = $request->validate([
             'full_name' => 'required',
-            'register_email' => 'required|unique:users',
-            'phone' => 'required|unique:users',
+            'email' => 'required|unique:users|email',
+            'phone' => 'required|unique:users|numeric',
             'register_password' => 'required|min:6'
         ]);
         $data = $request->all();
         $check = User::create([
             'full_name' => $data['full_name'],
-            'email' => $data['register_email'],
+            'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['register_password']),
             'role'=>'customer'
@@ -81,8 +81,11 @@ class RegisterController extends Controller
             $customerId = $check->id;
             $furtherProcess = true;
             $check->decryptedPass = $data['register_password'];
-            Mail::to($data['register_email'])->send(new newCustomerMail($check));
+            Mail::to($data['email'])->send(new newCustomerMail($check));
+            return redirect(route("frontLogin"))->with('successMessage', 'Great! You have registered successfully.');
+        } else {
+            return redirect(route("frontLogin"))->with('loginError', 'Something went wrong.');
         }
-        return redirect(route("frontLogin"))->withSuccess('Great! You have registered successfully.');
+        
     }
 }

@@ -21,9 +21,7 @@ class MatchOldPassword implements Rule
 
     public function passes($attribute, $value){
         // dd($value);
-
         return Hash::check($value, auth()->user()->password);
-
     }
 
    
@@ -41,9 +39,7 @@ class MatchOldPassword implements Rule
     public function message()
 
     {
-
         return 'The :attribute is match with old password.';
-
     }
 
 }

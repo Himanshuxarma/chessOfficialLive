@@ -54,6 +54,14 @@ $settings = App\Helpers\Helper::getSettings();?>
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{url('/admin/enquiries')}}" class="nav-link @yield('contact_select')">
+                        <i class=" nav-icon fas fa-book"></i>
+                        <p>
+                            Enquiry Manager
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{url('/admin/course')}}" class="nav-link @yield('course_select')">
                         <i class="nav-icon fas fa-th"></i>
                         <p>

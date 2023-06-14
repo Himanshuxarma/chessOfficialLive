@@ -1463,7 +1463,7 @@
 	.topWrap .usermenu_area .menuItemLeft {float:right; line-height:140%; height: auto; text-align:right; padding-bottom:1.2em;}
 
 	.topTabsWrap .speedBar {float: none;}
-	.topTabsWrap .pageTitle {float: none; text-align: center;}
+	/* .topTabsWrap .pageTitle {float: none; text-align: center;} */
 
 	body.boxed .boxedWrap { width: 100%; }
     body.boxed .boxedWrap:before {display: none;}
@@ -2171,7 +2171,22 @@
 		margin-top: 2%;
 	}
 
+	.subscription_submit_button{
+		font-family: 'Fredoka One', cursive;
+		float:right;
+		right:28%;
+		margin-top:2%;
+	}
+	.subscription_submit_button > button{
+		background-color: #b9ea6b !important;
+		border-radius: 30px !important;
+		bottom:0;
+		left:0;
+	}
 
+	.for-mobile{
+		display: flex;
+	}
 }
 
 @media (max-width: 1280px) {
@@ -2226,8 +2241,6 @@
 	#booking_slot_form {width: 100%;}
 	#form_container_all {padding: 0;width: 100%;}
 	#booking_container {padding: 10px 50px 30px;}
-
-	
 
 }
 @media (max-width: 768px) {

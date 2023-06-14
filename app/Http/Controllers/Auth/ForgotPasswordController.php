@@ -50,33 +50,15 @@ class ForgotPasswordController extends Controller
               $data['userData']['resetLink'] = "/resetPassword";
               $data['email'] = $request->email;
             } else {
-              return redirect(url('/'))->with('forgotPsasswordError', 'This email is not registered with us.');   
+              return redirect(url('/login'))->with('forgotPsasswordError', 'This email is not registered with us.');   
             }
         } else {
-            return redirect(url('/'))->with('loginError', 'Invalid credentials');   
+            return redirect(url('/login'))->with('loginError', 'Invalid credentials');   
         } 
       }
       Mail::to($data['email'])->send(new forgotPasswordMail($data['userData']));
       // die('dekho email');
-      return back()->with('message', 'We have e-mailed your password reset link!');
-
-      // $request->validate([
-      //   'email' => 'required|email|exists:users',
-      // ]);
-      // $token = Str::random(64);
-      // DB::table('password_resets')->insert([
-      //   'email' => $request->email, 
-      //   'token' => $token, 
-      //   'created_at' => Carbon::now()
-      // ]);
-      // Mail::to($data['email'])->send(new newCustomerMail($check));
-      // Mail::send('admin.email.forgetPassword', ['token' => $token], function($message) use($request));{
-      //   $message->to($request->email);
-
-      //   $message->subject('Reset Password');
-
-      //   return back()->with('message', 'We have e-mailed your password reset link!');
-      // }
+      return redirect()->route('frontLogin')->with('successMessage', 'We have e-mailed your password reset link!');
     }
 
     
@@ -136,7 +118,7 @@ class ForgotPasswordController extends Controller
         } else {
           if($request->password == $request->confirm_password){
             $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-            return redirect()->route('home')->with('success', 'Your password has been changed!');
+            return redirect()->route('frontLogin')->with('successMessage', 'Your password has been changed!');
           } else {
             return back()->withInput()->with('error', "Confirm password isn't matching !");
           }

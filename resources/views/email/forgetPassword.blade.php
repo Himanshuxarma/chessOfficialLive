@@ -16,6 +16,6 @@
 <br><br>  
 
 Thank you <br>
-<a href="https://www.chessofficial.com/"><img class="img-fluid" src="https://www.chessofficial.com/assets/front/img/email_logo.png"></a 
+<a href="https://www.chessofficial.com/"><img class="img-fluid" src="https://www.chessofficial.com/assets/front/img/email_logo.png"></a> 
 </body>
 </html>

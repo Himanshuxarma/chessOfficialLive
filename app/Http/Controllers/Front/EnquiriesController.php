@@ -36,8 +36,8 @@ class EnquiriesController extends Controller{
 	public function sendEmail(Request $request){
 			$request->validate([
 			'full_name' => 'required',
-			'email' => 'required',
-			'phone' => 'required',
+			'email' => 'required|email',
+			'phone' => 'required|numeric',
 			'subject' => 'required',
 			'message' => 'required'
 		]);
@@ -49,9 +49,19 @@ class EnquiriesController extends Controller{
 		$contacts->message = $request->message;
 		if($contacts->save()){
 			Mail::to('admin@w3esolutions.com')->send(new ContactMail($contacts));
-		}
-
+			if(isset($request->contact_type) && !empty($request->contact_type) && $request->contact_type=="subscription"){
+				return redirect()->route('home')->with('success', 'Your subscription has been captured successfully.');
+			} else {
+				return redirect()->route('contactForm')->with('success', 'Your Enquiry has been sent, We will contact you soon.');
+			}
+		} else {
+			if(isset($request->contact_type) && !empty($request->contact_type) && $request->contact_type=="subscription"){
+				return redirect()->route('home')->with('success', 'Your subscription has been captured successfully.');
+			} else {
+				return redirect()->route('contactForm')->with('error', 'Something went wrong.');
+			}
 			
-		return redirect()->route('contactForm')->with('success','Your Enquiry has been sent, Admin will contact you soon.');
+		}
+		
 	}
 }

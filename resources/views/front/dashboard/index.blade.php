@@ -202,21 +202,28 @@
                                                 <h2 class="title">
                                                     Change Password
                                                 </h2>
-                                                <form class="contact_1" method="post" action="{{route('contactsSave')}}">
+                                                <form class="contact_1" method="post" action="{{route('front.change_password')}}">
                                                     @csrf
                                                     <div class="columnsWrap">
                                                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                                                            <label for="password"><i class="fa fa-user"></i> Password</label>
-                                                            <input type="password" class="form-control" id="password" name="password">
-                                                            @if ($errors->has('password'))
-                                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                            <label for="current_password"><i class="fa fa-user"></i>Current Password</label>
+                                                            <input type="password" class="form-control" id="current_password" name="current_password">
+                                                            @if ($errors->has('current_password'))
+                                                            <span class="text-danger">{{ $errors->first('current_password') }}</span>
                                                             @endif
                                                         </div>
                                                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                                                            <label for="confirm_password"><i class="fa fa-envelope"></i> Confirm Password</label>
-                                                            <input type="password" class="form-control" id="confirm_password" name="confirm_password">
-                                                            @if ($errors->has('confirm_password'))
-                                                            <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
+                                                            <label for="new_password"><i class="fa fa-user"></i>New Password</label>
+                                                            <input type="password" class="form-control" id="new_password" name="new_password">
+                                                            @if ($errors->has('new_password'))
+                                                            <span class="text-danger">{{ $errors->first('new_password') }}</span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                                            <label for="new_confirm_password"><i class="fa fa-envelope"></i> Confirm Password</label>
+                                                            <input type="password" class="form-control" id="new_confirm_password" name="new_confirm_password">
+                                                            @if ($errors->has('new_confirm_password'))
+                                                            <span class="text-danger">{{ $errors->first('new_confirm_password') }}</span>
                                                             @endif
                                                         </div>
                                                     </div>

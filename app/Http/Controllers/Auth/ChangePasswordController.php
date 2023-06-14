@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Route;
 
   
 
@@ -49,14 +50,23 @@ class ChangePasswordController extends Controller{
      */
 
     public function store(Request $request){
-        $request->validate([
-             'current_password' => ['required', new MatchOldPassword],
-             'new_password' => ['required'],
-             'new_confirm_password' => ['same:new_password'],
-
-        ]);
-        User::whereId(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-        return redirect()->route('adminHome')->with('success', 'Password Change Successfully');   
+        if(Route::current()->getPrefix() == '/admin'){
+            $request->validate([
+                'current_password' => ['required', new MatchOldPassword],
+                'new_password' => ['required'],
+                'new_confirm_password' => ['same:new_password'],
+            ]);
+            User::whereId(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+            return redirect()->route('adminHome')->with('success', 'Password Change Successfully');
+        } else {
+            $request->validate([
+                'current_password' => ['required', new MatchOldPassword],
+                'new_password' => ['required'],
+                'new_confirm_password' => ['same:new_password'],
+            ]);
+            User::whereId(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+            return redirect()->route('webLogout')->with('success', 'Password Change Successfully');
+        }
 
     }
 

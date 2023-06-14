@@ -71,10 +71,6 @@ class LoginController extends Controller
                 }
             }
         } else {
-            $validatedData = $request->validate([
-                'email' => 'required',
-                'password' => 'required',
-            ]);
             if(Auth::guard('customer')->attempt($request->only('email','password'),$request->filled('remember'))){
                 //Authentication passed...
                 //Check if authenticated user is admin only
@@ -84,10 +80,10 @@ class LoginController extends Controller
                     $request->session()->invalidate();
                     return redirect()
                             ->route('home')
-                            ->withErrors('You are unauthorized to Login!');
+                            ->with('error', 'You are unauthorized to Login!');
                 } else {
                     // dd(Auth::guard('customer')->user());
-                    return redirect()->route('front.dashboard')->with('success', 'You have Successfully loggedin');   
+                    return redirect()->route('front.dashboard')->with('successMessage', 'You have Successfully loggedin');   
                 }
             } else {
                 return redirect(url('/login'))->with(['loginError' => 'Invalid credentials']);   
@@ -112,7 +108,7 @@ class LoginController extends Controller
         } else {
             Auth::guard('customer')->logout();
             return redirect()
-                ->route('home')
+                ->route('frontLogin')
                 ->with('status','Customer has been logged out!');
         }
     }

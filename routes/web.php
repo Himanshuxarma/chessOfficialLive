@@ -44,13 +44,15 @@ use App\Http\Controllers\Auth\LoginController;
         // Route::get('registration', [App\Http\Controllers\Auth\RegisterController::class, 'registration'])->name('front.register');
         Route::post('post-registration', [App\Http\Controllers\Auth\RegisterController::class, 'postRegistration'])->name('register.post'); 
 
-        
-        //Frontend Dashboard
-        Route::get('/dashboard', [App\Http\Controllers\Front\DashboardController::class, 'index'])->name('front.dashboard'); 
-        Route::get('/dashboard/profile', [App\Http\Controllers\Front\DashboardController::class, 'profile'])->name('webuser.profile'); 
-        Route::post('dashboard/update', [App\Http\Controllers\Front\DashboardController::class, 'update'])->name('profile.Update');
-        Route::get('/dashboard/demos', [App\Http\Controllers\Front\DashboardController::class, 'demos'])->name('front.demo');
-        Route::get('/dashboard/orders', [App\Http\Controllers\Front\DashboardController::class, 'orders'])->name('front.order');
+        Route::group(['middleware' => ["auth:customer"]], function () {
+            //Frontend Dashboard
+            Route::get('/dashboard', [App\Http\Controllers\Front\DashboardController::class, 'index'])->name('front.dashboard'); 
+            // Route::get('/dashboard/profile', [App\Http\Controllers\Front\DashboardController::class, 'profile'])->name('webuser.profile'); 
+            Route::post('dashboard/update', [App\Http\Controllers\Front\DashboardController::class, 'update'])->name('profile.Update');
+            Route::post('change-password', [ChangePasswordController::class, 'store'])->name('front.change_password');
+            // Route::get('/dashboard/demos', [App\Http\Controllers\Front\DashboardController::class, 'demos'])->name('front.demo');
+            // Route::get('/dashboard/orders', [App\Http\Controllers\Front\DashboardController::class, 'orders'])->name('front.order');
+        });
 
         //Frontend Pages
         Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -72,29 +74,30 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post('/store-Buy-course',[App\Http\Controllers\Front\BookingController::class,'storeBuycourse'])->name("Store.Buy.Course");
         Route::get('/contact-us', [App\Http\Controllers\Front\EnquiriesController::class, 'index'])->name("contactForm");
         Route::post('contact/store', [App\Http\Controllers\Front\EnquiriesController::class, 'sendEmail'])->name('contactsSave');
+        Route::post('testimonial/store', [App\Http\Controllers\Front\HomeController::class, 'storeReview'])->name('reviewSave');
 
         Route::post('booking-payment-online', [App\Http\Controllers\Front\BookingController::class, 'bookingPaymentOnline'])->name('booking.payment.online');
 
     Route::prefix("/admin")->namespace("Admin")->group(function(){
-         Route::namespace("Auth")->group(function(){
-             Route::group(["middleware" => ["guest:admin"]], function () {
-                    Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('adminLogin');
-                    Route::post("login", [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('postAdminLogin');
-                    //forgot password
-                    Route::get('forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-                    Route::post("/postForgotPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postForgetPasswordForm'])->name('postAdminForgotPassword');
+        Route::namespace("Auth")->group(function(){
+            Route::group(["middleware" => ["guest:admin"]], function () {
+                Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('adminLogin');
+                Route::post("login", [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('postAdminLogin');
+                //forgot password
+                Route::get('forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+                Route::post("/postForgotPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postForgetPasswordForm'])->name('postAdminForgotPassword');
 
-                    Route::get("/resetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'adminResetPassword'])->name('adminResetPassword');
-                    Route::post("/postResetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postAdminResetPassword'])->name('postAdminResetPassword');
-                
-                });
-                // Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
-                // Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-
-                //Admin Logout
-                Route::get("logout", [App\Http\Controllers\Auth\LoginController::class, "logout",])->name("adminLogout");
-        
+                Route::get("/resetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'adminResetPassword'])->name('adminResetPassword');
+                Route::post("/postResetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postAdminResetPassword'])->name('postAdminResetPassword');
+            
             });
+            // Route::get('reset-password/{token}', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+            // Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+            //Admin Logout
+            Route::get("logout", [App\Http\Controllers\Auth\LoginController::class, "logout",])->name("adminLogout");
+    
+        });
 
         Route::group(['middleware' => ["auth:admin,staff"]], function () {
             Route::get('/', [DashboardController::class, 'index'])->name('adminHome');
@@ -175,8 +178,8 @@ use App\Http\Controllers\Auth\LoginController;
             Route::get('offers/delete/{id}', [OfferController::class, 'offers'])->name('offersDelete');
             Route::get('offers/offers_status/{id}', [OfferController::class, 'offers_status'])->name('offersStatus');
 
-            
-
+            Route::get("/enquiries", [EnquiriesController::class, 'index'])->name("enquiryList");
+            Route::get('enquiries/delete/{id}', [EnquiriesController::class, 'destroy'])->name('enquiriesDelete');
             //country
             Route::get("/country", [CountryController::class, 'index'])->name("countryList");
             Route::get('country/create', [CountryController::class, 'create'])->name('countryCreate');

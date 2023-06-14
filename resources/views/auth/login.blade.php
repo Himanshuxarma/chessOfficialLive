@@ -2,47 +2,73 @@
 @section('content')
 <!-- contact page start -->
 <?php 
-    $message = Session::get('loginError');
-    if(isset($message) && !empty($message)){ 
-  ?>
-      <p class="alert alert-danger hide">
-        {{ $message }}
-      </p>
-  <?php 
-    }
-  ?>
+  $errorMessage = Session::get('loginError');
+  $successMessage = Session::get('successMessage');
+  if(isset($errorMessage) && !empty($errorMessage)){ 
+?>
+    <p class="alert alert-danger hide">{{ $errorMessage }}</p>
+<?php 
+  }
+  if(isset($successMessage) && !empty($successMessage)){
+?>
+  <p class="alert alert-success hide">{{ $successMessage }}</p>
+<?php
+  }
+?>
 <section class="contact-details">
-    <div class="form-left">
-      <div class="form-heading"><h3>LOGIN if already having an account</h3></div>
+    <div class="form-left" id="login-side">
       <form action="{{route('postLogin')}}" method="post" id="loginForm">
+        <div class="form-heading"><h3>LOGIN if already having an account</h3></div>
         {{ csrf_field() }}
         <div class="sc_contact_form sc_contact_form_contact">
           <div class="columns1 margin_top_mini margin_bottom_mini">
             <label for="loginEmail">Email</label>
             <input type="text" id="loginEmail" class="form-control" name="email" placeholder="Enter your email">
-            @if ($errors->has('email'))
-              <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
+            <span class="text-danger" id="loginEmailError"></span>
           </div>
           <div class="columns1 margin_top_mini margin_bottom_mini">
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" class="form-control" name="password" placeholder="Enter your password">
-            @if ($errors->has('password'))
-              <span class="text-danger">{{ $errors->first('password') }}</span>
+            <span class="text-danger" id="loginPasswordError"></span>
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="registration-button squareButton light">
+            <button type="button" id="loginSubmit" class="mt-4">Login</button>
+          </div>
+          <div class="registration-button squareButton light">
+            <button type="button" id="forgotPasswordFormLink" class="alignright">Forgot Password</button>
+          </div>
+        </div>
+      </form>
+
+      <form action="{{route('postForgotPassword')}}" method="post" id="forgotPasswordForm" class="d-none">
+        <div class="form-heading"><h3>Enter your email to get Reset Password link</h3></div>
+        {{ csrf_field() }}
+        <div class="sc_contact_form sc_contact_form_contact">
+          <div class="columns1 margin_top_mini margin_bottom_mini">
+            <label for="forgotEmail">Email Address</label>
+            <input type="text" id="forgotEmail" class="form-control" name="email" placeholder="Enter your email">
+            @if ($errors->has('email'))
+              <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
         </div>
-        <div class="registration-button squareButton light huge">
-          <button type="submit" class="mt-4">Login</button>
+        <div class="d-flex">
+          <div class="registration-button squareButton light">
+            <button type="submit" class="mt-4">Send Request</button>
+          </div>
+          <div class="registration-button squareButton light">
+              <button type="button" id="loginFormLink" class="alignright">Login</button>
+          </div>
         </div>
       </form>
     </div>
 
     <div class="vertical-line"></div> 
-    
     <div class="form-right">
-      <div class="form-heading"><h3>Get started with CHESSOFFICIAL</h3></div>
       <form action="{{route('register.post')}}" method="post" autocomplete="off">
+        <div class="form-heading"><h3>Get started with CHESSOFFICIAL</h3></div>
         {{ csrf_field() }}
         <div class="sc_contact_form sc_contact_form_contact">
           <div class="columns1 margin_top_mini margin_bottom_mini">
@@ -54,9 +80,9 @@
           </div>
           <div class="columns1 margin_top_mini margin_bottom_mini">
             <label for="register_email">Email</label>
-            <input type="text" id="register_email" class="form-control" name="register_email" placeholder="Enter your email">
-            @if ($errors->has('register_email'))
-              <span class="text-danger">{{ $errors->first('register_email') }}</span>
+            <input type="text" id="register_email" class="form-control" name="email" placeholder="Enter your email">
+            @if ($errors->has('email'))
+              <span class="text-danger">{{ $errors->first('email') }}</span>
             @endif
           </div>
           <div class="columns1 margin_top_mini margin_bottom_mini">
@@ -74,10 +100,48 @@
             @endif
           </div>
         </div>
-        <div class="registration-button squareButton light huge">
-            <button type="submit" class="mt-4">Registration</button>
+        <div class="registration-button squareButton light">
+            <button type="submit" class="mt-4">Sign UP</button>
         </div>
       </form>
     </div>
 </section>
+@endsection
+@section('customscript')
+<script>
+  jQuery(document).on('click', '#forgotPasswordFormLink', function(){
+    jQuery('#loginForm').addClass('d-none');
+    jQuery('#forgotPasswordForm').removeClass('d-none');
+  });
+  jQuery(document).on('click', '#loginFormLink', function(){
+    jQuery('#forgotPasswordForm').addClass('d-none');
+    jQuery('#loginForm').removeClass('d-none');
+  });
+  
+
+  jQuery(document).on('click', '#loginSubmit', function(){
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let submitForm = true;
+    if(!jQuery('#loginEmail').val()){
+      jQuery('#loginEmailError').html('email is required');
+      submitForm = false;
+    } else if(!regex.test(jQuery('#loginEmail').val())){
+      jQuery('#loginEmailError').html('Please enter a valid email address');
+      submitForm = false;
+    } else {
+      jQuery('#loginEmailError').html('');
+      if(!jQuery('#loginPassword').val()){
+        jQuery('#loginPasswordError').html('password is required');
+        submitForm = false;
+      } else {
+        jQuery('#loginPasswordError').html('');
+        submitForm = true;
+      }
+    }
+    if(submitForm){
+      jQuery('#loginForm').submit();
+    }
+  });
+
+</script>
 @endsection

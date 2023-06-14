@@ -1,31 +1,36 @@
 @extends('front.layouts.master')
 @section('content')
-@php 
+<?php
 $countryId = 6;
 if(session()->has('SiteCountry')){
     $countryId = session()->get('SiteCountry');
 }
 $countryDetails = App\Helpers\Helper::getCountryData($countryId); 
-@endphp
+?>
+@php $offers = \Helper::getoffersbycourse($courses->id); @endphp
 <div class="widgetTabs">
     <div id="topOfPage" class="topTabsWrap">
         <div class="main">
             <h3 class="pageTitle h3">{{$courses->title}}</h3>
+            @if(!empty($offers) && !empty($offers->amount))
+                <div class="pageTitle h3 course-details-offers">OFFER {{$offers->amount}}% OFF</div>
+            @endif
         </div>
     </div>
     <div class="mainWrap without_sidebar">
         <div class="main">
             <div class="content">
-
+                
                 <aside id="tabBlog" class="blogContent">
                     <article class="post_format_standard postCenter hrShadow odd post">
-
+                        <?php /* <div class="slidecontainer">
+                            <input type="range" min="0" max="100" value="100" class="slider" step="50" id="myRange">
+                        </div> */ ?>
                         <h2 class="post_title d-flex">
-                            @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
                             @php $priceData =  $courses->coursePrice($courses->id); @endphp
 
-                            <a href="javascript:void(0);">{{$courses->title}}</a>
-                            <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif" title="Views - 198" href="javascript:void(0);">
+                            <a href="javascript:void();">{{$courses->title}}</a>
+                            <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif" href="javascript:void(0);">
                                 <strong>
                                     {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                                 </strong>
@@ -88,7 +93,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             </ul>
 							<div class="booking_demo">
 								<div class="booking-demo-1">
-									<ul>
+									<ul class="for-mobile">
                                         <li class="squareButton light ico ">
                                             <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
                                         </li>
@@ -105,9 +110,9 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 
                     <article class="post_format_standard  hrShadow  post @if($key % 2 == 0)postRight even @endif postLeft  odd">
 
-                        <div class="sc_section  columns1_2  @if($key % 2 == 0)sc_alignright  @endif sc_alignleft"> 
+                        <div class="columns1_2  @if($key % 2 == 0)sc_alignright  @endif sc_alignleft"> 
                             <div class="">
-                                <div class="sc_zoom course_curriculum">
+                                <div class="course_curriculum">
 								@if(!empty($data->image))
                                 	@php $curriculumImg = asset('/uploads/course_curriculum').'/'.$data->image; @endphp
                                 @else

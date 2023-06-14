@@ -45,9 +45,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<div class="sc_blogger sc_blogger_horizontal style_image style_image_classes">
 										<div class="columnsWrap">
 											@foreach($courses as $course)
+											@php $offers = \Helper::getoffersbycourse($course->id); @endphp
 											<div class="columns1_3 column_item_{{$course->id}} odd first">
 												<article class="sc_blogger_item">
-												<div class="offers-details">OFFER 20% OFF</div>
+													@if(!empty($offers) && !empty($offers->amount))
+														<div class="offers-details">OFFER {{$offers->amount}}% OFF</div>
+													@endif
 													<div class="thumb">
 														<a href="{{route('courseDetails',$course->id)}}">
 														
@@ -66,12 +69,23 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														</a>
 													</div>
 													<h4 class="sc_blogger_title sc_title">
-														<a href="{{route('courseDetails',$course->id)}}">{{$course->title}}</a>
+														<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 25 ? substr($course->title, 0, 25).'...' : $course->title}}</a>
 													</h4>
 													<div class="reviews_summary blog_reviews">
 														<div class="classes_price">
 															<p class="course_price">
-															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}</strong></sup>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : 0}}	
+															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+															@if(!empty($offers) && !empty($offers->offer_id))
+																<?php 
+																	$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																	$offerPercentage = $offers->amount ? $offers->amount : 0;
+																	$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+																?>
+																<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+															@else 
+																{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+															@endif
 															</p>
 														</div>
 														@php 
@@ -80,7 +94,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 															$perSessionPrice =  round( (float)$price/$classes) 
 														@endphp
 														<div class="criteria_summary criteria_row">
-																<p><strong>{{$classes}} Sessions</strong></p>
+																<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
 														</div>
 													</div>
 												</article>
@@ -122,11 +136,11 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														@php $testimonialsImg = '/assets/front/images/370x370.png'; @endphp
 														@endif
 															<img alt="team-5.jpg" src="{{$testimonialsImg}}">
-															<div class="sc_team_item_description">Lorem ipsum dolor sit amet consectetur adipiscing elit morbi lobortis odio sapien.</div>
 														</div>
 														<div class="sc_team_item_info">
 															<h3 class="sc_team_item_title"><a href="javascript:void(0);">{{$data->title}}</a></h3>
-															<div class="sc_team_item_position theme_accent2">{{ strlen(strip_tags($data->description) < 100 ) ? substr(strip_tags($data->description), 0, 50).' ...' : strip_tags($data->description)}}</div>
+															<?php $description = strip_tags($data->description); ?>
+															<div class="sc_team_item_position theme_accent2"><?php echo strlen($description) > 100  ? substr($description, 0, 100).' ...' : $description; ?></div>
 															<ul class="sc_team_item_socials">
 																<li>
 																	<a href="javascript:void(0);" class="social_icons social_twitter twitter twitter_image" target="_blank">
@@ -148,9 +162,66 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 													</div>
 												</div>
 												@endforeach
-												
 											</div>
 										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<section class="skyblue_section bg_pattern_6 testimonial_form">
+							<div class="form-container sc_columns">
+								<div class="sc_column_item">
+									<div class="user-dashboard sc_contact_form sc_contact_form_contact">
+										<h2 class="title">
+											Post your review
+										</h2>
+										<form class="contact_1" method="post" action="{{route('reviewSave')}}" enctype="multipart/form-data">
+											@csrf
+											<div class="columnsWrap">
+												<div class="columns1_2">
+													<label class="required" for="title"><strong>Name</strong></label>
+													<input type="text" name="title" id="title" value="{{old('title')}}">
+													@if ($errors->has('title'))
+														<span class="text-danger">{{ $errors->first('title') }}</span>
+													@endif
+												</div>
+												<div class="columns1_2">
+													<label class="required" for="country_id"><strong> Country</strong></label>
+													<select id="country_id" class="form-control" name="country_id">
+														<option value="">--Select Country--</option>
+														@foreach($country as $data)
+															<option value="{{$data->id}}" @if($countryId && $countryId == $data->id) selected="selected" @endif >{{ $data->country }}</option>
+														@endforeach
+													</select>
+													@if ($errors->has('country_id'))
+													<span class="text-danger">{{ $errors->first('country_id') }}</span>
+													@endif
+												</div>
+											</div>
+											<div class="columnsWrap">
+												<div class="columns1_2">
+													<label class="required" for="image"><strong>Image</strong></label>
+													<input type="file" name="image" id="image">
+													@if ($errors->has('image'))
+														<span class="text-danger">{{ $errors->first('image') }}</span>
+													@endif
+												</div>											
+											</div>
+											<div class="message">
+												<div class="">
+													<label class="required" for="description"><strong>Your Review</strong></label>
+													<textarea id="description" class="textAreaSize" name="description">{{old('description')}}</textarea>
+													@if ($errors->has('description'))
+														<span class="text-danger">{{ $errors->first('description') }}</span>
+													@endif
+												</div>
+											</div>
+											<div class="sc_contact_form_button">
+												<div class="squareButton sc_button_size sc_button_style_global global ico">
+													<button type="submit" class="contact_form_submit icon-comment-1">Post Review</button>
+												</div>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -188,17 +259,24 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 								<div class="sc_content main ">
 									<div class="columnsWrap sc_columns sc_columns_count_4">
 										<div class="columns3_4 sc_column_item sc_column_item_1 odd first span_3">
-											<h2 class="sc_title style_4">Sign up for FREE!</h2>
+											<h2 class="sc_title style_4">Subscribe us for FREE!</h2>
 											<div class="sc_section bg_tint_none margin_bottom_small">
-												<span class="sc_highlight style_3">Aliquam ullamcorper sodales urna bibendum nibh suscipit ut interdum.s.</span>
+												<span class="sc_highlight style_3">To get all the offer updates, please subscribe us.</span>
 											</div>
-											<div class="sc_emailer inputSubmitAnimation sFocus rad4 opened">
-												<form>
+											<form action="{{route('contactsSave')}}" method="post">
+												@csrf
+												<div class="sc_emailer inputSubmitAnimation sFocus rad4 opened">
+													<input type="hidden" name="contact_type" value="subscription">
+													<input type="hidden" name="full_name" value="Via Subscription">
+													<input type="hidden" name="phone" value="9461159397">
+													<input type="hidden" name="subject" value="Subscription">
+													<input type="hidden" name="message" value="For further uses">
 													<input type="text" class="sInput" name="email" value="" placeholder="Please, enter you email address.">
-												</form>
-												<a href="#" class="sc_emailer_button searchIcon aIco mail" title="Submit" data-group="Group">
-												</a>
-											</div>
+												</div>
+												<div class="sc_button squareButton light huge subscription_submit_button">
+													<button type="submit" class="" title="Submit">Subscribe</button>
+												</div>
+											</form>
 										</div>
 										<div class="columns1_4 sc_column_item sc_column_item_4 even after_span_3">
 											<figure class="sc_image  sc_image_align_right sc_image_shape_square">

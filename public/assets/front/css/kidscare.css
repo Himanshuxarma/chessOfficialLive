@@ -1343,7 +1343,7 @@ header.fixedTopMenu .topWrap .menuTopWrap.topMenuStyleLine > ul#mainmenu > li > 
 }
 .sc_blogger.style_image_classes .classes_price {
     float: right;
-    max-width: 150px;
+    max-width: 180px;
     margin: -8px 0 0 20px;
     font-size: 30px;
     font-family: 'Ubuntu', sans-serif;

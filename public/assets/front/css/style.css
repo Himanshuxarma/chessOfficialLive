@@ -930,11 +930,11 @@ header.topSearchShow .menuTopWrap { display: none !important; }
 
 .topWrap:after { content:""; display:block; clear:both; }
 .topWrap .logo { float:left; font-size:29px; font-weight:100; height:30px; line-height:30px; padding: 35px 0 0 0; color:#fff;}
- 		 .logo a { display:block; color:#fff; text-decoration:none;}
- 		 .logo img { display:inline-block; height:25px; border:none; vertical-align:top; margin-right:10px;}
-		 .logo .logo_text { display:inline-block; vertical-align:top; line-height:21px; }
-		 .logo .logo_slogan { display:block; vertical-align:top; line-height:14px; font-size:10px; }
-		 .logo a:hover { color:#ffffff; }
+ 		    .logo a { display:block; color:#ea624c; text-decoration:none; font-size: 42px; font-family: 'Fredoka One', cursive;}
+            .logo a span{color:#000;}
+ 		    .logo img { display:inline-block; height:25px; border:none; vertical-align:top; margin-right:10px;}
+            .logo .logo_text { display:inline-block; vertical-align:top; line-height:21px; }
+            .logo .logo_slogan { display:block; vertical-align:top; line-height:14px; font-size:10px; }
 footer .logo a { display: inline-block; vertical-align: middle;}
 footer .widget_inner .logo img { height:26px; line-height: 26px; border:none; vertical-align: top;}
 footer .widget_inner .logo .logo_text { font-size:29px; }

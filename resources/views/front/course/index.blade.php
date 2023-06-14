@@ -51,20 +51,21 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							@php $priceData =  $data->coursePrice($data->id); @endphp
 							<article class="isotopeElement post_format_standard odd article_{{$data->type}} flt_71 flt_66 flt_61">
 								<div class="isotopePadding">
-									<div class="offers-details">OFFER 20% OFF</div>
+									@if(!empty($offers) && !empty($offers->amount))
+										<div class="offers-details">OFFER {{$offers->amount}}% OFF</div>
+									@endif
 									@if(!empty($data->image))
 										@php $courseImg = asset('/uploads/course').'/'.$data->image; @endphp
 										@else 
 										@php $courseImg = "assets/front/images/coursedefault.jpg"; @endphp
-
 									@endif
 									<div class="thumb hoverIncrease" data-image="{{$courseImg}}" data-title="{{$data->title}}">
 										<a href="{{route('courseDetails', $data->id)}}"><img class="course-list-page" alt="{{$data->title}}" src="{{$courseImg}}"></a>
 									</div>
 									<div>
 									<h4>
-										<a class="alignleft" href="{{route('courseDetails', $data->id)}}">{{$data->title}}</a> 
-										<a class="alignright" style="margin:0 0 0 0" href="javascript:void(0);"><span>{{$data->class}}</span> Session</a>
+										<a class="alignleft" href="{{route('courseDetails', $data->id)}}">{{strlen($data->title) > 14 ? substr($data->title, 0, 14).'...' : $data->title}}</a> 
+										<a class="alignright" style="margin:0 0 0 0" href="javascript:void(0);"><span title="{{$data->class}}Sessions/Month">{{$data->class}} Sessions</span></a>
 									</h4>
 									<ul class=" list-style-dot">
 										@if(!empty($courseFeatured))
@@ -84,14 +85,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										<a href="javascript:void(0);" class="post_date">
 											Price
 											<strong>
-												<sup>
-													{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-												</sup>
+												{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 												@if(!empty($offers) && !empty($offers->offer_id))
 													<?php 
 														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 														$offerPercentage = $offers->amount ? $offers->amount : 0;
-														$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+														$newPrice = (float)$priceDefault - ((float)$priceDefault * ((int)$offerPercentage/100));
 													?>
 													<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
 													{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
@@ -103,14 +102,9 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										<a href="javascript:void(0);" class="course_perday_price"> 
 											Price Per Session
 											<strong>
-												<sup>
-													{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '$')}} 
-												</sup>
+												{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '$')}} 
 												@if(!empty($offers) && !empty($offers->offer_id))
 													<?php 
-														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
-														$offerPercentage = $offers->amount ? $offers->amount : 0;
-														$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
 														$newPerSessionPrice = (float)$newPrice / $classes;
 													?>
 													<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>

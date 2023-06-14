@@ -8,14 +8,7 @@ $settings = App\Helpers\Helper::getSettings();
         <div class="mainmenu_area">
             <div class="main with_logo_left">
                 <div class="logo logo_left">
-                    <a href="{{url('/')}}">\
-                        @php
-                             $headerLogo = !empty($settings) && !empty($settings->header_logo) ? $settings->header_logo : '';
-                        @endphp
-                        <img src="/uploads/settings/{{$headerLogo}}" class="logo_main" alt="">
-                        <img src="/uploads/settings/{{$headerLogo}}" class="logo_fixed" alt="">
-                        <span class="logo_slogan"></span>
-                    </a>
+                    <a href="{{url('/')}}">Chess<span>Official</span></a>
                 </div>
               
                 <a href="javascript:void();" class="openResponsiveMenu">Menu</a>

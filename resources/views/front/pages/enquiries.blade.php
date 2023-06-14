@@ -1,7 +1,21 @@
 @extends('front.layouts.master')
 @section('content')
 <section>
-<div class="container">
+    <div class="container">
+        <?php 
+            $errorMessage = Session::get('error');
+            $successMessage = Session::get('success');
+            if(isset($errorMessage) && !empty($errorMessage)){ 
+        ?>
+                <p class="alert alert-danger hide">{{ $errorMessage }}</p>
+        <?php 
+            }
+            if(isset($successMessage) && !empty($successMessage)){
+        ?>
+            <p class="alert alert-success hide">{{ $successMessage }}</p>
+        <?php
+            }
+        ?>
         <div class="form-container sc_columns">
             <div class="sc_column_item">
                 <div class="user-dashboard sc_contact_form sc_contact_form_contact">
@@ -13,28 +27,43 @@
                         <div class="columnsWrap">
                             <div class="columns1_2">
                                 <label class="required" for="full_name">Name</label>
-                                <input type="text" name="full_name" id="full_name">
+                                <input type="text" name="full_name" id="full_name" value="{{old('full_name')}}">
+                                @if ($errors->has('full_name'))
+                                    <span class="text-danger">{{ $errors->first('full_name') }}</span>
+                                @endif
                             </div>
                             <div class="columns1_2">
                                 <label class="required" for="email">E-mail</label>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="email" id="email" value="{{old('email')}}">
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
 
                         </div>
                         <div class="columnsWrap">
                             <div class="columns1_2">
                                 <label class="required" for="phone">Phone</label>
-                                <input type="text" name="phone" id="phone">
+                                <input type="text" name="phone" id="phone" value="{{old('phone')}}">
+                                @if ($errors->has('phone'))
+                                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                @endif
                             </div>
                             <div class="columns1_2">
                                 <label class="required" for="subject">Subject</label>
-                                <input type="text" name="subject" id="subject">
+                                <input type="text" name="subject" id="subject" value="{{old('subject')}}">
+                                @if ($errors->has('subject'))
+                                    <span class="text-danger">{{ $errors->first('subject') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="message">
                             <div class="">
                                 <label class="required" for="message">Your Message</label>
-                                <textarea id="message" class="textAreaSize" name="message"></textarea>
+                                <textarea id="message" class="textAreaSize" name="message">{{old('message')}}</textarea>
+                                @if ($errors->has('message'))
+                                    <span class="text-danger">{{ $errors->first('message') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="sc_contact_form_button">
@@ -45,7 +74,7 @@
 
                         <div class="result sc_infobox"></div>
                     </form>
-					</div>
+                    </div>
             </div>
         </div>
     </div>

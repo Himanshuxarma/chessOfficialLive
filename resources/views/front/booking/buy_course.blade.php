@@ -21,35 +21,35 @@
                     <form action="{{route('Store.Buy.Course')}}" id="booking_frm" method="post">
                         {{ csrf_field() }}
                         @if(!Auth::guard('customer')->check())
-                        <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="full_name"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" class="form-control" id="full_name" name="full_name">
-                            @if ($errors->has('full_name'))
-                            <span class="text-danger">{{ $errors->first('full_name') }}</span>
-                            @endif
-                        </div>
-                        <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" class="form-control" id="email" name="email">
-                            @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-                        <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="password"><i class="fa fa-password"></i>Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
-                            @if ($errors->has('password'))
-                            <span class="text-danger">{{ $errors->first('password') }}</span>
-                            @endif
-                        </div>
-                        <div class="columns1_2 margin_top_mini margin_bottom_mini">
-                            <label for="phone"><i class="fa fa-phone"></i> Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
-                            @if ($errors->has('phone'))
-                            <span class="text-danger">{{ $errors->first('phone') }}</span>
-                            @endif
-                        </div>
-                        </br></br>
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                <label for="full_name"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" class="form-control" id="full_name" name="full_name">
+                                @if ($errors->has('full_name'))
+                                <span class="text-danger">{{ $errors->first('full_name') }}</span>
+                                @endif
+                            </div>
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                                @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
+                            </div>
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                <label for="password"><i class="fa fa-password"></i>Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                @if ($errors->has('password'))
+                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
+                            </div>
+                            <div class="columns1_2 margin_top_mini margin_bottom_mini">
+                                <label for="phone"><i class="fa fa-phone"></i> Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                                @if ($errors->has('phone'))
+                                <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                @endif
+                            </div>
+                            </br></br>
                         @endif
                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
                             <label for="country_id"><i class="fa fa-globe"></i> Country</label>

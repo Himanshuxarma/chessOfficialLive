@@ -612,7 +612,6 @@ function ready() {
     jQuery('.sc_emailer.inputSubmitAnimation .sInput').on('focusout', function(){
         "use strict";
         jQuery(this).parent().parent().removeClass('focused');
-        console.log('un focused');
     });
 
 

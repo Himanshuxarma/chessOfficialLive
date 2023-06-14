@@ -36,7 +36,7 @@ class HomeController extends Controller
         } else {
             $defaultCountry = 6;
         }
-        
+        $country = Country::all();
         $courses = Course::where('type','main_course')->where('status',1)->get();
         $academy = Course::where('type','academy_course')->where('status',1)->get();
         $testimonials = Testimonial::where('status',1)->get();
@@ -44,7 +44,7 @@ class HomeController extends Controller
         $academyDescription = Page::where('slug', 'academy-description')->first();
         $courseDescription = Page::where('slug', 'course-description')->first();
         $faqs = Faq::where('status',1)->get();
-        return view('front.home.index',compact('loginError', 'courses','aboutPage','testimonials','faqs','academy','academyDescription','courseDescription'));
+        return view('front.home.index',compact('loginError', 'courses', 'country', 'aboutPage','testimonials','faqs','academy','academyDescription','courseDescription'));
     }
 
     /**
@@ -62,4 +62,35 @@ class HomeController extends Controller
         }
         return response()->json($data);
     }
+
+
+    /**
+     * Himanshu Sharma
+     * Function to store reviews posted from the home page testimonial section
+     */
+    public function storeReview(Request $request){
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'country_id' => 'required',
+            'description' => 'required'
+        ]);
+        // dd($request);
+        $review = new Testimonial;
+		$review->title = $request->title;
+		$review->country_id = $request->country_id;
+		$fileName = time() . '.' . $request->image->getClientOriginalExtension();
+		$request->image->move(public_path('/uploads/testimonial'), $fileName);
+		$review->image = $fileName;
+        $review->rating = 0;
+		$review->description = $request->description;
+		// dd($review);
+		if($review->save()){
+            return redirect()->route('home')->with('success', 'Review saved successfully.');
+        } else {
+            return redirect()->route('home')->with('error', 'Something went wrong.');
+        }
+
+    }
+
 }
