@@ -106,7 +106,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<div class="sc_section bg_tint_none sc_aligncenter margin_top_middle">
 										<div class="">
 											<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner">
-												<a href="{{route('courseList')}}" class="">More Courses</a>
+												<a  href="{{route('courseList')}}" class="" >More Courses</a>
 											</div>
 										</div>
 									</div>
@@ -242,7 +242,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 															<a href="#" class="">Purchase</a>
 														</div>
 														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">
-															<a href="#" class="">More</a>
+															<a href="#" class="btns-top">More</a>
 														</div>
 													</div>
 												</div>

@@ -62,7 +62,7 @@
             <a href="#" class="scrollToTop icon-up-open-big" title="Back to top"> </a>
         </div>
 
-        <!-- foot start  -->\
+        <!-- foot start  -->
         @include('front.layouts.foot')
         <!-- foot end  -->
         <?php /* <div class="loading-box" style="display:none;">

@@ -5,30 +5,60 @@
 	<footer class="footerWrap footerStyleLight contactFooterWrap">
 		<div class="main contactFooter">
 			<section>
-				<div class="logo">
-					<a href="javascript:void(0);">
-						@php
-                        	$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
-                        @endphp
-						<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
-					</a>
+				<div class="mobile-footer d-none">
+					<div class="logo">
+						<a href="javascript:void(0);">
+							@php
+								$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
+							@endphp
+							<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
+						</a>
+					</div>
+					<ul>
+						<li>
+							<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
+						</li>
+						<li>
+							<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>
+						</li>
+						<li>
+							<a href="{{route('terms.conditions')}}">Terms of Use</a>
+						</li>
+						<li>
+							<a href="{{route('privacy.policy')}}">Privacy Policy</a>
+						</li>
+					</ul>
 				</div>
-				<div class="contactAddress">
-					<address class="addressRight">
-						Phone: {{!empty($settings->phone1) ? $settings->phone1 : ''}}<br>
-						Fax: 1.800.123.4566 
-					</address>
-					<address class="addressLeft">
-						{{!empty($settings->address) ? $settings->address : ''}}<br> 
-					</address>
+				<div class="other-layouts-footer d-flex">
+					<ul>
+						<li>
+							<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
+						</li>
+						<li>
+							<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>
+						</li>
+						<li>
+							<a href="{{route('terms.conditions')}}">Terms of Use</a>
+						</li>
+						<li>
+							<a href="{{route('privacy.policy')}}">Privacy Policy</a>
+						</li>
+					</ul>
+					<div class="logo">
+						<a href="javascript:void(0);">
+							@php
+								$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
+							@endphp
+							<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
+						</a>
+					</div>
 				</div>
-				<div class="contactAddress">
-					<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>
-				</div>
-				<div class="contactTtextLine">Share this page with friends who need help in 2015, too.</div>
-				<div class="contactShare">
+			</section>
+		</div>
+	</footer>
+	<div class="copyWrap">
+		<div class="copy main">
+			<div class="contactShare">
 				@php
 					$TwitterLink = isset($settings) && !empty($settings->twitter_link) ? $settings->twitter_link:'javascript:void(0);';
 					$FBLink = isset($settings) && !empty($settings->facebook_link) ? $settings->facebook_link :'javascript:void(0);';
@@ -36,87 +66,45 @@
 					$InstagramLink = isset($settings) && !empty($settings->instagram_link) ? $settings->instagram_link:'javascript:void(0);';
 					$GoogleLink = isset($settings) && !empty($settings->google_link) ? $settings->google_link:'javascript:void(0);';
 				@endphp
+				<div class="copy_socials socPage">
 					<ul>
 						<li>
-							<a class="social_icons fShare facebook_image" href="{{$FBLink}}" target="_blank" title="facebook">
+							<a class="social_icons social_facebook facebook_image" target="_blank" href="http://facebook.com">
 								<span></span>
 							</a>
 						</li>
 						<li>
-							<a class="social_icons fShare pinterest_image" href="http://pinterest.com" target="_blank" title="Pinterest">
+							<a class="social_icons social_pinterest pinterest_image" target="_blank" href="http://pinterest.com">
 								<span></span>
 							</a>
 						</li>
 						<li>
-							<a class="social_icons fShare twitter_image" href="{{$TwitterLink}}" target="_blank" title="twitter">
+							<a class="social_icons social_twitter twitter_image" target="_blank" href="http://twitter.com">
 								<span></span>
 							</a>
 						</li>
 						<li>
-							<a class="social_icons fShare gplus_image" href="{{$GoogleLink}}" target="_blank" title="gplus">
+							<a class="social_icons social_gplus gplus_image" target="_blank" href="http://gplus.com">
 								<span></span>
 							</a>
 						</li>
 						<li>
-							<a class="social_icons fShare linkedin_image" href="{{$LinkedinLink}}" target="_blank" title="Linkedin">
+							<a class="social_icons social_linkedin linkedin_image" target="_blank" href="http://linkedin.com">
 								<span></span>
 							</a>
 						</li>
 						<li>
-							<a class="social_icons fShare vimeo_image" href="http://vimeo.com" target="_blank" title="Vimeo">
+							<a class="social_icons social_vimeo vimeo_image" target="_blank" href="http://vimeo.com">
 								<span></span>
 							</a>
 						</li>
-						<!-- <li>
-							<a class="social_icons fShare whatsapp_image" href="http://vimeo.com" target="_blank" title="Whatsapp">
-								<span></span>
-							</a>
-						</li> -->
 					</ul>
 				</div>
-			</section>
-		</div>
-	</footer>
-	<div class="copyWrap">
-		<div class="copy main">
+			</div>
 			<div class="copyright">
 				<a href="javascript:void(0);">ChessOfficial</a> &copy; 2023 All Rights Reserved
 				<a href="{{route('terms.conditions')}}">Terms of Use</a>
 				and <a href="{{route('privacy.policy')}}">Privacy Policy</a>
-			</div>
-			<div class="copy_socials socPage">
-				<ul>
-					<li>
-						<a class="social_icons social_facebook facebook_image" target="_blank" href="http://facebook.com">
-							<span></span>
-						</a>
-					</li>
-					<li>
-						<a class="social_icons social_pinterest pinterest_image" target="_blank" href="http://pinterest.com">
-							<span></span>
-						</a>
-					</li>
-					<li>
-						<a class="social_icons social_twitter twitter_image" target="_blank" href="http://twitter.com">
-							<span></span>
-						</a>
-					</li>
-					<li>
-						<a class="social_icons social_gplus gplus_image" target="_blank" href="http://gplus.com">
-							<span></span>
-						</a>
-					</li>
-					<li>
-						<a class="social_icons social_linkedin linkedin_image" target="_blank" href="http://linkedin.com">
-							<span></span>
-						</a>
-					</li>
-					<li>
-						<a class="social_icons social_vimeo vimeo_image" target="_blank" href="http://vimeo.com">
-							<span></span>
-						</a>
-					</li>
-				</ul>
 			</div>
 			
 			<div class="chat_us">
