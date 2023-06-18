@@ -73,6 +73,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 													</h4>
 													<div class="reviews_summary blog_reviews">
 														<div class="classes_price">
+														
 															<p class="course_price">
 															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 															@if(!empty($offers) && !empty($offers->offer_id))
@@ -87,7 +88,11 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
 															@endif
 															</p>
+															
 														</div>
+														<h5 class="course_session">
+															Price Per Session 
+															</h5>
 														@php 
 															$price = !empty($course) && !empty($course->price) ? $course->price : 0;
 															$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
