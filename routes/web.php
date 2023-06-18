@@ -234,5 +234,7 @@ use App\Http\Controllers\Auth\LoginController;
                 Route::post('course-offer/update/{id}', [CourseOfferController::class, 'update'])->name('Course.Offers.Update');
                 Route::get('course-offer/status/{id}', [CourseOfferController::class, 'status'])->name('Course.Offers.Status');
                 Route::post('check-offer-country', [CourseOfferController::class, 'checkOfferCountry'])->name('checkOfferCountry');
+
+                Route::get('lock-session/{id}', [OrderController::class, 'lockSession'])->name('lockSession');
             });
        });

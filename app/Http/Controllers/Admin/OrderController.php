@@ -15,6 +15,7 @@ class OrderController extends Controller
 		return view('admin.orders.index',$data);
 	
     }
+
     public function sendOrderInvitation(Request $request){
 		$link = $request->link ? $request->link : '';
 		$orders = $request->order_ids ? $request->order_ids : '';
@@ -33,4 +34,18 @@ class OrderController extends Controller
 		}
 		return redirect()->route('ordersList')->with('success', 'Invitation link has been sent successfully.');
 	}
+
+	/**
+	 * Himanshu Sharma
+	 * function to lock completed session
+	 */
+	public function lockSession($orderId = null){
+		if($orderId != ""){
+
+		} else {
+			
+		}
+	}
+
+
 }

@@ -30,10 +30,11 @@
                             <th scope="col" width="10%">TimeZone</th>
                             <th scope="col" width="10%">Offer</th>
                             <th scope="col" width="10%">Price</th>
+                            <th scope="col" width="10%">Session Completed</th>
                             <th scope="col" width="10%">Payment</th>
                             <th scope="col" width="10%">Payment Status</th>
                             <th scope="col" width="10%">Status</th>
-                            <!-- <th scope="col" width="10%">Action</th> -->
+                            <th scope="col" width="10%">Lock Session</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +47,8 @@
                             <td>{{ (!empty($data->CountryID) && $data->CountryID->country != '') ? $data->CountryID->country : 'N/A'}}</td>
                            <td>{{ (!empty($data->TimeZone) && $data->TimeZone->timezone != '') ? $data->TimeZone->timezone : 'N/A'}}</td>
                            <td>{{ (!empty($data->order_id) && $data->order_id != '') ? $data->order_id : 'N/A'}}</td>
-                            <td>{{ $data->price }}</td>
+                            <td>{{ $data->price ? $data->price : 0 }}</td>
+                            <td>{{ $data->session_completed ? $data->session_completed : 0 }}</td>
                             <td>{{ (!empty($data->payment_id) && $data->payment_id != '') ? $data->payment_id : 'N/A'}}</td>
                             <td>{{ (!empty($data->payment_status) && $data->payment_status != '') ? $data->payment_status : 'N/A'}}</td>
                             @if($data->status == "1")
@@ -58,6 +60,9 @@
                                 <a href="javascript:void(0);"><span class="badge badge-danger">Inactive</span></a>
                             </td>
                             @endif
+                            <td class="project-state">
+                                <a href="{{route('lockSession', $data->id)}}"><span class="badge">Lock Session</span></a>
+                            </td>
                             <!-- <td>
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-default dropdown-toggle"
