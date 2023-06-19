@@ -45,7 +45,13 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<div class="sc_blogger sc_blogger_horizontal style_image style_image_classes">
 										<div class="columnsWrap">
 											@foreach($courses as $course)
-											@php $offers = \Helper::getoffersbycourse($course->id); @endphp
+											@php 
+												$offers = \Helper::getoffersbycourse($course->id);
+												$priceData =  $course->coursePrice($course->id);
+												$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($course) && !empty($course->price) ? $course->price : 0);
+												$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+												$perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
+											@endphp
 											<div class="columns1_3 column_item_{{$course->id}} odd first">
 												<article class="sc_blogger_item">
 													@if(!empty($offers) && !empty($offers->amount))
@@ -59,8 +65,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														@else 
 														@php $courseImg = "assets/front/images/default.png"; @endphp
 														@endif
-														@php $offers = \Helper::getoffersbycourse($course->id); @endphp
-														@php $priceData =  $course->coursePrice($course->id); @endphp
 															<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 															<div class="sc_blogger_content">
 															
@@ -92,14 +96,20 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														</div>
 														<h5 class="course_session">
 															Price Per Session 
-															</h5>
-														@php 
-															$price = !empty($course) && !empty($course->price) ? $course->price : 0;
-															$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
-															$perSessionPrice =  round( (float)$price/$classes) 
-														@endphp
+															</br>
+															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+															@if(!empty($offers) && !empty($offers->offer_id))
+																<?php 
+																	$newPerSessionPrice = (float)$newPrice / $classes;
+																?>
+																<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
+																{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
+															@else 
+																{{number_format($perSessionPrice, 2).'/-'}}
+															@endif
+														</h5>
 														<div class="criteria_summary criteria_row">
-																<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
+															<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
 														</div>
 													</div>
 												</article>

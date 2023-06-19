@@ -27,8 +27,6 @@
                             <th scope="col" width="10%">Course Type</th>
                             <th scope="col" width="10%">Customer</th>
                             <th scope="col" width="10%">Country</th>
-                            <th scope="col" width="10%">TimeZone</th>
-                            <th scope="col" width="10%">Offer</th>
                             <th scope="col" width="10%">Price</th>
                             <th scope="col" width="10%">Session Completed</th>
                             <th scope="col" width="10%">Payment</th>
@@ -45,8 +43,6 @@
                             <td>{{ !empty($data->course_type) ? str_replace('_',' ', $data->course_type) : 'N/A' }}</td>
                             <td>{{ (!empty($data->CustomerData) && $data->CustomerData->full_name != '') ? $data->CustomerData->full_name : 'N/A'}}</td>
                             <td>{{ (!empty($data->CountryID) && $data->CountryID->country != '') ? $data->CountryID->country : 'N/A'}}</td>
-                           <td>{{ (!empty($data->TimeZone) && $data->TimeZone->timezone != '') ? $data->TimeZone->timezone : 'N/A'}}</td>
-                           <td>{{ (!empty($data->order_id) && $data->order_id != '') ? $data->order_id : 'N/A'}}</td>
                             <td>{{ $data->price ? $data->price : 0 }}</td>
                             <td>{{ $data->session_completed ? $data->session_completed : 0 }}</td>
                             <td>{{ (!empty($data->payment_id) && $data->payment_id != '') ? $data->payment_id : 'N/A'}}</td>
@@ -61,7 +57,7 @@
                             </td>
                             @endif
                             <td class="project-state">
-                                <a href="{{route('lockSession', $data->id)}}"><span class="badge">Lock Session</span></a>
+                                <a href="{{route('lockSession', $data->id)}}"><button class="btn btn-warning" <?php if($data->session_completed == $data->class_count){ ?>disabled="disabled" <?php } ?>>Lock Session</button></a>
                             </td>
                             <!-- <td>
                                 <div class="input-group-prepend">

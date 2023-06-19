@@ -11,7 +11,7 @@
 		<div id="rev_slider_3" class="rev_slider fullwidthabanner">
 			<ul>
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-					<img src='{{asset("assets/front/images/homebanner.jpg")}}' alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center">
+					<img src='{{asset("assets/front/images/homebanner1.jpg")}}' alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center">
 					<div class="tp-caption _lp_slider_title tp-fade skewtorightshort tp-resizeme rs-parallaxlevel-0" data-x="10" data-y="center" data-voffset="-140" data-speed="700" data-start="700" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="words" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">
 						CHILDREN CHESS ACADEMY
 					</div>
@@ -28,7 +28,7 @@
 					</div>
 				</li>
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-					<img src="{{asset("assets/front/images/homebanner2.jpg")}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
+					<img src="{{asset('assets/front/images/homebanner2.jpg')}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
 					>
 					<div class="tp-caption _bs_slider_title tp-fade skewtorightshort tp-resizeme rs-parallaxlevel-0" data-x="center" data-hoffset="236" data-y="bottom" data-voffset="-397" data-speed="700" data-start="2000" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="words" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">WE ARE MAKING YOUR 
 					</div>
@@ -36,7 +36,7 @@
 					</div>
 				</li>
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-					<img src="{{asset("assets/front/images/homebanner2.jpg")}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
+					<img src="{{asset('assets/front/images/homebanner3.jpg')}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
 					>
 					<div class="banner-content">
 						<h1>A TEAM OF FIDE A TEAM OF FIDE A TEAM OF FIDE</h1>
@@ -50,7 +50,7 @@
 					
 				</li>
 				<li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-saveperformance="off">
-					<img src="{{asset("assets/front/images/homebanner2.jpg")}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
+					<img src="{{asset('assets/front/images/homebanner4.jpg')}}" alt="learnplay-slide-1" data-bgposition="right bottom" data-kenburns="on" data-duration="14000" data-ease="Power1.easeInOut" data-bgfit="100" data-bgfitend="110" data-bgpositionend="center center"
 					>
 					
 					<div class="banner-text tp-caption _bs_slider_title tp-fade skewtorightshort tp-resizeme rs-parallaxlevel-0" data-x="center" data-hoffset="-351" data-y="bottom" data-voffset="-415" data-speed="700" data-start="2000" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="words" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300">EFFECTIVE & EASY LEARNING
