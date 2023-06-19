@@ -17,7 +17,7 @@ class Authenticate extends Middleware
         if (! $request->expectsJson() && Route::current()->getPrefix()=='/admin') {
             return route('adminLogin');
         } else {
-            return route('frontsLogin');
+            return route('frontLogin');
         }
     }
 }

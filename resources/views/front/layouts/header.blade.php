@@ -11,7 +11,9 @@ $settings = App\Helpers\Helper::getSettings();
                     <a href="{{url('/')}}">Chess<span>Official</span></a>
                 </div>
               
-                <a href="javascript:void();" class="openResponsiveMenu">Menu</a>
+                <a href="javascript:void();" class="openResponsiveMenu">
+                <svg height="32px" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/></svg>
+                </a>
                 <nav role="navigation" class="menuTopWrap d-flex align-items-center topMenuStyleLine">
                     <ul id="mainmenu" class="">
                         <li class="{{Request::path() =='/' ? 'current-menu-ancestor' : ''}} menu-item">
@@ -68,32 +70,48 @@ $settings = App\Helpers\Helper::getSettings();
                             </li>
                         @endif
                     </ul>
-                    @php
-                        $countryId = 6;
-                        if(session()->has('SiteCountry')){
-                            $countryId = session()->get('SiteCountry');
-                        }
-                        $countryDetails = App\Helpers\Helper::getCountryData($countryId);
-                        $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
-                    @endphp
-                    <div class="menu-item country-wrap">
-                        <div class="selected-country">
-                            <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
-                                <img alt="" src="/uploads/country/{{$countryFlag}}">
-                                {{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'USA'}}
-                            </a>
-                        </div>
-                        <div class="country-listing">
-                            <ul>
-                            @if(!empty($countries))
-                                @foreach($countries as $country)
-                                <li> <a href="javascript:void(0);"  class="change_country d-flex" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
-                                @endforeach
-                            @endif
-                            </ul>
-                        </div>
-                    </div>
                 </nav>
+                @php
+                    $countryId = 6;
+                    if(session()->has('SiteCountry')){
+                        $countryId = session()->get('SiteCountry');
+                    }
+                    $countryDetails = App\Helpers\Helper::getCountryData($countryId);
+                    $countryFlag = !empty($countryDetails->country_flag) ? $countryDetails->country_flag : '';
+                @endphp
+                <div class="country-wrap otherLayouts">
+                    <div class="selected-country">
+                        <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
+                            <img alt="" src="/uploads/country/{{$countryFlag}}">
+                            {{!empty($countryDetails->country_code) ? $countryDetails->country_code : 'US'}}
+                        </a>
+                    </div>
+                    <div class="country-listing">
+                        <ul>
+                        @if(!empty($countries))
+                            @foreach($countries as $country)
+                            <li> <a href="javascript:void(0);"  class="change_country d-flex" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
+                            @endforeach
+                        @endif
+                        </ul>
+                    </div>
+                </div>
+                <div class="mobile country-wrap d-none">
+                    <div class="selected-country">
+                        <a href="javascript:void(0);" id="selectedCountry"data-country-id="{{isset($countryDetails->id) ? $countryDetails->id : 1}}" class="d-flex">
+                            <img alt="" src="/uploads/country/{{$countryFlag}}">
+                        </a>
+                    </div>
+                    <div class="country-listing">
+                        <ul>
+                        @if(!empty($countries))
+                            @foreach($countries as $country)
+                            <li> <a href="javascript:void(0);" class="change_country d-flex" data-country-id="{{$country->id}}"><img alt="" src="/uploads/country/{{$country->country_flag}}">{{$country->country_code}}</a></li>
+                            @endforeach
+                        @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
