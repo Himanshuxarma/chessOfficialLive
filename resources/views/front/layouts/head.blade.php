@@ -13,7 +13,7 @@
     <link rel='stylesheet' href='{{asset("assets/front/css/fontello/css/fontello.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("assets/front/css/fontello/css/animation.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("assets/front/css/style.css")}}' type='text/css' media='all'/>
-    <link rel='stylesheet' href='{{asset("assets/front/css/developer.css")}}' type='text/css' media='all'/>
+    
     <link rel='stylesheet' href='{{asset("assets/front/css/shortcodes.css")}}' type='text/css' media='all'/>
     <link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/learnplay.css")}}' type='text/css' media='all'/>
     <link id="theme-skin-css" rel='stylesheet' href='{{asset("assets/front/css/kidscare.css")}}' type='text/css' media='all'/>
@@ -24,5 +24,9 @@
 
     <link rel='stylesheet' href='{{asset("/custom/assets/css/toastr.min.css")}}' type='text/css' media='all'/>
     <link rel='stylesheet' href='{{asset("/custom/assets/css/sweetalert.css")}}' type='text/css' media='all'/>
+
+    <link rel='stylesheet' href='{{asset("assets/front/css/developer.css")}}' type='text/css' media='all'/>
+    <link rel='stylesheet' href='{{asset("assets/front/css/developer-responsive.css")}}' type='text/css' media='all'/>
+
     @yield('customstyle')
 </head>
