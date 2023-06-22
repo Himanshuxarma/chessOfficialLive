@@ -16,7 +16,8 @@
         <?php
             }
         ?>
-        <div class="form-container sc_columns">
+        <div class="form-container sc_columns p-0">
+            <div class="main">
             <div class="sc_column_item">
                 <div class="user-dashboard sc_contact_form sc_contact_form_contact">
                     <h2 class="title">
@@ -75,6 +76,7 @@
                         <div class="result sc_infobox"></div>
                     </form>
                     </div>
+            </div>
             </div>
         </div>
     </div>

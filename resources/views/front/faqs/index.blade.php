@@ -18,7 +18,7 @@
                         <section class="no_padding">
                             <div class="container">
 
-                                <div class="columnsWrap sc_columns sc_columns_count_3">
+                                <div class="columnsWrap sc_columns sc_columns_count_3 w-full">
                                     <div class="sc_column_item sc_column_item_1 odd first span_2">
                                         <h2 class="sc_title sc_title_regular">Got Questions?</h2>
                                         <p>Equidem laboramus voluptaria vix no, vel nulla disputationi delicatissimi at,
@@ -33,7 +33,7 @@
 
 											
 												<div class="sc_toggles_item   @if($faq->id ==1)sc_active first @endif sc_toggles_item_large odd ">
-													<h3 class="sc_toggles_title">
+													<h3 class="sc_toggles_title d-flex">
 														<span class="sc_items_counter">{{$faq->id}}</span>{{$faq->question}}
 													</h3>
 													<div class="sc_toggles_content"@if($faq->id==1)style="display:block"@endif>

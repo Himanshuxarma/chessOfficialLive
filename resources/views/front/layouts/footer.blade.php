@@ -5,13 +5,13 @@
 	<footer class="footerWrap footerStyleLight contactFooterWrap">
 		<div class="main contactFooter">
 			<section>
-				<div class="mobile-footer d-none">
-					<div class="logo">
+			  <div class="other-layouts-footer d-flex align-items-center justify-between row-reverse">
+			  		<div class="logo">
 						<a href="javascript:void(0);">
 							@php
 								$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
 							@endphp
-							<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
+							<img src="{{asset('assets/front/images/logo.png')}}" alt="logo" />
 						</a>
 					</div>
 					<ul>
@@ -28,36 +28,13 @@
 							<a href="{{route('privacy.policy')}}">Privacy Policy</a>
 						</li>
 					</ul>
-				</div>
-				<div class="other-layouts-footer d-flex">
-					<ul>
-						<li>
-							<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
-						</li>
-						<li>
-							<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>
-						</li>
-						<li>
-							<a href="{{route('terms.conditions')}}">Terms of Use</a>
-						</li>
-						<li>
-							<a href="{{route('privacy.policy')}}">Privacy Policy</a>
-						</li>
-					</ul>
-					<div class="logo">
-						<a href="javascript:void(0);">
-							@php
-								$footerLOgo = !empty($settings) && !empty($settings->front_logo) ? $settings->front_logo : '';
-							@endphp
-							<img src="/uploads/settings/{{$footerLOgo}}" alt="" width="100px">
-						</a>
-					</div>
+				
 				</div>
 			</section>
 		</div>
 	</footer>
-	<div class="copyWrap">
-		<div class="copy main">
+	<div class="copyWrap pb-40">
+		<div class="main d-flex align-items-center justify-between">
 			<div class="contactShare">
 				@php
 					$TwitterLink = isset($settings) && !empty($settings->twitter_link) ? $settings->twitter_link:'javascript:void(0);';
@@ -106,15 +83,16 @@
 				<a href="{{route('terms.conditions')}}">Terms of Use</a>
 				and <a href="{{route('privacy.policy')}}">Privacy Policy</a>
 			</div>
-			
-			<div class="chat_us">
-				<div class="chat_img">
-				<img src="{{asset('assets/front/images/whatsapp.png')}}" height="20px"> 
-				</div>
-				<div class="chat_text">
-				<a href="https://wa.me/{{!empty($settings->whatsapp_no)  ? $settings->whatsapp_no : '+91 8005517323'}}"><span>Chat with us</span></a>
-				</div>
-			</div>
+		
+		</div>
+	</div>
+		
+	<div class="chat_us">
+		<div class="chat_img">
+		<img src="{{asset('assets/front/images/whatsapp.png')}}" height="20px"> 
+		</div>
+		<div class="chat_text">
+		<a href="https://wa.me/{{!empty($settings->whatsapp_no)  ? $settings->whatsapp_no : '+91 8005517323'}}"><span>Chat with us</span></a>
 		</div>
 	</div>
 </div>
