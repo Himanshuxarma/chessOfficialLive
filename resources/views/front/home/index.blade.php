@@ -144,9 +144,11 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 											<h4 class="sc_undertitle style_2">We have gathered the best team of teachers and trainers</h4>
 										</div>
 										<div class="sc_team no_padding">
-											<div class="sc_columns columnsWrap">
+											<div class="sc_columns">
+												
+										<div class="owl-carousel testimonials owl-theme">
 												@foreach($testimonials as $data)
-												<div class="columns1_3">
+												<div class="item">
 													<div class="sc_team_item sc_team_item_1 odd first">
 														<div class="sc_team_item_avatar">
 														
@@ -183,6 +185,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												</div>
 												@endforeach
 											</div>
+										  </div>
 										</div>
 									</div>
 								</div>
@@ -265,7 +268,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">
 															<a href="{{route('Buy.Course')}}" class="">Buy Course</a>
 														</div>
-														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">
+														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge m-0">
 															<a href="{{url('booking')}}" class="btns-top">Book a Demo</a>
 														</div>
 													</div>
