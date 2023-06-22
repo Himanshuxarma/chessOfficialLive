@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use Socialite;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -152,5 +153,50 @@ class LoginController extends Controller
                 ->withInput()
                 ->withErrors('Invalid Credentials, Login failed, please try again!');
         }
+    }
+
+
+    /**
+     * Redirect the user to the provider authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider($driver){
+        return Socialite::driver($driver)->redirect();
+    }
+
+
+    /**
+     * Obtain the user information from provider.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($driver)
+    {
+        try {
+            $user = Socialite::driver($driver)->user();
+        } catch (\Exception $e) {
+            return redirect()->route('frontLogin');
+        }
+        
+        $existingUser = User::where('email', $user->getEmail())->first();
+
+        if ($existingUser) {
+            auth()->login($existingUser, true);
+        } else {
+            $newUser                    = new User;
+            $newUser->provider_name     = $driver;
+            $newUser->provider_id       = $user->getId();
+            $newUser->full_name         = $user->getName();
+            $newUser->email             = $user->getEmail();
+            // we set email_verified_at because the user's email is already veridied by social login portal
+            // $newUser->is_verified = now();
+            // you can also get avatar, so create avatar column in database it you want to save profile image
+            // $newUser->avatar            = $user->getAvatar();
+            $newUser->save();
+            auth()->login($newUser, true);
+        }
+        //return redirect($this->redirectPath());
+        return redirect()->route('front.dashboard')->with('successMessage', 'You have Successfully loggedin');   
     }
 }

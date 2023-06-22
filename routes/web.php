@@ -44,6 +44,9 @@ use App\Http\Controllers\Auth\LoginController;
         // Route::get('registration', [App\Http\Controllers\Auth\RegisterController::class, 'registration'])->name('front.register');
         Route::post('post-registration', [App\Http\Controllers\Auth\RegisterController::class, 'postRegistration'])->name('register.post'); 
 
+        Route::get("redirect/{driver}", [App\Http\Controllers\Auth\LoginController::class, "redirectToProvider"])->name("socialLogin");
+
+
         Route::group(['middleware' => ["auth:customer"]], function () {
             //Frontend Dashboard
             Route::get('/dashboard', [App\Http\Controllers\Front\DashboardController::class, 'index'])->name('front.dashboard'); 

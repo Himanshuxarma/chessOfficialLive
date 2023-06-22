@@ -41,6 +41,15 @@
             <button type="button" id="forgotPasswordFormLink" class="alignright">Forgot Password</button>
           </div>
         </div>
+        <div class="d-flex">
+          <div class="registration-button">
+            <a href="{{ url('redirect/google') }}">Google Login</a>
+          </div>
+          <div class="registration-button">
+            <a href="{{ url('redirect/facebook') }}">Facebok Login</a>
+          </div>
+        </div>
+        
       </form>
 
       <form action="{{route('postForgotPassword')}}" method="post" id="forgotPasswordForm" class="d-none">
