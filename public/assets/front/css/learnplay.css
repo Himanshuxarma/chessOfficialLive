@@ -259,19 +259,12 @@
 .theme_skin_learnplay .sc_team .sc_team_item:hover .sc_team_item_info {}
 .theme_skin_learnplay .sc_team .sc_team_item:hover .sc_team_item_avatar {}
 
-/* sc_emailer */
-.sc_emailer.inputSubmitAnimation {
-    margin-left: 0;
-    width: 600px;
-}
-
-.sc_emailer.inputSubmitAnimation .sInput {width: 600px;}
 
 /* Footer
 ------------------------------------------------------------------ */
 
 .footerWrap.footerStyleLight {
-    background-color: #f79c27;
+    background-color: #ea624c;
     background-image: none;
     color: #ffffff;
 }
@@ -279,7 +272,7 @@
 .theme_skin_learnplay .footerWrap.footerStyleLight {}
 .theme_skin_learnplay .footerWrap.footerStyleDark {}
 
-.theme_skin_learnplay .copyWrap  {background-color: #f79c27; background-image: none; color: #ffffff;}
+.theme_skin_learnplay .copyWrap  {background-color: #ea624c; background-image: none; color: #ffffff;}
 .theme_skin_learnplay .copyWrap a {color: #ffffff;}
 .theme_skin_learnplay .copyWrap a:hover {color: #ea624c;}
 /* .theme_skin_learnplay .copyWrap .socPage {display: none;} */
@@ -424,7 +417,7 @@
 .mainslider_3 li:nth-child(3){background-color:#d0e8a9;}
 
 /* orange section */
-.orange_section {background-color: #f79c27;}
+.orange_section {background-color: #ea624c;}
 
 /* title */
 .sc_title.style_2 {color: #2d3e50;}

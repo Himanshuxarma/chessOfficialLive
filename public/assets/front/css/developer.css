@@ -1,3 +1,35 @@
+
+.d-flex { display: flex;}
+.align-items-center{ align-items:center;}
+.justify-between{ justify-content:space-between;}
+.row-reverse{ flex-direction: row-reverse;}
+.p-15{
+	padding:15px !important;
+}
+.mb-10{
+	margin-bottom:10px;
+}
+.p-0{
+	padding:0px !important;
+}
+.pb-40{
+	padding-bottom:40px;
+}
+
+.w-full{
+	width:100%;
+}
+
+.m-0{
+	margin:0px !important;
+}
+.topWrap .main{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.head-right{ display: flex; align-items:center;  }
+
 /* Ramesh Singh Shekhawat change course Img */
 .home-page-course {
 	max-width: 100%;
@@ -20,7 +52,7 @@
 }
 .country-listing img{
 	width: 20px;
-	padding: 0px 15px 0px 8px;
+	margin-right:10px;
 }
 
 .validation_error{
@@ -52,8 +84,11 @@
 .subscription_submit_button > button{
 	background-color: #b9ea6b !important;
     border-radius: 30px !important;
-    bottom: 135%;
-    right: 6%;
+	
+}
+.subscription_submit_button > button.submit{
+	padding:0px 15px;
+	height:auto;
 }
 
 .course-details-offers{
@@ -68,7 +103,7 @@
 	position:relative;
 	cursor:pointer;
 	margin-left:10px;
-	background:#1bb4b9;
+	border:solid 2px #1bb4b9;
 }
 
 .country-wrap .selected-country{
@@ -100,6 +135,7 @@
 	position:absolute;
 	top:100%;
 	border-radius:5px;
+	font-weight:600;
 	width:100%;
 	left:0;
 	border:solid 1px #ccc;
@@ -116,14 +152,20 @@
 	padding:0px;
 	margin:0px;
 }
-.country-listing li{
+
+.country-listing li a{
 	display:flex;
 	background:#fff;
 	font-size:14px;
+	
 	color:#151515;
 	align-items:center;
 	padding:5px 10px;
+	border-top:solid 1px #e9e9e9;
 }
+.country-listing li:hover a{
+	background-color: #f8f8f8;
+ }
 .d-flex {
 	display:flex;
 }
@@ -136,17 +178,10 @@
 .country-listing li:last-child{
 	border-radius:0px 0px 5px 5px;
 }
-.country-listing li:hover{
-	background:#ccc;
-}
+
 /* Home Page Main Course Session   */
 
-.course_session {
-	float: right;
-	margin: -52px 269px 0 20px;
-	font-size: 13px;
-	font-family: 'Ubuntu', sans-serif;
-}
+
 .session_per_price {
 	float: right;
 max-width: 150px;
@@ -212,8 +247,8 @@ input[type="submit"], input[type="button"], .squareButton {
 .chat_us{
 	position:fixed;
 	z-index:999;
-	bottom:15%;
-	right:8px;
+	bottom:10px;
+	left:15px;
 	color:black;
 	font-size:13px;
 	background-color:#1BB4B9;
@@ -270,7 +305,11 @@ input[type="submit"], input[type="button"], .squareButton {
 
 
 .testimonial_form{
-	padding-bottom:40px;
+	padding-bottom:80px;
+	
+}
+.testimonial_form .user-dashboard{
+	background-color:#fff;
 }
 
 /* .contact-details{
@@ -388,14 +427,15 @@ text-transform: uppercase; */
 
 #selectedCountry{
 	color:#000;
+	font-size:14px;
+	font-weight:600;
 }
 
 
 /* Login page start */
 .contact-details{
     display: flex;
-    margin: auto;
-    width: 63%;
+    
 	margin-bottom:5%;
 	margin-top:3%;
 	border: 5px solid #1bb4b9;
@@ -406,6 +446,7 @@ text-transform: uppercase; */
 	height: 50%;
 	margin: 1%;
 	padding: 3%;
+	width:50%;
 	float: left;
 }
 .vertical-line {
@@ -417,6 +458,7 @@ text-transform: uppercase; */
 	background-color: rgb(255, 255, 255);
 	height: 50%;
 	margin: 1%;
+	width:50%;
 	padding: 3%;
 	float:right
 }
@@ -479,3 +521,136 @@ text-transform: uppercase; */
 .icon_money {margin-left: 70%;}
 .price_with_offer {margin-left:60%;}
 #forgotPasswordFormLink{ right:20%}
+
+.squareButton.huge > a, .squareButton.huge > button, .squareButton.huge > span{
+	margin:0px;
+	padding:1px 20px !important;
+}
+
+.squareButton.huge > a{
+	padding:0px 20px !important;
+}
+
+.sc_blogger.style_image_classes .classes_price{
+	font-size:22px;
+}
+
+.sc_blogger.style_image_classes .sc_blogger_title{
+	margin:0px;
+	min-height:auto;
+	padding-bottom:0px !important;
+}
+
+h5.course_session{ 
+	margin-bottom:0px;
+	font-size:16px;
+	font-weight:semibold;
+	padding:0px;
+}
+
+
+
+.h-auto{
+	height:auto !important;
+}
+
+form.subscribe{
+	max-width:600px;
+	width:100%;
+	position:relative;
+}
+form.subscribe .theme_skin_learnplay .sc_emailer.inputSubmitAnimation{
+	width:100%;
+}
+
+form.subscribe .squareButton.huge{
+	position:absolute;
+	right:0;
+	top:0;
+	margin:0px;
+	width:133px;
+	padding:0px;
+}
+
+form.subscribe .sc_emailer.inputSubmitAnimation{
+	height:auto;
+	min-height:55px;
+}
+form.subscribe .sc_emailer.inputSubmitAnimation .sInput{
+	height:auto;
+	min-height:55px;
+	max-width:100%;
+	
+}
+form.subscribe .squareButton.light.huge, 
+form.subscribe .squareButton.dark.huge, 
+form.subscribe .squareButton.global.huge{
+	padding:0px !important;
+}
+
+.contactFooter .logo{
+	max-width:200px;
+	padding:10px;
+	border-radius:10px;
+	background-color:#fff;
+}
+
+.other-layouts-footer ul{
+	padding:0px;
+}
+.copy.main{
+	margin:0px;
+	padding:0;
+	text-align:center;
+	height:auto;
+}
+
+.footerContentWrap{
+	padding-bottom: 50px;
+    background: #ea624c;
+}
+
+.upToScroll.buttonShow{
+	bottom:10px;
+	right:10px;
+	height:80px;
+	width:80px;
+}
+.list-style-dot{
+	padding-left:22px;
+}
+
+.course_perday_price{ display: block; float:none; }
+.reviews_summary.blog_reviews.p-15{
+	position: relative;
+}
+.sc_blogger.style_image_classes .sc_blogger_item .sc_blogger_content{
+	top:100%;
+	z-index:100;
+}
+
+.sc_blogger.style_image_classes .sc_blogger_item:hover .sc_blogger_content{
+	top:0px;
+	bottom:auto;
+}
+
+.certificate{
+	z-index:8;
+	position: absolute;
+    top: -33px;
+    height: auto;
+    color: #fff;
+    font-size: 14px;
+    background: #00000080;
+    width: 94%;
+    left: 0;
+    padding: 6px 10px;
+    font-weight: 600;
+}
+
+
+.copyWrap,
+.copyWrap a{
+	color:#fff !important;
+	background-color:#ea624c !important;
+}

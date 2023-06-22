@@ -927,13 +927,10 @@ b, strong { font-weight:700; }
 .logo .logo_text {line-height: 45px;}
 .logo .logo_slogan {font-size: 12px; line-height: 12px;}
 .logo .logo_slogan {color: #ea624c;}
-.topWrap .logo {font-size: 36px;}
-.topWrap .logo {height: 52px; /*padding-top: 27px;*/}
-.topWrap .logo img {height: 35px;}
+
 /*.sidemenu_wrap .logo img {height: 52px;}*/
 header.menu_right .logo_slogan {display: block;}
-header.fixedTopMenu .topWrap .logo {height: 30px;}
-header.fixedTopMenu .topWrap .logo img {height: 35px;}
+
 header.fixedTopMenu .topWrap .logo .logo_text {line-height: 21px;}
 
 .topWrap .logo.logo_center {height: 35px;}
@@ -1234,7 +1231,7 @@ header.fixedTopMenu .topWrap .menuTopWrap.topMenuStyleLine > ul#mainmenu > li > 
 .footerWrap .sidebar > .widget ul > li,
 .footerWrap .widget_area .widgetWrap ul > li {font-size: 14px;}
 
-.theme_skin_kidscare .contactFooter { padding: 90px 0 90px 0; }
+
 .contactFooter .logo img { height: auto; }
 .contactFooter .contactShare ul li a span,
 .contactFooter .contactShare ul li a {background-size: 74px 148px; height: 74px; width: 74px;}
@@ -1341,24 +1338,7 @@ header.fixedTopMenu .topWrap .menuTopWrap.topMenuStyleLine > ul#mainmenu > li > 
     margin: 0 20px 20px 20px;
     padding: 0;
 }
-.sc_blogger.style_image_classes .classes_price {
-    float: right;
-    max-width: 180px;
-    margin: -8px 0 0 20px;
-    font-size: 30px;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 100;
-}
-.sc_blogger.style_image_classes .classes_price p {
-    padding: 0;
-    margin: 0;
-    font-weight: 100;
-}
-.sc_blogger.style_image_classes .classes_price strong {
-    font-size: 18px;
-    font-weight: 100;
-}
-
+ 
 .sc_blogger.style_image_classes .sc_blogger_item .sc_blogger_content {
     background-color: #2d3e50;
     position: absolute; z-index: 5;
@@ -1378,51 +1358,51 @@ header.fixedTopMenu .topWrap .menuTopWrap.topMenuStyleLine > ul#mainmenu > li > 
 .sc_blogger.style_image_classes .sc_blogger_more,
 .sc_blogger.style_image_classes .sc_blogger_more a {background-color: transparent; border-color: transparent;}
 
-.sc_blogger.style_image_classes .column_item_1 .sc_blogger_content {background-color: #2d3e50; background-color: rgba(45, 62, 80, 0.70);}
+.sc_blogger.style_image_classes .column_item_1 .sc_blogger_content {background-color: #2d3e50; background-color: rgba(45, 62, 80, 1);}
 .sc_blogger.style_image_classes .column_item_1 .sc_blogger_item {background-color: #2d3e50;}
 
 
-.sc_blogger.style_image_classes .column_item_2 .sc_blogger_content {background-color: #f79c27; background-color: rgba(247, 156, 39, 0.70);}
+.sc_blogger.style_image_classes .column_item_2 .sc_blogger_content {background-color: #f79c27; background-color: rgba(247, 156, 39, 1);}
 .sc_blogger.style_image_classes .column_item_2 .sc_blogger_item {background-color: #f79c27;}
 
 
-.sc_blogger.style_image_classes .column_item_3 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 0.70);}
+.sc_blogger.style_image_classes .column_item_3 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 1);}
 .sc_blogger.style_image_classes .column_item_3 .sc_blogger_item {background-color: #a7d163;}
 
 
-.sc_blogger.style_image_classes .column_item_4 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 0.70);}
+.sc_blogger.style_image_classes .column_item_4 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 1);}
 .sc_blogger.style_image_classes .column_item_4 .sc_blogger_item {background-color: #a7d163;}
 
 
-.sc_blogger.style_image_classes .column_item_5 .sc_blogger_content {background-color: #fe7d60; background-color: rgba(254, 125, 96, 0.70);}
+.sc_blogger.style_image_classes .column_item_5 .sc_blogger_content {background-color: #fe7d60; background-color: rgba(254, 125, 96, 1);}
 .sc_blogger.style_image_classes .column_item_5 .sc_blogger_item {background-color: #fe7d60;}
 
 
-.sc_blogger.style_image_classes .column_item_6 .sc_blogger_content {background-color: #0dcdc0; background-color: rgba(13, 205, 192, 0.70);}
+.sc_blogger.style_image_classes .column_item_6 .sc_blogger_content {background-color: #0dcdc0; background-color: rgba(13, 205, 192, 1);}
 .sc_blogger.style_image_classes .column_item_6 .sc_blogger_item {background-color: #0dcdc0;}
 
 
-.sc_blogger.style_image_classes .column_item_7 .sc_blogger_content {background-color: #2d3e50; background-color: rgba(45, 62, 80, 0.70);}
+.sc_blogger.style_image_classes .column_item_7 .sc_blogger_content {background-color: #2d3e50; background-color: rgba(45, 62, 80, 1);}
 .sc_blogger.style_image_classes .column_item_7 .sc_blogger_item {background-color: #2d3e50;}
 
 
-.sc_blogger.style_image_classes .column_item_8 .sc_blogger_content {background-color: #f79c27; background-color: rgba(247, 156, 39, 0.70);}
+.sc_blogger.style_image_classes .column_item_8 .sc_blogger_content {background-color: #f79c27; background-color: rgba(247, 156, 39, 1);}
 .sc_blogger.style_image_classes .column_item_8 .sc_blogger_item {background-color: #f79c27;}
 
 
-.sc_blogger.style_image_classes .column_item_9 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 0.70);}
+.sc_blogger.style_image_classes .column_item_9 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 1);}
 .sc_blogger.style_image_classes .column_item_9 .sc_blogger_item {background-color: #a7d163;}
 
 
-.sc_blogger.style_image_classes .column_item_10 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 0.70);}
+.sc_blogger.style_image_classes .column_item_10 .sc_blogger_content {background-color: #a7d163; background-color: rgba(167, 209, 99, 1);}
 .sc_blogger.style_image_classes .column_item_10 .sc_blogger_item {background-color: #a7d163;}
 
 
-.sc_blogger.style_image_classes .column_item_11 .sc_blogger_content {background-color: #fe7d60; background-color: rgba(254, 125, 96, 0.70);}
+.sc_blogger.style_image_classes .column_item_11 .sc_blogger_content {background-color: #fe7d60; background-color: rgba(254, 125, 96, 1);}
 .sc_blogger.style_image_classes .column_item_11 .sc_blogger_item {background-color: #fe7d60;}
 
 
-.sc_blogger.style_image_classes .column_item_12 .sc_blogger_content {background-color: #0dcdc0; background-color: rgba(13, 205, 192, 0.70);}
+.sc_blogger.style_image_classes .column_item_12 .sc_blogger_content {background-color: #0dcdc0; background-color: rgba(13, 205, 192, 1);}
 .sc_blogger.style_image_classes .column_item_12 .sc_blogger_item {background-color: #0dcdc0;}
 
 .sc_blogger_horizontal.sc_blogger_columns_4 .sc_blogger_item{width: 25%;}

@@ -38,7 +38,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 						<section class="">
 							<div class="container">
 								<div class="sc_content main ">
-									<div class="aligncenter margin_bottom_middle">
+									<div class="aligncenter ">
 										<h2 class="sc_title style_2 sc_title_regular">Our Classes</h2>
 										<h4 class="sc_undertitle style_1">We design digital toys not just for kids, but with kids</h4>
 									</div>
@@ -72,44 +72,49 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 															</div>
 														</a>
 													</div>
-													<h4 class="sc_blogger_title sc_title">
-														<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 25 ? substr($course->title, 0, 25).'...' : $course->title}}</a>
-													</h4>
-													<div class="reviews_summary blog_reviews">
-														<div class="classes_price">
-														
-															<p class="course_price">
-															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-															@if(!empty($offers) && !empty($offers->offer_id))
-																<?php 
-																	$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
-																	$offerPercentage = $offers->amount ? $offers->amount : 0;
-																	$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
-																?>
-																<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
-																{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
-															@else 
-																{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
-															@endif
-															</p>
-															
-														</div>
-														<h5 class="course_session">
-															Price Per Session 
-															</br>
-															{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-															@if(!empty($offers) && !empty($offers->offer_id))
-																<?php 
-																	$newPerSessionPrice = (float)$newPrice / $classes;
-																?>
-																<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
-																{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
-															@else 
-																{{number_format($perSessionPrice, 2).'/-'}}
-															@endif
-														</h5>
-														<div class="criteria_summary criteria_row">
-															<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
+													
+													<div class="reviews_summary blog_reviews p-15">
+														<div class="certificate">Certificate</div>
+													    <div class="d-flex align-items-center justify-between mb-10">
+															<h4 class="sc_blogger_title sc_title">
+																<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 25 ? substr($course->title, 0, 25).'...' : $course->title}}</a>
+															</h4>
+															<div class="criteria_summary criteria_row">
+																	<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
+															</div>
+												     	</div>
+														<div class="d-flex row-reverse align-items-center justify-between">
+															<div class="classes_price">
+																<p class="course_price">
+																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																@if(!empty($offers) && !empty($offers->offer_id))
+																	<?php 
+																		$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																		$offerPercentage = $offers->amount ? $offers->amount : 0;
+																		$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+																	?>
+																	<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																	{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+																@else 
+																	{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+																@endif
+																</p>
+																
+															</div>
+															<h5 class="course_session">
+																Price Per Session 
+																</br>
+																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																@if(!empty($offers) && !empty($offers->offer_id))
+																	<?php 
+																		$newPerSessionPrice = (float)$newPrice / $classes;
+																	?>
+																	<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
+																	{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
+																@else 
+																	{{number_format($perSessionPrice, 2).'/-'}}
+																@endif
+															</h5>
 														</div>
 													</div>
 												</article>
@@ -120,7 +125,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 
 									<div class="sc_section bg_tint_none sc_aligncenter margin_top_middle">
 										<div class="">
-											<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner">
+											<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner h-auto">
 												<a  href="{{route('courseList')}}" class="" >More Courses</a>
 											</div>
 										</div>
@@ -134,7 +139,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							<div class="container">
 								<div class="sc_section  bg_tint_light">
 									<div class="sc_content main ">
-										<div class="aligncenter margin_bottom_middle">
+										<div class="aligncenter ">
 											<h2 class="sc_title sc_title_regular">Testimonials</h2>
 											<h4 class="sc_undertitle style_2">We have gathered the best team of teachers and trainers</h4>
 										</div>
@@ -184,7 +189,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							</div>
 						</section>
 						<section class="skyblue_section bg_pattern_6 testimonial_form">
-							<div class="form-container sc_columns">
+						<div class="container main p-0">
+							<div class="form-container sc_columns p-0">
 								<div class="sc_column_item">
 									<div class="user-dashboard sc_contact_form sc_contact_form_contact">
 										<h2 class="title">
@@ -240,6 +246,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									</div>
 								</div>
 							</div>
+					</div>
 						</section>
 
 						<section class="no_padding">
@@ -248,16 +255,18 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<div class="sc_parallax_content parallax_image_3">
 										<div class="sc_content main ">
 											<div class="columnsWrap sc_columns sc_columns_count_2">
-												<div class="columns1_2 sc_column_item sc_column_item_1 odd first"></div>
-												<div class="columns1_2 sc_column_item sc_column_item_2 even">
+												<div class="columns1_2 sc_column_item sc_column_item_1 odd first">
+
+												</div>
+												<div class="columns1_2 sc_column_item sc_column_item_2 even text-sm-center">
 													<h3 class="sc_title style_3">We will take care of your kids</h3>
 													<span class="sc_highlight style_2">Aenean nec vestibulum dui. Sed vestibulum varius interdum. Nulla euismod venenatis erat quis interdum. Nullam leo lorem, porttitor ac blandit eget, venenatis vel purus. Mauris vitae mi risus.</span>
-													<div class="margin_top_middle">
+													<div class="margin_top_small">
 														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">
-															<a href="#" class="">Purchase</a>
+															<a href="{{route('Buy.Course')}}" class="">Buy Course</a>
 														</div>
 														<div class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">
-															<a href="#" class="btns-top">More</a>
+															<a href="{{url('booking')}}" class="btns-top">Book a Demo</a>
 														</div>
 													</div>
 												</div>
@@ -272,13 +281,13 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 						<section class="">
 							<div class="container">
 								<div class="sc_content main ">
-									<div class="columnsWrap sc_columns sc_columns_count_4">
-										<div class="columns3_4 sc_column_item sc_column_item_1 odd first span_3">
-											<h2 class="sc_title style_4">Subscribe us for FREE!</h2>
+									<div class="d-flex align-items-center justify-between">
+										<div class="w-full">
+											<h2 class="sc_title style_3 text-md-center">Subscribe us for FREE!</h2>
 											<div class="sc_section bg_tint_none margin_bottom_small">
 												<span class="sc_highlight style_3">To get all the offer updates, please subscribe us.</span>
 											</div>
-											<form action="{{route('contactsSave')}}" method="post">
+											<form class="subscribe" action="{{route('contactsSave')}}" method="post">
 												@csrf
 												<div class="sc_emailer inputSubmitAnimation sFocus rad4 opened">
 													<input type="hidden" name="contact_type" value="subscription">
@@ -289,12 +298,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 													<input type="text" class="sInput" name="email" value="" placeholder="Please, enter you email address.">
 												</div>
 												<div class="sc_button squareButton light huge subscription_submit_button">
-													<button type="submit" class="" title="Submit">Subscribe</button>
+													<button type="submit" class="submit" title="Submit">Subscribe</button>
 												</div>
 											</form>
 										</div>
-										<div class="columns1_4 sc_column_item sc_column_item_4 even after_span_3">
-											<figure class="sc_image  sc_image_align_right sc_image_shape_square">
+										<div class="d-sm-none ">
+											<figure class="sc_image  sc_image_align_right sc_image_shape_square m-0">
 												<img src="{{asset('assets/front/images/email.png')}}" alt=""/>
 												<figcaption>
 													<span class="icon inherit"> </span>
