@@ -654,3 +654,38 @@ form.subscribe .squareButton.global.huge{
 	color:#fff !important;
 	background-color:#ea624c !important;
 }
+
+
+.hero-slider{height:calc(80vh - 60px); background-color:#000;}
+.hero-slider .owl-stage-outer, 
+.hero-slider .owl-stage-outer div{ height:100%; }
+.hero-slider img{ opacity:0.5; position: absolute; z-index:-1; height:100%; width:auto; object-fit:cover;  }
+
+.hero-slider .active img{ animation: scale 20s linear infinite;}
+.hero-slider .main{ height:100%; position: relative; z-index:5;display: flex; align-items:center;  }
+.hero-slider .main .slider-content{ max-width:600px; width:100%; }
+.hero-slider .main .heading-sec{ font-size:45px; color:#fff; margin-bottom:20px; line-height:normal; font-family: 'Ubuntu', sans-serif; font-weight:600; }
+.hero-slider .main .short-description{ font-size:20px; color:#fff; margin-bottom:40px; font-family: 'Ubuntu', sans-serif;  font-weight:500;  }
+.hero-slider .main div{ height:auto; }
+.hero-slider .main .button-sec a{ color:#000000; background-color:#fff; border-radius:100px; }
+
+@keyframes scale {
+	50% {
+	  -webkit-transform:scale(1.2);
+	  -moz-transform:scale(1.2);
+	  -ms-transform:scale(1.2);
+	  -o-transform:scale(1.2);
+	  transform:scale(1.2);
+	}
+  }
+
+
+.owl-carousel .owl-dots{ position: absolute; bottom:0; margin:0px auto; left:0; right:0; }
+.owl-carousel .owl-nav{margin:0px; padding:0px; }
+.owl-carousel .owl-nav button{   position: absolute; top:50%; height:auto !important;   transform: translateY(-50%);}
+.owl-carousel .owl-nav button span{ display: none;}
+.owl-carousel .owl-nav button.owl-next{ right:20px; }
+.owl-carousel .owl-nav button.owl-next::after{content: '\e826'; z-index: 2; background-color:#00000020;  min-height:50px; min-width:50px; max-width:50px; max-height:50px; border-radius:100%; justify-content:center;  width: 28px; height: 28px; font-family: "fontello"; font-size: 18px;	display: flex;	align-items: center; color: #ffffff; line-height: 29px; text-align: center;}
+.owl-carousel .owl-nav button.owl-prev{ left:20px; }
+.owl-carousel .owl-nav button.owl-prev::after{content: '\e825'; z-index: 2; width: 28px;	background-color:#00000020;  min-height:50px; min-width:50px; max-width:50px; max-height:50px; border-radius:100%; justify-content:center;  height: 28px; font-family: "fontello"; font-size: 18px; display: flex;	align-items: center; color: #ffffff; line-height: 29px;    text-align: center;}
+.owl-carousel .owl-nav [class*=owl-]:hover{  background:none; }
