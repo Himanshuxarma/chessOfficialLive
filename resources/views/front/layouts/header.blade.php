@@ -28,18 +28,6 @@ $settings = App\Helpers\Helper::getSettings();
                                 Courses
                             </a>
                         </li>
-                        <li class="{{Request::path() =='faqs' ? 'current-menu-ancestor' : ''}} menu-item">
-                            <a title="Layouts and hovers" href="{{route('faqsDeatail')}}">
-                                <span class="menu_icon icon-thumbs-up"></span>
-                                Faq
-                            </a>
-                        </li>
-                        <li class="{{Request::path() =='contact-us' ? 'current-menu-ancestor' : ''}} menu-item">
-                            <a title="Layouts and hovers" href="{{route('contactForm')}}">
-                                <span class="menu_icon icon-thumbs-up"></span>
-                                Contact Us
-                            </a>
-                        </li>
                         <li class="{{Request::path()== 'pages/about-us' ? 'current-menu-ancestor' : ''}} menu-item">
                             <a title="Layouts and hovers" href="{{route('about.us')}}">
                                 <span class="menu_icon icon-thumbs-up"></span>

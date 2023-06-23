@@ -16,6 +16,12 @@
 					</div>
 					<ul>
 						<li>
+							<a href="{{route('faqsDeatail')}}" style="color:#FFF;">FAQ</a>
+						</li>
+						<li>
+							<a href="{{route('contactForm')}}" style="color:#FFF;">Contact</a>
+						</li>
+						<li>
 							<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
 						</li>
 						<li>

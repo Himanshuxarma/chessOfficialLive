@@ -77,7 +77,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														<div class="certificate">Certificate</div>
 													    <div class="d-flex align-items-center justify-between mb-10">
 															<h4 class="sc_blogger_title sc_title">
-																<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 25 ? substr($course->title, 0, 25).'...' : $course->title}}</a>
+																<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 20 ? substr($course->title, 0, 20).'...' : $course->title}}</a>
 															</h4>
 															<div class="criteria_summary criteria_row">
 																	<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
