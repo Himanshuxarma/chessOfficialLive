@@ -46,6 +46,10 @@ use App\Http\Controllers\Auth\LoginController;
 
         Route::get("redirect/{driver}", [App\Http\Controllers\Auth\LoginController::class, "redirectToProvider"])->name("socialLogin");
         Route::get('{driver}/callback', [App\Http\Controllers\Auth\LoginController::class, "handleProviderCallback"]);
+        //Mobile Login Otp
+        Route::post("otp/generate", [App\Http\Controllers\Auth\LoginController::class, 'generate'])->name('otp.generate');
+        Route::get('otp/verification/{user_id}', [App\Http\Controllers\Auth\LoginController::class, 'verification'])->name('otp.verification');
+        Route::post("otp/login", [App\Http\Controllers\Auth\LoginController::class, 'loginWithOtp'])->name('otp.getlogin');
 
 
         Route::group(['middleware' => ["auth:customer"]], function () {

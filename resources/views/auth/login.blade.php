@@ -43,6 +43,9 @@
         </div>
         <div class="d-flex">
           <div class="registration-button">
+            <a href="javascript:void(0);" id="mobileLoginFormLink" >Mobile With Login</a>
+          </div>
+          <div class="registration-button">
             <a href="{{ url('redirect/google') }}">Google Login</a>
           </div>
           <div class="registration-button">
@@ -67,6 +70,28 @@
         <div class="d-flex">
           <div class="registration-button squareButton light">
             <button type="submit" class="mt-4">Send Request</button>
+          </div>
+          <div class="registration-button squareButton light">
+              <button type="button" id="loginFormLink" class="alignright">Login</button>
+          </div>
+        </div>
+      </form>
+<!-- mobile -->
+      <form action="{{route('otp.generate')}}" method="post" id="mobileLoginForm" class="d-none">
+        <div class="form-heading"><h3>Enter your mobile to get Otp</h3></div>
+        {{ csrf_field() }}
+        <div class="sc_contact_form sc_contact_form_contact">
+          <div class="columns1 w-full margin_top_mini margin_bottom_mini">
+            <label for="mobilephone">Mobile</label>
+            <input type="text" id="mobilephone" class="form-control" name="phone" placeholder="Enter your Mobile">
+            @if ($errors->has('phone'))
+              <span class="text-danger">{{ $errors->first('phone') }}</span>
+            @endif
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="registration-button squareButton light">
+            <button type="submit" class="mt-4">Send Otp</button>
           </div>
           <div class="registration-button squareButton light">
               <button type="button" id="loginFormLink" class="alignright">Login</button>
@@ -127,6 +152,14 @@
   });
   jQuery(document).on('click', '#loginFormLink', function(){
     jQuery('#forgotPasswordForm').addClass('d-none');
+    jQuery('#loginForm').removeClass('d-none');
+  });
+  jQuery(document).on('click', '#mobileLoginFormLink', function(){
+    jQuery('#loginForm').addClass('d-none');
+    jQuery('#mobileLoginForm').removeClass('d-none');
+  });
+  jQuery(document).on('click', '#loginFormLink', function(){
+    jQuery('#mobileLoginForm').addClass('d-none');
     jQuery('#loginForm').removeClass('d-none');
   });
   
