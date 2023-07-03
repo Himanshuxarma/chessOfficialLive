@@ -75,7 +75,7 @@
         </form>
       </div>
     </div>
-  </div>
+</div>
 @endsection
 @section('customscript')
 <script>

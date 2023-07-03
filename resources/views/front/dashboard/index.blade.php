@@ -1,4 +1,56 @@
 @extends('front.layouts.master')
+@section('customstyle')
+<style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    }
+
+    /* .modal-header {
+        width: 100%;
+        float: left;
+    } */
+    .modal-header h4 {
+        width: 100%;
+        float: left;
+    }
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%; /* Could be more or less, depending on screen size */
+        height:auto;
+    }
+
+    /* The Close Button */
+    .close {
+        font-size: 16px;
+        font-weight: bold;
+        height:2%;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .modal-buttons{
+        margin-top:15px;
+        overflow:hidden;
+    }
+</style>
+@endsection
 @section('content') 
 @php 
     $countryId = 6;
@@ -23,7 +75,20 @@
         <h3 class="pageTitle h3">User Dashboard</h3>
     </div>
 </div>
-
+<?php 
+  $errorMessage = Session::get('errorMessage');
+  $successMessage = Session::get('successMessage');
+  if(isset($errorMessage) && !empty($errorMessage)){ 
+?>
+    <p class="alert alert-danger hide">{{ $errorMessage }}</p>
+<?php 
+  }
+  if(isset($successMessage) && !empty($successMessage)){
+?>
+  <p class="alert alert-success hide">{{ $successMessage }}</p>
+<?php
+  }
+?>
 <div class="mainWrap without_sidebar">
     <div class="main">
         <div class="content">
@@ -44,6 +109,9 @@
                             </li>
                             <li class="squareButton">
                                 <a href="javascript:void(0);" class="profile-tabs" data-filter="buy_orders_listing">Purchased Courses</a>
+                            </li>
+                            <li class="squareButton">
+                                <a href="javascript:void(0);" class="profile-tabs" data-filter="referral_box">Referrals</a>
                             </li>
                         </ul>
                         <section data-columns="5">
@@ -343,15 +411,124 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="post_format_standard referral_box d-none" id="referral_box">
+                                <div class="container">
+                                    <div class="user-dashboard sc_columns">
+                                        <div class="sc_column_item">
+                                            <div class="sc_contact_form sc_contact_form_contact">
+                                                <div>
+                                                    <h2 class="title alignleft">Referrals</h2>
+                                                    <a href="javascript:void(0);" id="openReferralModal" class="sc_button sc_button_size_huge squareButton alignright" style="margin:0 0 0 0">Send Referral</a>
+                                                </div>
+                                                <div class="card-body table-responsive">
+                                                    <table class="table table-head-fixed text-nowrap" id="myTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" width="5%"><strong>#</strong></th>
+                                                                <th scope="col" width="15%"><strong>Sent To</strong></th>
+                                                                <th scope="col" width="10%"><strong>Referee Offer Percentage</strong></th>
+                                                                <th scope="col" width="10%"><strong>Used</strong></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @if(count($referrals) > 0)
+                                                                @foreach ($referrals as $data)
+                                                                <tr>
+                                                                    <td  style="text-align: center">{{ $data->id }}</td>
+                                                                    <td  style="text-align: center">{{ $data->sent_to_email ? $data->sent_to_email : 'N/A'}} </td>
+                                                                    <td  style="text-align: center">{{ $data->referee_offer_percentage ? referee_offer_percentage.'%' : 'No'}} </td>
+                                                                    <td  style="text-align: center">{{ $data->is_referee_used && $data->is_referee_used == 1 ? 'Yes' : 'No'}} </td>
+                                                                </tr>
+                                                                @endforeach
+                                                            @else 
+                                                                <tr>
+                                                                    <td colspan="11" style="text-align:center">Opps ! No bookings available yet.</td>
+                                                                </tr>
+                                                            @endif
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </section>
                     </div>
             </section>
         </div>
     </div>
 </div>
+
+
+<div class="modal" id="sendReferralLinkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="content">
+                <div class="modal-header d-flex">
+                    <h4 class="modal-title">Send Referral Link</h4>
+                    <button type="button" class="close">&times;</button>
+                </div>
+                <div class="container">
+                    <div class="user-dashboard sc_columns">
+                        <div class="sc_column_item">
+                            <div class="sc_contact_form sc_contact_form_contact">
+                                <form action="{{route('sendReferralEmail')}}" method="post" id="sendReferralForm">
+                                    {{ csrf_field() }}
+                                    <div class="modal-body mx-3">
+                                        <div class="md-form">
+                                            <input type="text" name="email" id="referral_email" class="form-control validate" placeholder="Enter email address">
+                                            <span id="referralEmailError" class="validation_error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-buttons">
+                                        <div class="sc_button sc_button_style_light alignleft squareButton light">
+                                            <button type="button" class="btn btn-warning fleft close">Cancel</button>
+                                        </div>
+                                        <div class="sc_button sc_button_style_light alignright squareButton light">
+                                            <button type="button" class="btn btn-warning fright" id="sendRefferalSubmit">Send Referral</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('customscript')
 <script>
+    // Get the modal
+    var modal = document.getElementById("sendReferralLinkModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("openReferralModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
+    // jQuery(document).on('click', '#openReferralModal', function(){
+    //     jQuery('#sendReferralLinkModal').modal('show');
+    // });
     jQuery('.profile-tabs').on('click', function(){
         jQuery('.profile-tabs').parent().removeClass('active');
         jQuery(this).parent().addClass('active');
@@ -359,6 +536,21 @@
         jQuery('.post_format_standard').addClass('d-none');
         jQuery('#'+openTab).removeClass('d-none');
         // jQuery("section").css('height', 'auto');
+    });
+
+    jQuery(document).on('click', '#sendRefferalSubmit', function(){
+        let email = jQuery('#referral_email').val();
+        let submitForm = true;
+        if(email == ""){
+            jQuery('#referralEmailError').html('Please enter a valid email address').css('color', 'red');
+            submitForm = false;
+        } else {
+            jQuery('#referralEmailError').html('');
+            submitForm = true;
+        }
+        if(submitForm){
+            jQuery('#sendReferralForm').submit();
+        }
     });
 </script>
 @endsection

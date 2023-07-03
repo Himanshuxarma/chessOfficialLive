@@ -31,7 +31,7 @@ $settings = App\Helpers\Helper::getSettings();
                         <li class="{{Request::path()== 'pages/about-us' ? 'current-menu-ancestor' : ''}} menu-item">
                             <a title="Layouts and hovers" href="{{route('about.us')}}">
                                 <span class="menu_icon icon-thumbs-up"></span>
-                                About-Us
+                                About Us
                             </a>
                         </li>
                         @if(Auth::guard('customer')->check())

@@ -27,7 +27,7 @@ Details we received from in the demo booking are as follows :
 
 Please do not share this password to anyone, You can login using this password and can change your password.
   
-Thank you<br>
-<a href="https://www.chessofficial.com/"><img class="img-fluid" src="https://www.chessofficial.com/assets/front/img/email_logo.png"></a    
+Thank you</br></br></br>
+<a href="https://www.chessofficial.com/"><img class="img-fluid" src="https://www.chessofficial.com/assets/front/images/logo.png"></a>
 </body>
 </html>

@@ -35,7 +35,7 @@ class newCustomerMail extends Mailable
  
     {
         // dd($this->contacts['subject']);
-        return $this->subject('Welcome Email')->view('email.newCustomerMail');
+        return $this->subject('Welcome Email')->view('email.newCustomerMail'); die;
         // return $this->subject('Contact Message')->view('email.contactmail');
     }
 }

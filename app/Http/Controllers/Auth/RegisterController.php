@@ -70,14 +70,36 @@ class RegisterController extends Controller
             'register_password' => 'required|min:6'
         ]);
         $data = $request->all();
-        $check = User::create([
+        $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+ 
+        $referralCode = substr(str_shuffle($str), 0, 10);
+        $registrationData = [
             'full_name' => $data['full_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['register_password']),
-            'role'=>'customer'
-        ]);
+            'role'=>'customer',
+            'referral_code'=>$referralCode
+        ];
+        // dd($registrationData);
+        $check = User::create($registrationData);
         if($check->id){
+
+            if($request->referral_code){
+                $referrerDetails = User::where('referrer_code', $request->referral_code)->first();
+                $referralData = [
+                    'sent_by' => $referrerDetails && $referrerDetails->id ? $referrerDetails->id : 0,
+                    'sent_to_email' => '',
+                    'new_user_id'=>$check->id,
+                    'referrer_offer_percentage' => 10,
+                    'referee_offer_percentage' => 10,
+                    'is_referrer_used' => 0,
+                    'is_referee_used'=> 0,
+                    'status'=> 1
+                ];
+                Referral::create($referralData);
+            }
+
             $customerId = $check->id;
             $furtherProcess = true;
             $check->decryptedPass = $data['register_password'];
@@ -86,6 +108,5 @@ class RegisterController extends Controller
         } else {
             return redirect(route("frontLogin"))->with('loginError', 'Something went wrong.');
         }
-        
     }
 }

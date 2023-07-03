@@ -35,7 +35,7 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function login(){
+    public function login($referral_code=null){
         if(Route::current()->getPrefix() == '/admin'){
             return view('auth.admin.login',[
                 'title' => 'Admin Login  - ' . config('app.name'),
@@ -45,6 +45,7 @@ class LoginController extends Controller
             return view('auth.login', [
                 'title' => 'Customer Login  - ' . config('app.name'),
                 'loginRoute' => 'login',
+                'referral_code'=>$referral_code ? $referral_code : ''
             ]);
         }
     }
@@ -84,7 +85,7 @@ class LoginController extends Controller
                             ->with('error', 'You are unauthorized to Login!');
                 } else {
                     // dd(Auth::guard('customer')->user());
-                    return redirect()->route('front.dashboard')->with('successMessage', 'You have Successfully loggedin');   
+                    return redirect()->route('front.dashboard')->with('successMessage', 'You have loggedin Successfully.');   
                 }
             } else {
                 return redirect(url('/login'))->with(['loginError' => 'Invalid credentials']);   
@@ -184,17 +185,18 @@ class LoginController extends Controller
         if ($existingUser) {
             auth()->login($existingUser, true);
         } else {
-            $newUser                    = new User;
-            $newUser->provider_name     = $driver;
-            $newUser->provider_id       = $user->getId();
-            $newUser->full_name         = $user->getName();
-            $newUser->email             = $user->getEmail();
             // we set email_verified_at because the user's email is already veridied by social login portal
             // $newUser->is_verified = now();
             // you can also get avatar, so create avatar column in database it you want to save profile image
             // $newUser->avatar            = $user->getAvatar();
-            $newUser->save();
-            auth()->login($newUser, true);
+            $check = User::create([
+                'provider_name'=>$driver,
+                'provider_id'=> $user->getId(),
+                'full_name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'role'=>'customer'
+            ]);
+            auth()->login($check, true);
         }
         //return redirect($this->redirectPath());
         return redirect()->route('front.dashboard')->with('successMessage', 'You have Successfully loggedin');   

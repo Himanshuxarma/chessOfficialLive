@@ -1,4 +1,7 @@
 @extends('front.layouts.master')
+@section('customstyle')
+ 
+@endsection
 @section('content')
 <?php
 $countryId = 6;
@@ -42,9 +45,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										<h2 class="sc_title style_2 sc_title_regular">Our Classes</h2>
 										<h4 class="sc_undertitle style_1">We design digital toys not just for kids, but with kids</h4>
 									</div>
+									<div class="course-group">
+
 									<div class="sc_blogger sc_blogger_horizontal style_image style_image_classes">
 										<div class="columnsWrap">
-											@foreach($courses as $course)
+											<div class="courses-heading">One to One Courses</div>
+											@foreach($mainCourses as $course)
 											@php 
 												$offers = \Helper::getoffersbycourse($course->id);
 												$priceData =  $course->coursePrice($course->id);
@@ -52,77 +58,160 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
 												$perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
 											@endphp
-											<div class="columns1_3 column_item_{{$course->id}} odd first">
-												<article class="sc_blogger_item">
-													@if(!empty($offers) && !empty($offers->amount))
-														<div class="offers-details">OFFER {{$offers->amount}}% OFF</div>
-													@endif
-													<div class="thumb">
-														<a href="{{route('courseDetails',$course->id)}}">
-														
-														@if($course->image)
-														@php $courseImg = asset('/uploads/course').'/'.$course->image; @endphp
-														@else 
-														@php $courseImg = "assets/front/images/default.png"; @endphp
+												<div class="columns1_3 column_item_{{$course->id}} odd first">
+													<article class="sc_blogger_item">
+														@if(!empty($offers) && !empty($offers->amount))
+															<div class="offers-details">OFFER {{$offers->amount}}% OFF</div>
 														@endif
-															<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
-															<div class="sc_blogger_content">
+														<div class="thumb">
+															<a href="{{route('courseDetails',$course->id)}}">
 															
-																<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
-															</div>
-														</a>
-													</div>
-													
-													<div class="reviews_summary blog_reviews p-15">
-														<div class="certificate">Certificate</div>
-													    <div class="d-flex align-items-center justify-between mb-10">
-															<h4 class="sc_blogger_title sc_title">
-																<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 20 ? substr($course->title, 0, 20).'...' : $course->title}}</a>
-															</h4>
-															<div class="criteria_summary criteria_row">
-																	<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
-															</div>
-												     	</div>
-														<div class="d-flex row-reverse align-items-center justify-between">
-															<div class="classes_price">
-																<p class="course_price">
-																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-																@if(!empty($offers) && !empty($offers->offer_id))
-																	<?php 
-																		$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
-																		$offerPercentage = $offers->amount ? $offers->amount : 0;
-																		$newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
-																	?>
-																	<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
-																	{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
-																@else 
-																	{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
-																@endif
-																</p>
+															@if($course->image)
+															@php $courseImg = asset('/uploads/course').'/'.$course->image; @endphp
+															@else 
+															@php $courseImg = "assets/front/images/default.png"; @endphp
+															@endif
+																<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
+																<div class="sc_blogger_content">
 																
-															</div>
-															<h5 class="course_session">
-																Price Per Session 
-																</br>
-																{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-																@if(!empty($offers) && !empty($offers->offer_id))
-																	<?php 
-																		$newPerSessionPrice = (float)$newPrice / $classes;
-																	?>
-																	<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
-																	{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
-																@else 
-																	{{number_format($perSessionPrice, 2).'/-'}}
-																@endif
-															</h5>
+																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
+																</div>
+															</a>
 														</div>
-													</div>
-												</article>
-											</div>
+														
+														<div class="reviews_summary blog_reviews p-15">
+															<div class="certificate">Certificate</div>
+															<div class="d-flex align-items-center justify-between mb-10">
+																<h4 class="sc_blogger_title sc_title">
+																	<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 20 ? substr($course->title, 0, 20).'...' : $course->title}}</a>
+																</h4>
+																<div class="criteria_summary criteria_row">
+																		<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
+																</div>
+															</div>
+															<div class="d-flex row-reverse align-items-center justify-between">
+																<div class="classes_price">
+																	<p class="course_price">
+																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																	@if(!empty($offers) && !empty($offers->offer_id))
+																		<?php 
+																			$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																			$offerPercentage = $offers->amount ? $offers->amount : 0;
+																			$newPrice = !empty($priceDefault) ? ($priceDefault - ($priceDefault * ($offerPercentage/100))) : 0;
+																		?>
+																		<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																		{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+																	@else 
+																		{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+																	@endif
+																	</p>
+																	
+																</div>
+																<h5 class="course_session">
+																	Price Per Session 
+																	</br>
+																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																	@if(!empty($offers) && !empty($offers->offer_id))
+																		<?php 
+																			$newPerSessionPrice = (float)$newPrice / $classes;
+																		?>
+																		<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
+																		{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
+																	@else 
+																		{{number_format($perSessionPrice, 2).'/-'}}
+																	@endif
+																</h5>
+															</div>
+														</div>
+													</article>
+												</div>
 											@endforeach
 										</div>
 									</div>
-
+									</div>
+									<div class="course-group">
+									<div class="sc_blogger sc_blogger_horizontal style_image style_image_classes">
+									<div class="courses-heading">Group Sessions</div>
+										<div class="columnsWrap">
+											@foreach($academiCourses as $course)
+											@php 
+												$offers = \Helper::getoffersbycourse($course->id);
+												$priceData =  $course->coursePrice($course->id);
+												$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($course) && !empty($course->price) ? $course->price : 0);
+												$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+												$perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
+											@endphp
+												<div class="columns1_3 column_item_{{$course->id}} odd first">
+													<article class="sc_blogger_item">
+														@if(!empty($offers) && !empty($offers->amount))
+															<div class="offers-details">OFFER {{$offers->amount}}% OFF</div>
+														@endif
+														<div class="thumb">
+															<a href="{{route('courseDetails',$course->id)}}">
+															
+															@if($course->image)
+															@php $courseImg = asset('/uploads/course').'/'.$course->image; @endphp
+															@else 
+															@php $courseImg = "assets/front/images/default.png"; @endphp
+															@endif
+																<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
+																<div class="sc_blogger_content">
+																
+																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
+																</div>
+															</a>
+														</div>
+														
+														<div class="reviews_summary blog_reviews p-15">
+															<div class="certificate">Certificate</div>
+															<div class="d-flex align-items-center justify-between mb-10">
+																<h4 class="sc_blogger_title sc_title">
+																	<a href="{{route('courseDetails',$course->id)}}">{{strlen($course->title) > 20 ? substr($course->title, 0, 20).'...' : $course->title}}</a>
+																</h4>
+																<div class="criteria_summary criteria_row">
+																		<p title="{{$classes}}/Month"><strong>{{$classes}} Sessions</strong></p>
+																</div>
+															</div>
+															<div class="d-flex row-reverse align-items-center justify-between">
+																<div class="classes_price">
+																	<p class="course_price">
+																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																	@if(!empty($offers) && !empty($offers->offer_id))
+																		<?php 
+																			$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																			$offerPercentage = $offers->amount ? $offers->amount : 0;
+																			$newPrice = !empty($priceDefault) ? ($priceDefault - ($priceDefault * ($offerPercentage/100))) : 0;
+																		?>
+																		<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																		{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
+																	@else 
+																		{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+																	@endif
+																	</p>
+																	
+																</div>
+																<h5 class="course_session">
+																	Price Per Session 
+																	</br>
+																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+																	@if(!empty($offers) && !empty($offers->offer_id))
+																		<?php 
+																			$newPerSessionPrice = (float)$newPrice / $classes;
+																		?>
+																		<s>{{!empty($perSessionPrice) ? number_format($perSessionPrice, 2).'/-' : 0}}</s>
+																		{{!empty($newPerSessionPrice) && !empty($newPerSessionPrice) ? number_format($newPerSessionPrice, 2).'/-' : 0}}
+																	@else 
+																		{{number_format($perSessionPrice, 2).'/-'}}
+																	@endif
+																</h5>
+															</div>
+														</div>
+													</article>
+												</div>
+											@endforeach
+										</div>
+									</div>
+</div>
 									<div class="sc_section bg_tint_none sc_aligncenter margin_top_middle">
 										<div class="">
 											<div class="sc_button sc_button_style_global sc_button_size_banner squareButton global banner h-auto">

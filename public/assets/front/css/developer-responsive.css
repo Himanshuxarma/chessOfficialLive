@@ -11,6 +11,8 @@
 	.text-md-center{
 		text-align:center !important;
    }
+   
+	.courses-heading{ margin-bottom:0px !important; }
 	header{
 		padding:10px 0px;
 	}
@@ -63,6 +65,7 @@
 
 
 @media (max-width: 768px) {
+
 	.text-sm-center *,
 	.text-sm-center{
 		 text-align:center !important;
@@ -111,6 +114,7 @@
 		width:100%;
 	}
 	.sc_blogger.sc_blogger_horizontal.style_image.style_image_classes .columnsWrap .columns1_3{ width:calc(100% / 2 - 20px); margin-right:0px; padding:10px; margin-bottom:0px; }
+
 	.copyWrap .socPage{ float:none;}
 	.copyright{ 
 		width: 80%;

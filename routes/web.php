@@ -34,7 +34,7 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
         //Frontend Login
-        Route::get("login", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontLogin');
+        Route::get("login/{referral?}", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontLogin');
         Route::post("postLogin", [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('postLogin');
         Route::post("postForgotPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postForgetPasswordForm'])->name('postForgotPassword');
         Route::get("resetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
@@ -45,6 +45,7 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post('post-registration', [App\Http\Controllers\Auth\RegisterController::class, 'postRegistration'])->name('register.post'); 
 
         Route::get("redirect/{driver}", [App\Http\Controllers\Auth\LoginController::class, "redirectToProvider"])->name("socialLogin");
+        Route::get('{driver}/callback', [App\Http\Controllers\Auth\LoginController::class, "handleProviderCallback"]);
 
 
         Route::group(['middleware' => ["auth:customer"]], function () {
@@ -55,6 +56,8 @@ use App\Http\Controllers\Auth\LoginController;
             Route::post('change-password', [ChangePasswordController::class, 'store'])->name('front.change_password');
             // Route::get('/dashboard/demos', [App\Http\Controllers\Front\DashboardController::class, 'demos'])->name('front.demo');
             // Route::get('/dashboard/orders', [App\Http\Controllers\Front\DashboardController::class, 'orders'])->name('front.order');
+            Route::post('send-referral-link', [App\Http\Controllers\Front\DashboardController::class, 'sendReferral'])->name('sendReferralEmail');
+            
         });
 
         //Frontend Pages

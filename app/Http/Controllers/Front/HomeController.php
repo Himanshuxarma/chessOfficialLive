@@ -37,14 +37,15 @@ class HomeController extends Controller
             $defaultCountry = 6;
         }
         $country = Country::all();
-        $courses = Course::where('type','main_course')->where('status',1)->get();
+        $mainCourses = Course::where('type','main_course')->where('status',1)->limit(3)->get();
+        $academiCourses = Course::where('type','academy_course')->where('status',1)->limit(3)->get();
         $academy = Course::where('type','academy_course')->where('status',1)->get();
         $testimonials = Testimonial::where('status',1)->get();
         $aboutPage = Page::where('slug', 'about-us')->first();
         $academyDescription = Page::where('slug', 'academy-description')->first();
         $courseDescription = Page::where('slug', 'course-description')->first();
         $faqs = Faq::where('status',1)->get();
-        return view('front.home.index',compact('loginError', 'courses', 'country', 'aboutPage','testimonials','faqs','academy','academyDescription','courseDescription'));
+        return view('front.home.index',compact('loginError', 'mainCourses', 'academiCourses', 'country', 'aboutPage','testimonials','faqs','academy','academyDescription','courseDescription'));
     }
 
     /**

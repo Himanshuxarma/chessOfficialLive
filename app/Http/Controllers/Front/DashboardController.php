@@ -11,7 +11,9 @@ use App\Models\Country;
 use App\Models\User;
 use App\Models\Demo;
 use App\Models\Order;
+use App\Models\Referral;
 use App\Models\CountryTimezone;
+use App\Mail\referralMail;
 
 class DashboardController extends Controller
 {
@@ -30,7 +32,8 @@ class DashboardController extends Controller
         	$timezones = CountryTimezone::where('country_id', $countryId)->get();
 			$demos = Demo::all();
 			$orders = Order::all();
-      		return view('front.dashboard.index', compact('customer', 'country', 'timezones', 'demos','orders'));
+			$referrals = Referral::where('sent_by', $customer->id)->get();
+      		return view('front.dashboard.index', compact('customer', 'country', 'timezones', 'demos', 'orders', 'referrals'));
 		} else {
 			return redirect(route('home'))->withSuccess('Opps! You do not have access');
 		}
@@ -95,6 +98,25 @@ class DashboardController extends Controller
 	public function orders(){
 		$orders = Order::all();
 		return view('front.dashboard.orders',compact('orders'));
+	}
+
+	/**
+	 * Himanshu Sharma
+	 * Function to send referral link to the customers contacts
+	 */
+	public function sendReferral(Request $request){
+		if($request->email){
+			$contactEmail = $request->email;
+			$loggedUserData = Auth::user();
+			$referralCode = $loggedUserData && $loggedUserData->referral_code ? $loggedUserData->referral_code : '';
+			if($referralCode){
+				$referralLink = "login/".$referralCode;
+				Mail::to($contactEmail)->send(new referralMail($referralLink));
+            	return redirect(route("front.dashboard"))->with('successMessage', 'Great ! Your referral link sent successfully.');
+			} else {
+				return redirect(route("front.dashboard"))->with('errorMessage', "Sorry we couldn't send referral link, please contact to the support.");
+			}
+		}
 	}
 
 }

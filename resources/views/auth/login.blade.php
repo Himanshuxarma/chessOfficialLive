@@ -80,6 +80,7 @@
       <form action="{{route('register.post')}}" method="post" autocomplete="off">
         <div class="form-heading"><h3>Get started with CHESSOFFICIAL</h3></div>
         {{ csrf_field() }}
+        <input type="hidden" name="referral_code" value="{{$referral_code ? $referral_code : ''}}">
         <div class="sc_contact_form sc_contact_form_contact">
           <div class="columns1 w-full margin_top_mini margin_bottom_mini">
             <label for="signup_full_name">Full Name</label>
