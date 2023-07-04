@@ -265,6 +265,7 @@ class LoginController extends Controller
      */
 
     public function loginWithOtp(Request $request) {
+        // dd("sonu");
          /* Validation */
          $request->validate([
             'user_id' => 'required|exists:users,id',
@@ -285,10 +286,16 @@ class LoginController extends Controller
             $userOtp->update([
                 'expire_at' => now()
             ]);
-            if(Auth::user()->id == $user->id){
+            dd(Auth::check());
+            $demo = Auth::login($user);
+            dd($demo);
+            if(Auth::guard('customer')->user($user)->check()){
+                dd("singh");
+                $customer = Auth::guard('customer')->user();
                 dd("singh");
                 return redirect()->route('front.dashboard')->with('success', 'You have Successfully loggedin'); 
             }else{
+                dd("asasa");
                 return redirect(url('/'))->with('error', 'Your Otp is not correct');
             }
 

@@ -1,4 +1,23 @@
 
+
+.typecourse {
+	width: 20%;
+	float: right;
+	display: block ruby;
+	margin-right: 125px;
+	margin-top: -37px;
+}
+.typecourse1 {
+	background-color: #1bb4b9;
+	color: white;
+	font-size: 15px;
+}
+.lablecourse {
+	font-weight: bold;
+
+}
+
+
 .d-flex { display: flex;}
 .align-items-center{ align-items:center;}
 .justify-between{ justify-content:space-between;}

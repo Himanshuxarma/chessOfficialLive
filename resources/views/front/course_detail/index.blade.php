@@ -91,6 +91,15 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 </li>
 								
                             </ul>
+                            <div class="typecourse">
+                                <label class="lablecourse" for="course_type"> Course Type</label>
+                                <select class="typecourse1" name="course_type" id="course_type">
+                                    <option value="full_course"> Full Course</option>
+                                    <option value="half_course"> Half Course</option>
+
+                                </select>
+
+                            </div>
 							<div class="booking_demo">
 								<div class="booking-demo-1">
 									<ul class="for-mobile">
