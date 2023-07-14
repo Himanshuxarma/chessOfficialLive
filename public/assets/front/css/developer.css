@@ -1,9 +1,9 @@
 
 
 .typecourse {
-	width: 20%;
+	width: 30%;
 	float: right;
-	display: block ruby;
+	display: block;
 	margin-right: 125px;
 	margin-top: -37px;
 }
@@ -14,7 +14,6 @@
 }
 .lablecourse {
 	font-weight: bold;
-
 }
 
 

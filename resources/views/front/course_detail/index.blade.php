@@ -89,21 +89,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <a class="icon-clock" title="Comments - 1"
                                         href="javascript:void(0);">{{$courses->duration}} Duration</a>
                                 </li>
-								
-                            </ul>
+							</ul>
+                            </br>
                             <div class="typecourse">
-                                <label class="lablecourse" for="course_type"> Course Type</label>
+                                <p class="lablecourse" for="course_type"> Course Type</p>
                                 <select class="typecourse1" name="course_type" id="course_type">
                                     <option value="full_course"> Full Course</option>
                                     <option value="half_course"> Half Course</option>
-
                                 </select>
-
                             </div>
 							<div class="booking_demo">
 								<div class="booking-demo-1">
 									<ul class="for-mobile">
-                                        <li class="squareButton light ico ">
+                                        <li class="squareButton light ico">
                                             <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
                                         </li>
                                         <li class="squareButton light ico ">
