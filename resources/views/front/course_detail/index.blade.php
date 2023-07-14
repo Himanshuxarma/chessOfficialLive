@@ -123,7 +123,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 								@if(!empty($data->image))
                                 	@php $curriculumImg = asset('/uploads/course_curriculum').'/'.$data->image; @endphp
                                 @else
-                                	@php $curriculumImg = '/assets/front/images/415x310.png'; @endphp
+                                	@php $curriculumImg = '/assets/front/images/sketch-4029522.jpg'; @endphp
                                 @endif
                                     <img src="{{$curriculumImg}}" data-zoom-image="images/900x600.png" alt="" />
                                 </div>

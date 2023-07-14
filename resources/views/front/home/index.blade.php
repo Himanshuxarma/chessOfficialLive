@@ -21,19 +21,47 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 							<div class="container custom_padding">
 								<div class="sc_section bg_tint_dark">
 									<div class="sc_content main ">
-										<div class="columnsWrap sc_columns sc_columns_count_5">
-											<div class="columns3_5 sc_column_item sc_column_item_1 odd first span_3">
-												<span class="sc_highlight style_1">Select educational or entertaining course, time and teacher for your children.</span>
-											</div>
-											<div class="columns2_5 sc_column_item sc_column_item_4 even span_2 after_span_3">
-												<div class="">
-													<div class="sc_button sc_button_style_light sc_button_size_huge alignright squareButton light huge">
-														<a href="{{route('Buy.Course')}}" class="style_1">Buy a Course</a>
+													<div class="columns1_5 sc_column_item sc_column_item_1 odd first">
+														<a href="#">
+															<div class="sc_title_icon sc_title_top sc_size_huge">
+															<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
+															</div>
+															<h6 class="sc_title sc_title_iconed style_1">Funny educational games</h6>
+														</a>
 													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+													<div class="columns1_5 sc_column_item sc_column_item_2 even">
+														<a href="#">
+															<div class="sc_title_icon sc_title_top sc_size_huge">
+																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
+															</div>
+															<h6 class="sc_title sc_title_iconed style_1">Outside activities</h6>
+														</a>
+													</div>
+													<div class="columns1_5 sc_column_item sc_column_item_3 odd">
+														<a href="#">
+															<div class="sc_title_icon sc_title_top sc_size_huge">
+																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
+															</div>
+															<h6 class="sc_title sc_title_iconed style_1">Babysitter last minute service</h6>
+														</a>
+													</div>
+													<div class="columns1_5 sc_column_item sc_column_item_4 even">
+														<a href="#">
+															<div class="sc_title_icon sc_title_top sc_size_huge">
+																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
+															</div>
+															<h6 class="sc_title sc_title_iconed style_1">Drawing, coloring, and painting</h6>
+														</a>
+													</div>
+													<div class="columns1_5 sc_column_item sc_column_item_5 odd">
+														<a href="#">
+															<div class="sc_title_icon sc_title_top sc_size_huge">
+															<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
+															</div>
+															<h6 class="sc_title sc_title_iconed style_1">Book a Sitter!</h6>
+														</a>
+													</div>
+									
 								</div>
 							</div>
 						</section>
@@ -241,10 +269,10 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 													<div class="sc_team_item sc_team_item_1 odd first">
 														<div class="sc_team_item_avatar">
 														
-														@if(!empty($data->image))
+														@if(empty($data->image))
 														@php $testimonialsImg = asset('/uploads/testimonials').'/'.$data->image; @endphp
 														@else
-														@php $testimonialsImg = '/assets/front/images/370x370.png'; @endphp
+														@php $testimonialsImg = '/assets/front/images/chess-1019908.jpg'; @endphp
 														@endif
 															<img alt="team-5.jpg" src="{{$testimonialsImg}}">
 														</div>
@@ -348,7 +376,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										<div class="sc_content main ">
 											<div class="columnsWrap sc_columns sc_columns_count_2">
 												<div class="columns1_2 sc_column_item sc_column_item_1 odd first">
-
+												<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="400px" height="400px"/>
 												</div>
 												<div class="columns1_2 sc_column_item sc_column_item_2 even text-sm-center">
 													<h3 class="sc_title style_3">We will take care of your kids</h3>
