@@ -81,7 +81,7 @@ class HomeController extends Controller
 		$review->title = $request->title;
 		$review->country_id = $request->country_id;
 		$fileName = time() . '.' . $request->image->getClientOriginalExtension();
-		$request->image->move(public_path('/uploads/testimonial'), $fileName);
+		$request->image->move(public_path('/uploads/testimonials'), $fileName);
 		$review->image = $fileName;
         $review->rating = 0;
 		$review->description = $request->description;

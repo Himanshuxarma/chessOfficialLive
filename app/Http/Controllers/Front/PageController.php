@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Front;
 use Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Course;
 
 
 class pageController extends Controller
@@ -24,8 +26,10 @@ class pageController extends Controller
           return view('front.pages.privacy_policy',compact('policy'));
     }
     public function about_us(){
+      $courses = Course::where('status',1)->get();
+      $countries = Country::where('status',1)->get();
       $aboutUs = Page::where('slug', 'about-us')->first();
-      return view('front.pages.about_us',compact('aboutUs'));
+      return view('front.pages.about_us',compact('aboutUs','courses','countries'));
     }
 
     public function chess_official_academy(){

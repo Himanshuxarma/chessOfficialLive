@@ -39,7 +39,7 @@ class TestimonialController extends Controller
 		$testimonials->title = $request->title;
 		$testimonials->description = $request->description;
 		$fileName = time() . '.' . $request->image->getClientOriginalExtension();
-		$request->image->move(public_path('uploads/testimonials'), $fileName);
+		$request->image->move(public_path('/uploads/testimonials'), $fileName);
 		$testimonials->image = $fileName;
 		$testimonials->rating = $request->rating;
 		$testimonials->status = $request->status ? $request->status : 0;

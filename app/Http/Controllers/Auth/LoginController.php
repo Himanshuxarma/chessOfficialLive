@@ -101,14 +101,13 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout(Request $request)
-    {
-        if(Route::current()->getPrefix()=='admin'){
+    public function logout(Request $request){
+        if(Route::current()->getPrefix()=='/admin'){
             Auth::guard('admin')->logout();
-            return redirect()
-                ->route('adminLogin')
+            return redirect()->route('adminLogin')
                 ->with('status','Admin has been logged out!');
         } else {
+            dd("sds");
             Auth::guard('customer')->logout();
             return redirect()
                 ->route('frontLogin')

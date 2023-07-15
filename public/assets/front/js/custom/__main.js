@@ -642,6 +642,9 @@ function arc_skills_legend_color() {
         jQuery(".sc_skills_arc").find("li:nth-child(3)", '.sc_skills_legend').css({'background-color': jQuery(".arc:nth-child(3) input.color", ".sc_skills_arc").attr("value")});
         jQuery(".sc_skills_arc").find("li:nth-child(4)", '.sc_skills_legend').css({'background-color': jQuery(".arc:nth-child(4) input.color", ".sc_skills_arc").attr("value")});
         jQuery(".sc_skills_arc").find("li:nth-child(5)", '.sc_skills_legend').css({'background-color': jQuery(".arc:nth-child(5) input.color", ".sc_skills_arc").attr("value")});
+        jQuery(".sc_skills_arc").find("li:nth-child(6)", '.sc_skills_legend').css({'background-color': jQuery(".arc:nth-child(6) input.color", ".sc_skills_arc").attr("value")});
+        jQuery(".sc_skills_arc").find("li:nth-child(7)", '.sc_skills_legend').css({'background-color': jQuery(".arc:nth-child(7) input.color", ".sc_skills_arc").attr("value")});
+        
     }
 }
 
