@@ -20,7 +20,7 @@ class Course extends Model
     public function coursePrice($courseId=null){
         $setCountryId = Session::get('SiteCountry');
         // dd($setCountryId);
-        $coursePrice = CoursePrice::where('course_id', $courseId)->where('country_id', $setCountryId)->select('currency', 'price')->first();
+        $coursePrice = CoursePrice::where('course_id', $courseId)->where('country_id', $setCountryId)->select('currency', 'first_price', 'second_price')->first();
         return $coursePrice;
     } 
 }

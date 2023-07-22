@@ -29,11 +29,11 @@
                             <th scope="col" width="10%">Course Type</th>
                             <th scope="col" width="10%">Title</th>
                             <th scope="col" width="10%">Session</th>
-                            <th scope="col" width="10%">Price</th>
+                            <th scope="col" width="10%">First Price</th>
+                            <th scope="col" width="10%">Second Price</th>
                             <th scope="col" width="10%">Age Group</th>
                             <th scope="col" width="10%">Batch</th>
                             <th scope="col" width="10%">Hrs of training</th>
-                            <th scope="col" width="10%">Format</th>
                             <th scope="col" width="10%">Duration</th>
                             <th scope="col" width="10%">Image</th>
                             <th scope="col" width="10%">Status</th>
@@ -48,11 +48,11 @@
                             <td>{{ ucFirst(str_replace('_',' ', $data->type)) }}</td>
                             <td>{{ $data->title }}</td>
                             <td>{{ $data->class}}</td>
-                            <td>{{ $data->price}}</td>
+                            <td>{{ !empty($data->prices[0]) && $data->prices[0]->first_price ? $data->prices[0]->first_price : 'N/A'}}</td>
+                            <td>{{ !empty($data->prices[0]) && $data->prices[0]->second_price ? $data->prices[0]->second_price : 'N/A'}}</td>
                             <td>{{ $data->age}}</td>
                             <td>{{ $data->batch}}</td>
                             <td>{{ $data->hrs_training}}</td>
-                            <td>{{ $data->format}}</td>
                             <td>{{ $data->duration}}</td>
                             <td><img src="/uploads/course/{{$data->image}}" alt="{{$data->image}}" width="50%" /></td>
                             @if($data->status == "1")

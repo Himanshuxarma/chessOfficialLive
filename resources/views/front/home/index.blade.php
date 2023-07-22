@@ -422,7 +422,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 								</div>
 							</div>
 						</section>
-
 					</div>
 				</article>
 			</section>

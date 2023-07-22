@@ -163,9 +163,10 @@ class CourseController extends Controller
 	 */
 	public function course_prices(Request $request, $courseId){
 		if($request && $courseId){
+			$courseDetails = Course::find($courseId);
 			$coursePrices = CoursePrice::where('course_id', $courseId)->get();
 			$countries = Country::where('status', 1)->pluck('country', 'id');
-			return view('admin.course.country_prices', compact('countries', 'courseId','coursePrices'));
+			return view('admin.course.country_prices', compact('courseDetails', 'countries', 'courseId','coursePrices'));
 		}
 	}
 
@@ -182,7 +183,8 @@ class CourseController extends Controller
 					'course_id'=>!empty($request->course_id) ? $request->course_id : '',
 					'country_id'=>!empty($postData) ? $postData : '',
 					'currency'=> !empty($countryCurrency) && !empty($countryCurrency->currency) ? $countryCurrency->currency : '₹',
-					'price'=>!empty($request->price[$key]) ? $request->price[$key] : 0,
+					'first_price'=>!empty($request->first_price[$key]) ? $request->first_price[$key] : 0,
+					'second_price'=>!empty($request->second_price[$key]) ? $request->second_price[$key] : 0,
 					'status'=>!empty($request->status[$key]) ? $request->status[$key] : 0
 				];
 			}

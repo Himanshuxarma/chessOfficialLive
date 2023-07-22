@@ -49,7 +49,7 @@
             <a href="{{ url('redirect/google') }}">Google Login</a>
           </div>
           <div class="registration-button">
-            <a href="{{ url('redirect/facebook') }}">Facebok Login</a>
+            <a href="{{ url('redirect/facebook') }}">Facebook Login</a>
           </div>
         </div>
         

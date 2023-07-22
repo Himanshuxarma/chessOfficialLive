@@ -36,14 +36,21 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 </strong>
                                 @if(!empty($offers) && !empty($offers->offer_id))
                                     <?php 
-                                        $priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+                                        $priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
                                         $offerPercentage = $offers->amount ? $offers->amount : 0;
-                                        $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+                                        if($priceDefault > $offerPercentage){
+                                            $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+                                        } else {
+                                            $newPrice = $priceDefault;
+                                        }
                                     ?>
-                                    <s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
-                                    {{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
-                                @else 
-                                    {{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+                                    <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}">
+                                    <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}">
+                                    <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+                                    <strong id="newPrice">{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}</strong>
+                                @else
+                                    <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}"> 
+                                    <strong id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</strong>
                                 @endif
                             </a>
                         </h2>
@@ -135,18 +142,21 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                         <div class="postStandard">
                             <p>{{$data->description}}</p>
                         </div>
-
                     </article>
                     @endforeach
                     @else
                     <h3> Course Curriculum Data Not Found</h3>
                     @endif
                 </aside>
-
-
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('customscript')
+<script>
+    jQuery(document).on('change', '#course_type' function(){
 
+    });
+</script>
 @endsection
