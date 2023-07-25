@@ -110,8 +110,20 @@ class DashboardController extends Controller
 			$loggedUserData = Auth::user();
 			$referralCode = $loggedUserData && $loggedUserData->referral_code ? $loggedUserData->referral_code : '';
 			if($referralCode){
-				$referralLink = "login/".$referralCode;
+				$referralLink = "login/".$referralCode.'/'.$contactEmail;
 				Mail::to($contactEmail)->send(new referralMail($referralLink));
+				$referralData = [
+                    'sent_by' => $loggedUserData && $loggedUserData->id ? $loggedUserData->id : 0,
+                    'sent_to_email' => $contactEmail ? $contactEmail : '',
+                    'new_user_id'=> 0,
+                    'referrer_offer_percentage' => 10,
+                    'referee_offer_percentage' => 10,
+                    'is_referrer_used' => 0,
+                    'is_referee_used'=> 0,
+                    'status'=> 1
+                ];
+                // dd($referralData);
+                Referral::create($referralData);
             	return redirect(route("front.dashboard"))->with('successMessage', 'Great ! Your referral link sent successfully.');
 			} else {
 				return redirect(route("front.dashboard"))->with('errorMessage', "Sorry we couldn't send referral link, please contact to the support.");

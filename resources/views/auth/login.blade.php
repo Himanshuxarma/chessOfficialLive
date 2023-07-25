@@ -103,9 +103,10 @@
     <div class="vertical-line"></div> 
     <div class="form-right">
       <form action="{{route('register.post')}}" method="post" autocomplete="off">
-        <div class="form-heading"><h3>Get started with CHESSOFFICIAL</h3></div>
         {{ csrf_field() }}
         <input type="hidden" name="referral_code" value="{{$referral_code ? $referral_code : ''}}">
+        <input type="hidden" name="referee_email" value="{{$referee_email ? $referee_email : ''}}">
+        <div class="form-heading"><h3>Get started with CHESSOFFICIAL</h3></div>
         <div class="sc_contact_form sc_contact_form_contact">
           <div class="columns1 w-full margin_top_mini margin_bottom_mini">
             <label for="signup_full_name">Full Name</label>
@@ -130,7 +131,7 @@
           </div>
           <div class="columns1 w-full margin_top_mini margin_bottom_mini">
             <label for="signup_phone">Phone</label>
-            <input type="text" id="signup_phone" class="form-control" name="phone" placeholder="Enter your phone number">
+            <input type="text" id="signup_phone" class="form-control" name="phone"minlength="10" maxlength="10" onkeypress="return isNumberKey(event)" placeholder="Enter your phone number">
             @if ($errors->has('phone'))
               <span class="text-danger">{{ $errors->first('phone') }}</span>
             @endif
@@ -146,6 +147,13 @@
 @endsection
 @section('customscript')
 <script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
   jQuery(document).on('click', '#forgotPasswordFormLink', function(){
     jQuery('#loginForm').addClass('d-none');
     jQuery('#forgotPasswordForm').removeClass('d-none');

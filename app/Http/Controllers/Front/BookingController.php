@@ -18,6 +18,7 @@ use App\Models\Demo;
 use App\Models\Order;
 use App\Models\CountryTimezone;
 use App\Models\CardDetail;
+use App\Models\Referral;
 use Hash;
 use Razorpay\Api\Api;
 use Exception;
@@ -132,19 +133,19 @@ class BookingController extends Controller {
 
      */
     public function buy_course($id = null) {
-        // $isCouse = false;
-        // if(!empty($id)){
-        //     $isCouse = true;
-        // }else{
-        //     $isCouse = false;
-        // }
-        // dd("singh");
-        $countryId = Session::get('SiteCountry');
-        $courseData = Course::find($id);
-        $country = Country::all();
-        $course = Course::all();
-        $timezones = CountryTimezone::where('country_id', $countryId)->get();
-        return view('front.booking.buy_course', compact('courseData', 'country', 'timezones', 'course'));
+        if(Auth::guard('customer')->check()){
+			$customer = Auth::guard('customer')->user();
+            $countryId = Session::get('SiteCountry');
+            $courseData = Course::find($id);
+            $country = Country::all();
+            $course = Course::all();
+            $referee_customer = Referral::where('new_user_id', $customer->id)->first();
+            $referral_customer = Referral::where('sent_by', $customer->id)->first();
+            $timezones = CountryTimezone::where('country_id', $countryId)->get();
+            return view('front.booking.buy_course', compact('courseData', 'country', 'timezones', 'course','referee_customer'));
+        } else {
+            dd("singh!!");
+        }
     }
 
     /**

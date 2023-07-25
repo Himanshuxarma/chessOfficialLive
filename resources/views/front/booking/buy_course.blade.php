@@ -1,6 +1,13 @@
 @extends('front.layouts.master')
 @section('content')
-<?php $countryId = Session::get('SiteCountry'); ?>
+<?php
+$countryId = 6;
+if(session()->has('SiteCountry')){
+    $countryId = session()->get('SiteCountry');
+}
+$countryDetails = App\Helpers\Helper::getCountryData($countryId); 
+
+?>
 <section>
     <div class="container">
         <div class="form-container sc_columns">
@@ -14,11 +21,19 @@
                             <strong>
                                 {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                             </strong>
-                            {{$priceData && $priceData->price ? $priceData->price : ($courseData && $courseData->price ? $courseData->price : 0.00) }}
+                            <s id="basePrice"></s>
+                            <strong id="newPrice">0.00</strong>
+                            
                         </span>
                         @endif
                     </h2>
                     <form action="{{route('Store.Buy.Course')}}" id="booking_frm" method="post">
+                        @if(!empty($referral_customer))
+                            <input type="hidden" name="referral_offer" id="referral_offer" value="{{!empty($referral_customer->referrer_offer_percentage) ? $referral_customer->referrer_offer_percentage : 0}}">
+                        @endif
+                        @if(!empty($referee_customer))
+                            <input type="hidden" name="referral_offer" id="referral_offer" value="{{!empty($referee_customer->referee_offer_percentage) ? $referee_customer->referee_offer_percentage : 0}}">
+                        @endif
                         {{ csrf_field() }}
                         @if(!Auth::guard('customer')->check())
                             <div class="columns1_2 margin_top_mini margin_bottom_mini">
@@ -119,6 +134,18 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 $(document).ready(function () {
+
+    var courseType = localStorage.getItem("courseType");
+    var courseTaken = localStorage.getItem("courseTaken");
+    var firstPrice = localStorage.getItem("firstPrice");
+    var secondPrice = localStorage.getItem("secondPrice");
+    if(courseTaken == "full_course"){
+        jQuery('#newPrice').html(firstPrice);
+    } else {
+        jQuery('#newPrice').html(secondPrice);
+    }
+    var referralBonus = jQuery('')
+    
     $('#country_id').on('change', function () {
         var countryId = this.value;
         $('#timezone_id').html('');

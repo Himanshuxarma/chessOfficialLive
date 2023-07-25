@@ -9,6 +9,10 @@ class Referral extends Model
 {
     use HasFactory;
     protected $table = 'referrals';
+
+    public function users(){
+        return $this->belongsTo('App\Models\User', 'new_user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -17,9 +21,11 @@ class Referral extends Model
     protected $fillable = [
         'sent_by',
         'sent_to_email',
-        'offer_percentage',
-        'is_applied',
-        'is_used',
+        'new_user_id',
+        'referrer_offer_percentage',
+        'referee_offer_percentage',
+        'is_referrer_used',
+        'is_referee_used',
         'status'
     ];
 }

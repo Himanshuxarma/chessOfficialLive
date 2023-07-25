@@ -16,7 +16,6 @@ class Course extends Model
     public function prices(){
         return $this->hasMany(CoursePrice::class, 'course_id');
     }
-
     public function coursePrice($courseId=null){
         $setCountryId = Session::get('SiteCountry');
         // dd($setCountryId);

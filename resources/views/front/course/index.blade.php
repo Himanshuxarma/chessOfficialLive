@@ -7,6 +7,8 @@ $countryId = session()->get('SiteCountry');
 }
 $countryDetails = App\Helpers\Helper::getCountryData($countryId); 
 @endphp
+ 
+                        
 <div id="topOfPage" class="topTabsWrap">
 	<div class="main">
 		<div class="speedBar">

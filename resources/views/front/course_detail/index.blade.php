@@ -52,6 +52,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}"> 
                                     <strong id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</strong>
                                 @endif
+                                <input type="hidden" name="first_price" value="{{isset($priceData->first_price) && !empty($priceData->first_price) ? $priceData->first_price : 0}}">
+                                <input type="hidden" name="second_price" value="{{isset($priceData->second_price) && !empty($priceData->second_price) ? $priceData->second_price : 0}}">
                             </a>
                         </h2>
                         <div class="sc_section columns1_2 post_thumb thumb">
@@ -100,10 +102,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             </br>
                             <div class="typecourse">
                                 <p class="lablecourse" for="course_type"> Course Type</p>
-                                <select class="typecourse1" name="course_type" id="course_type">
-                                    <option value="full_course"> Full Course</option>
-                                    <option value="half_course"> Half Course</option>
-                                </select>
+                                @if($courses->type == "main_course")
+                                    <select class="typecourse1" name="course_type" id="course_type" data-course-type="{{$courses->type ? $courses->type : 'main_course'}}">
+                                        <option>Select Course Type</option>
+                                        <option value="full_course"> Full Course</option>
+                                        <option value="half_course"> Half Course</option>
+                                    </select>
+                                @else 
+                                    <select class="typecourse1" name="course_type" id="course_type" data-course-type="{{$courses->type ? $courses->type : 'main_course'}}">
+                                        <option>Select Course Type</option>
+                                        <option value="full_course">1 Month</option>
+                                        <option value="half_course">3 Month</option>
+                                    </select>
+                                @endif
                             </div>
 							<div class="booking_demo">
 								<div class="booking-demo-1">
@@ -111,8 +122,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                         <li class="squareButton light ico">
                                             <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
                                         </li>
-                                        <li class="squareButton light ico ">
-                                            <a href="{{route('Buy.Course',$courses->id)}}">Buy A Course</a>
+                                        <li class="squareButton light ico">
+                                            <a href="{{route('Buy.Course',$courses->id)}}" id="buyACourseLink">Buy A Course</a>
                                         </li>
 								    </ul>
 								</div>
@@ -155,8 +166,35 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 @endsection
 @section('customscript')
 <script>
-    jQuery(document).on('change', '#course_type' function(){
-
+    jQuery(document).on('change', '#course_type', function(){
+        var courseTaken = jQuery(this).val();
+        var courseType = jQuery(this).data('course-type');
+        var firstPrice = jQuery('input[name=first_price]').val();
+        var secondPrice = jQuery('input[name=second_price]').val();
+        // let courseTakenVariable = "";
+        // if(courseType=="main_course"){
+        //     courseTakenHalf = "half_course";
+        //     courseTakenFull = "full_course";
+        // } else {
+        //     courseTakenHalf = "";
+        //     courseTakenFull = "full_course";
+        // }
+        if(courseTaken == "half_course"){
+            jQuery('#basePrice').html(jQuery('input[name=second_price]').val() +'/-');
+            jQuery('input[name=base_price]').val(jQuery('input[name=second_price]').val());
+            //newLink =  jQuery('#buyACourseLink').attr('href')+'?courseType='+courseTaken;
+        } else {
+            jQuery('#basePrice').html(jQuery('input[name=first_price]').val() +'/-');
+            jQuery('input[name=base_price]').val(jQuery('input[name=first_price]').val());
+            //newLink =  jQuery('#buyACourseLink').attr('href')+'?courseType='+courseTaken;
+        }
+        localStorage.setItem("courseType", courseType);
+        localStorage.setItem("courseTaken", courseTaken);
+        localStorage.setItem("firstPrice", firstPrice);
+        localStorage.setItem("secondPrice", secondPrice);
+        // alert(newLink);
+        //jQuery('#buyACourseLink').attr('href', newLink);
+        // alert(jQuery('#buyACourseLink').attr('href'));
     });
 </script>
 @endsection

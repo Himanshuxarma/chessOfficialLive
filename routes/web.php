@@ -34,7 +34,7 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
         //Frontend Login
-        Route::get("login/{referral?}", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontLogin');
+        Route::get("login/{referral?}/{email?}", [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontLogin');
         Route::post("postLogin", [App\Http\Controllers\Auth\LoginController::class, 'postLogin'])->name('postLogin');
         Route::post("postForgotPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postForgetPasswordForm'])->name('postForgotPassword');
         Route::get("resetPassword", [App\Http\Controllers\Auth\ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');

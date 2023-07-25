@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Referral;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -71,7 +72,6 @@ class RegisterController extends Controller
         ]);
         $data = $request->all();
         $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
- 
         $referralCode = substr(str_shuffle($str), 0, 10);
         $registrationData = [
             'full_name' => $data['full_name'],
@@ -82,24 +82,15 @@ class RegisterController extends Controller
             'referral_code'=>$referralCode
         ];
         // dd($registrationData);
+        
         $check = User::create($registrationData);
         if($check->id){
-
-            if($request->referral_code){
-                $referrerDetails = User::where('referrer_code', $request->referral_code)->first();
-                $referralData = [
-                    'sent_by' => $referrerDetails && $referrerDetails->id ? $referrerDetails->id : 0,
-                    'sent_to_email' => '',
-                    'new_user_id'=>$check->id,
-                    'referrer_offer_percentage' => 10,
-                    'referee_offer_percentage' => 10,
-                    'is_referrer_used' => 0,
-                    'is_referee_used'=> 0,
-                    'status'=> 1
-                ];
-                Referral::create($referralData);
+            if($request->referral_code && $request->referee_email){
+                $referrerDetails = User::where('referral_code', $request->referral_code)->first();
+                $referralData = Referral::where('sent_to_email', $request->referee_email)->first();
+                $referralData->new_user_id = $check->id  ? $check->id : 0;
+                $referralData->save();
             }
-
             $customerId = $check->id;
             $furtherProcess = true;
             $check->decryptedPass = $data['register_password'];

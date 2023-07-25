@@ -36,7 +36,7 @@ class LoginController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function login($referral_code=null){
+    public function login($referral_code=null, $referee_email=null){
         if(Route::current()->getPrefix() == '/admin'){
             return view('auth.admin.login',[
                 'title' => 'Admin Login  - ' . config('app.name'),
@@ -46,7 +46,8 @@ class LoginController extends Controller
             return view('auth.login', [
                 'title' => 'Customer Login  - ' . config('app.name'),
                 'loginRoute' => 'login',
-                'referral_code'=>$referral_code ? $referral_code : ''
+                'referral_code'=>$referral_code ? $referral_code : '',
+                'referee_email'=>$referee_email? $referee_email: '',
             ]);
         }
     }
@@ -107,7 +108,6 @@ class LoginController extends Controller
             return redirect()->route('adminLogin')
                 ->with('status','Admin has been logged out!');
         } else {
-            dd("sds");
             Auth::guard('customer')->logout();
             return redirect()
                 ->route('frontLogin')

@@ -435,9 +435,11 @@
                                                                 @foreach ($referrals as $data)
                                                                 <tr>
                                                                     <td  style="text-align: center">{{ $data->id }}</td>
-                                                                    <td  style="text-align: center">{{ $data->sent_to_email ? $data->sent_to_email : 'N/A'}} </td>
-                                                                    <td  style="text-align: center">{{ $data->referee_offer_percentage ? referee_offer_percentage.'%' : 'No'}} </td>
+                                                                    <td style="text-align: center">{{(!empty($data->users)  && $data->users->email != '') ? $data->users->email : 'N/A'}}</td>
+                                                                    
+                                                                    <td  style="text-align: center">{{ $data->referee_offer_percentage ? $data->referee_offer_percentage. '%' : 'No'}} </td>
                                                                     <td  style="text-align: center">{{ $data->is_referee_used && $data->is_referee_used == 1 ? 'Yes' : 'No'}} </td>
+                                                                    
                                                                 </tr>
                                                                 @endforeach
                                                             @else 
