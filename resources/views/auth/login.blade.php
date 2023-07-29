@@ -147,14 +147,15 @@
 @endsection
 @section('customscript')
 <script>
-    function isNumberKey(evt) {
-        var charCode = (evt.which) ? evt.which : evt.keyCode
-        if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
-        return true;
+  localStorage.clear();
+  function isNumberKey(evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+          return false;
+      return true;
     }
 
-  jQuery(document).on('click', '#forgotPasswordFormLink', function(){
+  jQuery(document).on('cli`ck', '#forgotPasswordFormLink', function(){
     jQuery('#loginForm').addClass('d-none');
     jQuery('#forgotPasswordForm').removeClass('d-none');
   });

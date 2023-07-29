@@ -140,8 +140,8 @@ class BookingController extends Controller {
         $referee_customer = '';
         $referral_customer = '';
         if($customer && $customer->id){
-            $referee_customer = Referral::where('new_user_id', $customer->id)->where('is_referee_used ', '!=', 1)->first();
-            $referral_customer = Referral::where('sent_by', $customer->id)->where('is_referee_used', 1)->where('is_referrer_used ', '!=', 1)->first();    
+            $referee_customer = Referral::where('new_user_id', $customer->id)->where('is_referee_used', '!=', 1)->first();
+            $referral_customer = Referral::where('sent_by', $customer->id)->where('is_referee_used', 1)->where('is_referrer_used', '!=', 1)->first();    
         }
         
         $timezones = CountryTimezone::where('country_id', $countryId)->get();

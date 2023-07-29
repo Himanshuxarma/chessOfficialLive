@@ -37,6 +37,7 @@ $offers = \Helper::getoffersbycourse($courseData->id);
                                 <strong id="newPrice">{{!empty($newPrice) && !empty($newPrice) ? $newPrice : 0}}</strong>/-
                             @else
                                 <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}"> 
+                                <s id="basePrice" class="hide">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price.'/-' : 0)}}</s>/-
                                 <strong id="newPrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}</strong>/-
                             @endif
                             <?php 
@@ -49,6 +50,7 @@ $offers = \Helper::getoffersbycourse($courseData->id);
                         </span>
                         @endif
                     </h2>
+                    <p class="alert alert-offer hide refferal_alert"></p>
                     <form action="{{route('Store.Buy.Course')}}" id="booking_frm" method="post">
                         @if(!empty($referral_customer))
                             <input type="hidden" name="referral_offer" id="referral_offer" value="{{!empty($referral_customer->referrer_offer_percentage) ? $referral_customer->referrer_offer_percentage : 0}}">
@@ -156,7 +158,7 @@ $offers = \Helper::getoffersbycourse($courseData->id);
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 $(document).ready(function () {
-    jQuery('#newPrice').html('');
+    // jQuery('#newPrice').html('');
     var courseType = localStorage.getItem("courseType");
     var courseTaken = localStorage.getItem("courseTaken");
     var firstPrice = localStorage.getItem("firstPrice");
@@ -173,9 +175,10 @@ $(document).ready(function () {
     }
     var amountIfReference = 0;
     if(referrenceOffer != "" && referrenceOffer != undefined){
-        amountIfReference = parseFloat(finalAmount) + parseFloat(parseFloat(finalAmount) * parseFloat(referrenceOffer)/100);
-        jQuery('#basePrice').html(finalAmount);
+        amountIfReference = parseFloat(finalAmount) - parseFloat(parseFloat(finalAmount) * parseFloat(referrenceOffer)/100);
+        jQuery('#basePrice').html(finalAmount).removeClass('hide');
         jQuery('#newPrice').html(amountIfReference.toFixed(2));
+        jQuery('.refferal_alert').html('Refferal offer applied').css('display', 'block');
     } else {
         jQuery('#newPrice').html(finalAmount);
     }

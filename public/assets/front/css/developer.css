@@ -1,7 +1,12 @@
-
-
-.squareButton.select {
-
+section{
+	height:100%;
+	display: inline-block;
+	width: 100%;
+}
+#booking_frm{
+	height: 100%;
+	width: 100%;
+	display: inline-block;
 }
 .typecourse1 {
 	background-color: #1bb4b9;
@@ -72,6 +77,15 @@
 
 .validation_error{
 	color:#ec0f0f;
+}
+.alert-offer {
+    color: #000;
+    background-color: #dcddd1;
+    border-color: #d32535;
+    padding: 5px;
+    margin-bottom: 3%;
+    font-weight: 400;
+	display:none;
 }
 .alert-danger {
 	color: #fff;
@@ -405,7 +419,7 @@ input[type=submit]:hover {
 
 
 .course-price{
-	margin: 0px 4% 30px 0px;
+	margin: 0px 0px 30px 0px;
 }
 /* .login a{
 background-color: #1BB4B9;
