@@ -26,36 +26,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                         <?php /* <div class="slidecontainer">
                             <input type="range" min="0" max="100" value="100" class="slider" step="50" id="myRange">
                         </div> */ ?>
-                        <h2 class="post_title d-flex">
-                            @php $priceData =  $courses->coursePrice($courses->id); @endphp
-
-                            <a href="javascript:void();">{{$courses->title}}</a>
-                            <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif" href="javascript:void(0);">
-                                <strong>
-                                    {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
-                                </strong>
-                                @if(!empty($offers) && !empty($offers->offer_id))
-                                    <?php 
-                                        $priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
-                                        $offerPercentage = $offers->amount ? $offers->amount : 0;
-                                        if($priceDefault > $offerPercentage){
-                                            $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
-                                        } else {
-                                            $newPrice = $priceDefault;
-                                        }
-                                    ?>
-                                    <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}">
-                                    <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}">
-                                    <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
-                                    <strong id="newPrice">{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}</strong>
-                                @else
-                                    <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}"> 
-                                    <strong id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</strong>
-                                @endif
-                                <input type="hidden" name="first_price" value="{{isset($priceData->first_price) && !empty($priceData->first_price) ? $priceData->first_price : 0}}">
-                                <input type="hidden" name="second_price" value="{{isset($priceData->second_price) && !empty($priceData->second_price) ? $priceData->second_price : 0}}">
-                            </a>
-                        </h2>
+                        <h2><a href="javascript:void();">{{$courses->title}}</a></h2>
                         <div class="sc_section columns1_2 post_thumb thumb">
                             <a href="javascript:void(0);">
                                 @if(!empty($courses->image))
@@ -66,9 +37,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 <img class="course-details-page" alt="Babysitter and Nanny Hiring Resources" src="{{$courseImg}}">
                             </a>
                         </div>
-                        @php $offers = \Helper::getoffersbycourse($courses->id); @endphp
                         <div class="postStandard">
-                            <p>{{$courses->description}} </p>
+                            <p>{{ strlen(strip_tags($courses->description) < 100 ) ? substr(strip_tags($courses->description), 0, 1500).' ...' : strip_tags($courses->description)}} </p>
                         </div>
                         <div class="course_detail_button">
                             <ul>
@@ -99,9 +69,37 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                         href="javascript:void(0);">{{$courses->duration}} Duration</a>
                                 </li>
 							</ul>
-                            </br>
-                            <div class="typecourse">
-                                <p class="lablecourse" for="course_type"> Course Type</p>
+                        </div>
+                        <div class="booking-section">
+                            @php $priceData =  $courses->coursePrice($courses->id); @endphp
+                            <h2>
+                                <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif sc_alignleft" href="javascript:void(0);">
+                                    <strong>
+                                        {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
+                                    </strong>
+                                    @if(!empty($offers) && !empty($offers->offer_id))
+                                        <?php 
+                                            $priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+                                            $offerPercentage = $offers->amount ? $offers->amount : 0;
+                                            if($priceDefault > $offerPercentage){
+                                                $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+                                            } else {
+                                                $newPrice = $priceDefault;
+                                            }
+                                        ?>
+                                        <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}">
+                                        <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}">
+                                        <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+                                        <strong id="newPrice">{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}</strong>
+                                    @else
+                                        <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}"> 
+                                        <strong id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</strong>
+                                    @endif
+                                    <input type="hidden" name="first_price" value="{{isset($priceData->first_price) && !empty($priceData->first_price) ? $priceData->first_price : 0}}">
+                                    <input type="hidden" name="second_price" value="{{isset($priceData->second_price) && !empty($priceData->second_price) ? $priceData->second_price : 0}}">
+                                </a>
+                            </h2>
+                            <div class="typecourse sc_alignleft squareButton">
                                 @if($courses->type == "main_course")
                                     <select class="typecourse1" name="course_type" id="course_type" data-course-type="{{$courses->type ? $courses->type : 'main_course'}}">
                                         <option>Select Course Type</option>
@@ -116,18 +114,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     </select>
                                 @endif
                             </div>
-							<div class="booking_demo">
-								<div class="booking-demo-1">
-									<ul class="for-mobile">
+                            <div class="booking_demo">
+                                <div class="booking-demo-1">
+                                    <ul class="for-mobile">
                                         <li class="squareButton light ico">
                                             <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
                                         </li>
                                         <li class="squareButton light ico">
                                             <a href="{{route('Buy.Course',$courses->id)}}" id="buyACourseLink">Buy A Course</a>
                                         </li>
-								    </ul>
-								</div>
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
                     </article>
 
                     @if (!empty($curriculum))

@@ -167,7 +167,7 @@ table.sc_calendar th, table.sc_calendar td,
 .me-plugin { position: absolute; height: 0; width: 0; }
 
 /* Buttons */
-.squareButton { margin-top:1px; }
+/* .squareButton { margin-top:1px; } */
 .roundButton.border > a,
 .squareButton.border > a,
 .squareButton.border > button { background:none; }

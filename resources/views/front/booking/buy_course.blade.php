@@ -6,7 +6,7 @@ if(session()->has('SiteCountry')){
     $countryId = session()->get('SiteCountry');
 }
 $countryDetails = App\Helpers\Helper::getCountryData($countryId); 
-
+$offers = \Helper::getoffersbycourse($courseData->id);
 ?>
 <section>
     <div class="container">
@@ -21,9 +21,31 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             <strong>
                                 {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                             </strong>
-                            <s id="basePrice"></s>
-                            <strong id="newPrice">0.00</strong>
-                            
+                            @if(!empty($offers) && !empty($offers->offer_id))
+                                <?php 
+                                    $priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0);
+                                    $offerPercentage = $offers->amount ? $offers->amount : 0;
+                                    if($priceDefault > $offerPercentage){
+                                        $newPrice = $priceDefault - ($priceDefault * ($offerPercentage/100));
+                                    } else {
+                                        $newPrice = $priceDefault;
+                                    }
+                                ?>
+                                <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}">
+                                <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice : 0}}">
+                                <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price.'/-' : 0)}}</s>/-
+                                <strong id="newPrice">{{!empty($newPrice) && !empty($newPrice) ? $newPrice : 0}}</strong>/-
+                            @else
+                                <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}"> 
+                                <strong id="newPrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}</strong>/-
+                            @endif
+                            <?php 
+                                if(!empty($referee_customer) || !empty($referral_customer)){
+                            ?>
+                                <input type="hidden" id="reference_offer" value="10" data-user-type="<?php echo $referee_customer ? 'referee' : 'referral'; ?>" />
+                            <?php
+                                }
+                            ?>
                         </span>
                         @endif
                     </h2>
@@ -134,18 +156,31 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 $(document).ready(function () {
-
+    jQuery('#newPrice').html('');
     var courseType = localStorage.getItem("courseType");
     var courseTaken = localStorage.getItem("courseTaken");
     var firstPrice = localStorage.getItem("firstPrice");
     var secondPrice = localStorage.getItem("secondPrice");
-    if(courseTaken == "full_course"){
-        jQuery('#newPrice').html(firstPrice);
-    } else {
-        jQuery('#newPrice').html(secondPrice);
+    if(courseTaken == null){
+        courseTaken = "full_course";
+        firstPrice = jQuery("#newPrice").html();
     }
-    var referralBonus = jQuery('')
+    var referrenceOffer = jQuery('#reference_offer').val();
+    if(courseTaken == null || courseTaken == undefined || String(courseTaken )== "full_course"){
+        var finalAmount = firstPrice;
+    } else {
+        var finalAmount = secondPrice;
+    }
+    var amountIfReference = 0;
+    if(referrenceOffer != "" && referrenceOffer != undefined){
+        amountIfReference = parseFloat(finalAmount) + parseFloat(parseFloat(finalAmount) * parseFloat(referrenceOffer)/100);
+        jQuery('#basePrice').html(finalAmount);
+        jQuery('#newPrice').html(amountIfReference.toFixed(2));
+    } else {
+        jQuery('#newPrice').html(finalAmount);
+    }
     
+
     $('#country_id').on('change', function () {
         var countryId = this.value;
         $('#timezone_id').html('');

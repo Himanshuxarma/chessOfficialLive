@@ -115,7 +115,6 @@ class BookingController extends Controller {
                 $user = User::where('id', $customerId)->first();
 
                 Mail::to($user['email'])->send(new demoBookingMail($user, $demoBoking));
-                // dd($demoBoking);
                 return redirect()->route('courseDetails', $request->course_id)->with('success', 'Your demo has been booked, Admin wil look into it and revert you back soon.');
             } else {
                 return redirect()->route('courseDetails', $request->course_id)->with('error', 'Something went wrong.');
@@ -133,19 +132,21 @@ class BookingController extends Controller {
 
      */
     public function buy_course($id = null) {
-        if(Auth::guard('customer')->check()){
-			$customer = Auth::guard('customer')->user();
-            $countryId = Session::get('SiteCountry');
-            $courseData = Course::find($id);
-            $country = Country::all();
-            $course = Course::all();
-            $referee_customer = Referral::where('new_user_id', $customer->id)->first();
-            $referral_customer = Referral::where('sent_by', $customer->id)->first();
-            $timezones = CountryTimezone::where('country_id', $countryId)->get();
-            return view('front.booking.buy_course', compact('courseData', 'country', 'timezones', 'course','referee_customer'));
-        } else {
-            dd("singh!!");
+        $customer = Auth::guard('customer')->user();
+        $countryId = Session::get('SiteCountry');
+        $courseData = Course::find($id);
+        $country = Country::all();
+        $course = Course::all();
+        $referee_customer = '';
+        $referral_customer = '';
+        if($customer && $customer->id){
+            $referee_customer = Referral::where('new_user_id', $customer->id)->where('is_referee_used ', '!=', 1)->first();
+            $referral_customer = Referral::where('sent_by', $customer->id)->where('is_referee_used', 1)->where('is_referrer_used ', '!=', 1)->first();    
         }
+        
+        $timezones = CountryTimezone::where('country_id', $countryId)->get();
+        return view('front.booking.buy_course', compact('courseData', 'country', 'timezones', 'course', 'referee_customer', 'referral_customer'));
+        
     }
 
     /**
