@@ -66,6 +66,13 @@
 
 @media (max-width: 768px) {
 
+	.justify-end{
+		justify-content:center	;
+	   }
+	   .flex-wrap{
+		flex-wrap: wrap;
+	}
+	
 	.text-sm-center *,
 	.text-sm-center{
 		 text-align:center !important;

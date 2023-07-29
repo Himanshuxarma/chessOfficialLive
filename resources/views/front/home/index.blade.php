@@ -19,32 +19,32 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 
 						<section class="orange_section">
 							<div class="container custom_padding">
-									<div class="sc_content main ">
-													<div class="columns1_5 sc_column_item sc_column_item_1 odd first">
+									<div class="sc_content main d-flex flex-wrap justify-center">
+													<div class="sc_column_item_1 p-10 odd first">
 															<div class="sc_title_icon sc_title_top sc_size_huge">
 															<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
 															</div>
 															<h6 class="sc_title sc_title_iconed style_1">Funny educational games</h6>
 													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_2 even">
+													<div class="sc_column_item_2 p-10 even">
 															<div class="sc_title_icon sc_title_top sc_size_huge">
 																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
 															</div>
 															<h6 class="sc_title sc_title_iconed style_1">Outside activities</h6>
 													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_3 odd">
+													<div class="sc_column_item_3 p-10 odd">
 															<div class="sc_title_icon sc_title_top sc_size_huge">
 																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
 															</div>
 															<h6 class="sc_title sc_title_iconed style_1">Babysitter last minute service</h6>
 													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_4 even">
+													<div class="sc_column_item_4 p-10 even">
 															<div class="sc_title_icon sc_title_top sc_size_huge">
 																<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
 															</div>
 															<h6 class="sc_title sc_title_iconed style_1">Drawing, coloring, and painting</h6>
 													</div>
-													<div class="columns1_5 sc_column_item sc_column_item_5 odd">
+													<div class="sc_column_item_5 p-10 odd">
 															<div class="sc_title_icon sc_title_top sc_size_huge">
 															<img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="50px" height="50px"/>
 															</div>

@@ -26,8 +26,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                         <?php /* <div class="slidecontainer">
                             <input type="range" min="0" max="100" value="100" class="slider" step="50" id="myRange">
                         </div> */ ?>
-                        <h2><a href="javascript:void();">{{$courses->title}}</a></h2>
-                        <div class="sc_section columns1_2 post_thumb thumb">
+                        
+                        <div class="sc_section post_thumb thumb">
                             <a href="javascript:void(0);">
                                 @if(!empty($courses->image))
                                 	@php $courseImg = asset('/uploads/course').'/'.$courses->image; @endphp
@@ -70,10 +70,10 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 </li>
 							</ul>
                         </div>
-                        <div class="booking-section">
+                        <div class="booking-section justify-end d-flex  flex-wrap">
                             @php $priceData =  $courses->coursePrice($courses->id); @endphp
-                            <h2>
-                                <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif sc_alignleft" href="javascript:void(0);">
+                            <h2 class="d-flex p-0 m-0 mb-10 mr-20">
+                                <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif d-flex m-0" href="javascript:void(0);">
                                     <strong>
                                         {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                                     </strong>
@@ -99,7 +99,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <input type="hidden" name="second_price" value="{{isset($priceData->second_price) && !empty($priceData->second_price) ? $priceData->second_price : 0}}">
                                 </a>
                             </h2>
-                            <div class="typecourse sc_alignleft squareButton">
+                            <div class="typecourse  mb-10 mr-30 squareButton">
                                 @if($courses->type == "main_course")
                                     <select class="typecourse1" name="course_type" id="course_type" data-course-type="{{$courses->type ? $courses->type : 'main_course'}}">
                                         <option>Select Course Type</option>
@@ -114,13 +114,13 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     </select>
                                 @endif
                             </div>
-                            <div class="booking_demo">
+                            <div class="booking_demo  mb-10">
                                 <div class="booking-demo-1">
                                     <ul class="for-mobile">
                                         <li class="squareButton light ico">
                                             <a href="{{url('booking/'. $courses->id)}}">Book A Demo</a>
                                         </li>
-                                        <li class="squareButton light ico">
+                                        <li class="squareButton light ico ml-20">
                                             <a href="{{route('Buy.Course',$courses->id)}}" id="buyACourseLink">Buy A Course</a>
                                         </li>
                                     </ul>
@@ -132,10 +132,18 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                     @if (!empty($curriculum))
                     @foreach($curriculum as $key=> $data)
 
-                    <article class="post_format_standard  hrShadow  post @if($key % 2 == 0)postRight even @endif postLeft  odd">
+                    <article class="post-article post_format_standard d-flex flex-wrap hrShadow post @if($key % 2 == 0) even @endif odd">
 
-                        <div class="columns1_2  @if($key % 2 == 0)sc_alignright  @endif sc_alignleft"> 
-                            <div class="">
+                        <div class="columns1_2 p-30 m-0">
+                            <h2 class="post_title">
+                                <a href="javascript:void(0);">{{$data->title}}</a>
+                            </h2>
+                            <div class="postStandard">
+                                <p>{{$data->description}}</p>
+                            </div>
+                        </div>
+                        <div class="columns1_2  @if($key % 2 == 0)sc_alignright  @endif sc_alignleft m-0"> 
+                            
                                 <div class="course_curriculum">
 								@if(!empty($data->image))
                                 	@php $curriculumImg = asset('/uploads/course_curriculum').'/'.$data->image; @endphp
@@ -144,13 +152,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 @endif
                                     <img src="{{$curriculumImg}}" data-zoom-image="images/900x600.png" alt="" />
                                 </div>
-                            </div>
-                        </div>
-                        <h2 class="post_title">
-                            <a href="javascript:void(0);">{{$data->title}}</a>
-                        </h2>
-                        <div class="postStandard">
-                            <p>{{$data->description}}</p>
+                            
                         </div>
                     </article>
                     @endforeach
