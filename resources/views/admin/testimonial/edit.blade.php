@@ -35,13 +35,13 @@
                               <td><img src="/uploads/testimonials/{{$testimonials->image}}" alt="{{$testimonials->image}}" width="50%" /></td>
                            </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                           <div class="form-group">
                               <label for="rating"> Rating</label>
                               <input type="text" name="rating" class="form-control" value="{{$testimonials->rating}}" id="rating"require placeholder=" Rating">
                               
                            </div>
-                        </div>
+                        </div> -->
                    </div>
                     <div class="form-group">
                           <div class="form-check">

@@ -29,14 +29,12 @@
 
 										<div class="sc_toggles sc_toggles_style_2 sc_show_counter sc_toggles_large">
 											@if(!empty($faqs))
-											@foreach($faqs as $faq)
-
-											
-												<div class="sc_toggles_item   @if($faq->id ==1)sc_active first @endif sc_toggles_item_large odd ">
+											@foreach($faqs as $key => $faq)
+                                            <div class="sc_toggles_item   @if($key+1==1)sc_active first @endif sc_toggles_item_large odd ">
 													<h3 class="sc_toggles_title d-flex">
-														<span class="sc_items_counter">{{$faq->id}}</span>{{$faq->question}}
+														<span class="sc_items_counter">{{$key+1}}</span>{{$faq->question}}
 													</h3>
-													<div class="sc_toggles_content"@if($faq->id==1)style="display:block"@endif>
+													<div class="sc_toggles_content"@if($key+1==1)style="display:block"@endif>
 														<p>{{$faq->answer}}</p>
 													</div>
 												</div>
