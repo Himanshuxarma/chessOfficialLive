@@ -71,8 +71,7 @@ class TestimonialController extends Controller
     public function update($id, Request $request){
 		$request->validate([
 		'title' => 'required',
-		'description' => 'required',
-		'rating' => 'required'
+		'description' => 'required'
 		]);
 		$testimonials = Testimonial::find($id);
 		if ($request->image != '') {
@@ -94,7 +93,7 @@ class TestimonialController extends Controller
 		$testimonials->title = $request->title;
 		$testimonials->description = $request->description;
 		
-		$testimonials->rating = $request->rating;
+		// $testimonials->rating = $request->rating;
 		$testimonials->status = $request->status ? $request->status : 0;
 		$testimonials->save();
 		return redirect()->route('testimonialsList')->with('success', 'Testimonial Has Been updated successfully');

@@ -34,7 +34,7 @@
                         @foreach ($pages as $page)
                         <tr>
                             <td>{{ $page->id }}</td>
-                            <td>{{ $page->title }}</td>
+                            <td>{{ strlen(strip_tags($page->title)) > 50  ? substr(strip_tags($page->title), 0, 40).' ...' : strip_tags($page->title) }}</td>
                             <td><img src="/uploads/pages/{{$page->banner_image}}" alt="{{$page->banner_image}}" width="20%" /></td>
                             @if($page->status == "1")
 

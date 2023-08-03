@@ -31,8 +31,8 @@
                         @foreach ($offers as $data)
                         <tr>
                             <td>{{ $data->id }}</td>
-                            <td>{{ $data->title }}</td>
-                            <td>{{ strlen(strip_tags($data->description) < 100 ) ? substr(strip_tags($data->description), 0, 50).' ...' : strip_tags($data->description) }}
+                            <td>{{ strlen(strip_tags($data->title)) > 50  ? substr(strip_tags($data->title), 0, 20).' ...' : strip_tags($data->title) }}</td>
+                            <td>{{ strlen(strip_tags($data->description)) > 50  ? substr(strip_tags($data->description), 0, 40).' ...' : strip_tags($data->description) }}</td>
                             <td><img src="/uploads/offers/{{$data->image}}" alt="{{$data->image}}" width="20%" /></td>
                             @if($data->status == "1")
                             <td class="project-state">

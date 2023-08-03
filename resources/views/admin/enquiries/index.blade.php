@@ -30,18 +30,18 @@
                             <th scope="col" width="10%">Phone</th>
                             <th scope="col" width="10%">Subject</th>
                             <th scope="col" width="10%">Message</th>
-                            <th scope="col" width="10%">Action</th>
+                            <th scope="col" width="10%">Action</th> 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($contacts as $contact)
                         <tr>
                             <td>{{ $contact->id }}</td>
-                            <td>{{ $contact->full_name }}</td>
-                            <td>{{ $contact->email }}</td>
+                            <td>{{ strlen(strip_tags($contact->full_name)) > 50  ? substr(strip_tags($contact->full_name), 0, 20).' ...' : strip_tags($contact->full_name) }}</td>
+                            <td>{{ strlen(strip_tags($contact->email)) > 50  ? substr(strip_tags($contact->email), 0, 20).' ...' : strip_tags($contact->email) }}</td>
                             <td>{{ $contact->phone }}</td>
-                            <td>{{ $contact->subject }}</td>
-                            <td>{{ $contact->message }}</td>
+                            <td>{{ strlen(strip_tags($contact->subject)) > 50  ? substr(strip_tags($contact->subject), 0, 20).' ...' : strip_tags($contact->subject) }}</td>
+                            <td>{{ strlen(strip_tags($contact->message)) > 50  ? substr(strip_tags($contact->message), 0, 20).' ...' : strip_tags($contact->message) }}</td>
                             <td>
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action</button>

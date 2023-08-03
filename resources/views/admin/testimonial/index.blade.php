@@ -20,10 +20,10 @@
                     <thead>
                         <tr>
                             <th scope="col" width="10%">#</th>
+                            <th scope="col" width="10%">Country</th>
                             <th scope="col" width="10%">Title</th>
                             <th scope="col" width="10%">Description</th>
                             <th scope="col" width="10%"> Image</th>
-                            <th scope="col" width="10%"> Rating</th>
                             <th scope="col" width="10%">Status</th>
                             <th scope="col" width="10%">Action</th>
                        </tr>
@@ -32,13 +32,10 @@
                         @foreach ($testimonials as $data)
                         <tr>
                             <td>{{ $data->id }}</td>
-                            <td>{{ $data->title }}</td>
-                            <td>{{ strlen(strip_tags($data->description) < 100 ) ? substr(strip_tags($data->description), 0, 50).' ...' : strip_tags($data->description)}}</td>
-                            <td><img src="/uploads/testimonials/{{$data->image}}" alt="{{$data->image}}" width="50%"/></td>
-                            <td class="rating">@for($i=1; $i<=$data->rating; $i++) 
-                            <span  style="color: orange;"class="fa fa-star" value="{{$data->rating  }}"></span>
-                            @endfor
-                            </td>
+                            <td>{{ (!empty($data->CountryID) && $data->CountryID->country != '') ? $data->CountryID->country : 'N/A'}}</td>
+                            <td>{{ strlen(strip_tags($data->title)) > 50  ? substr(strip_tags($data->title), 0, 20).' ...' : strip_tags($data->title) }}</td>
+                            <td>{{ strlen(strip_tags($data->description)) > 50  ? substr(strip_tags($data->description), 0, 40).' ...' : strip_tags($data->description) }}</td>
+                            <td><img src="/uploads/testimonials/{{$data->image}}" width="50%"/></td>
                             @if($data->status == "1")
                             <td class="project-state">
                                 <a href="{{ route('testimonialsStatus',$data->id) }}"><span class="badge badge-success">Active</span></a>

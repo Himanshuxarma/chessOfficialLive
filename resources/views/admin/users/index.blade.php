@@ -13,8 +13,6 @@
                     {{ $message }}
                 </p>
                 @endif
-
-                <!-- <a class="btn btn-sm btn-success  " href="{{route('usersCreate')}}"> Create User</a> -->
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -38,7 +36,6 @@
                             <th scope="col" width="10%">City</th>
                             <th scope="col" width="10%">Address</th>
                             <th scope="col" width="10%">Role</th>
-                            <!-- <th scope="col" width="10%">Status</th> -->
                             <th scope="col" width="10%">Action</th>
 
                         </tr>

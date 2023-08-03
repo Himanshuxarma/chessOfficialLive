@@ -44,8 +44,8 @@
                         @foreach($banners as $banner)
                         <tr>
                             <td>{{$banner->id}}</td>
-                            <td>{{$banner->banner_title}}</td>
-                            <td>{{ ucFirst(str_replace('_', ' ', $banner->page_name)) }}</td>
+                            <td>{{ strlen(strip_tags($banner->banner_title)) > 50  ? substr(strip_tags($banner->banner_title), 0, 40).' ...' : strip_tags($banner->banner_title) }}</td>
+                            <td>{{ strlen(strip_tags(ucFirst(str_replace('_', ' ', $banner->page_name)))) > 50  ? substr(strip_tags(ucFirst(str_replace('_', ' ', $banner->page_name))), 0, 40).' ...' : strip_tags(ucFirst(str_replace('_', ' ', $banner->page_name))) }}</td>
                             <td>
                                 <img src="/uploads/banners/{{$banner->banner_image}}" alt="{{$banner->banner_image}}"width="50%" />
                             </td>
