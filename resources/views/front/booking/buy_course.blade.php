@@ -31,6 +31,7 @@ $offers = \Helper::getoffersbycourse($courseData->id);
                                         $newPrice = $priceDefault;
                                     }
                                 ?>
+                                <input type="hidden" name="admin_offer" id="adminOffer" value="{{$offerPercentage}}"> 
                                 <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price : 0)}}">
                                 <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice : 0}}">
                                 <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($courseData) && !empty($courseData->price) ? $courseData->price.'/-' : 0)}}</s>/-
@@ -53,10 +54,13 @@ $offers = \Helper::getoffersbycourse($courseData->id);
                     <p class="alert alert-offer hide refferal_alert"></p>
                     <form action="{{route('Store.Buy.Course')}}" id="booking_frm" method="post">
                         @if(!empty($referral_customer))
-                            <input type="hidden" name="referral_offer" id="referral_offer" value="{{!empty($referral_customer->referrer_offer_percentage) ? $referral_customer->referrer_offer_percentage : 0}}">
+                            <input type="hidden" name="referral_offer" id="reference_offer" value="{{!empty($referral_customer->referrer_offer_percentage) ? $referral_customer->referrer_offer_percentage : 0}}">
                         @endif
                         @if(!empty($referee_customer))
-                            <input type="hidden" name="referral_offer" id="referral_offer" value="{{!empty($referee_customer->referee_offer_percentage) ? $referee_customer->referee_offer_percentage : 0}}">
+                            <input type="hidden" name="referral_offer" id="reference_offer" value="{{!empty($referee_customer->referee_offer_percentage) ? $referee_customer->referee_offer_percentage : 0}}">
+                        @endif
+                        @if(!empty($offers) && !empty($offers->offer_id))
+                            <input type="hidden" name="admin_offer" id="adminOffer" value="{{$offerPercentage}}"> 
                         @endif
                         {{ csrf_field() }}
                         @if(!Auth::guard('customer')->check())
@@ -168,21 +172,31 @@ $(document).ready(function () {
         firstPrice = jQuery("#newPrice").html();
     }
     var referrenceOffer = jQuery('#reference_offer').val();
-    if(courseTaken == null || courseTaken == undefined || String(courseTaken )== "full_course"){
+    if(courseTaken == null || courseTaken == undefined || String(courseTaken) == "full_course"){
         var finalAmount = firstPrice;
     } else {
         var finalAmount = secondPrice;
     }
+
+    var adminOffer = jQuery('#adminOffer').val();
+    if(adminOffer != undefined && adminOffer != null){
+        jQuery('#basePrice').html(finalAmount +'/-');
+        var newFinalPrice = parseFloat(finalAmount) - parseFloat(parseFloat(finalAmount) * parseFloat(adminOffer)/100);  
+    } else {
+        jQuery('#basePrice').html('');
+        var newFinalPrice = finalAmount;
+    }
+    alert(newFinalPrice);
     var amountIfReference = 0;
     if(referrenceOffer != "" && referrenceOffer != undefined){
-        amountIfReference = parseFloat(finalAmount) - parseFloat(parseFloat(finalAmount) * parseFloat(referrenceOffer)/100);
-        jQuery('#basePrice').html(finalAmount).removeClass('hide');
+        amountIfReference = parseFloat(newFinalPrice) - parseFloat(parseFloat(newFinalPrice) * parseFloat(referrenceOffer)/100);
+        jQuery('#basePrice').html(newFinalPrice).removeClass('hide');
         jQuery('#newPrice').html(amountIfReference.toFixed(2));
         jQuery('.refferal_alert').html('Refferal offer applied').css('display', 'block');
     } else {
-        jQuery('#newPrice').html(finalAmount);
+        jQuery('#newPrice').html(newFinalPrice);
     }
-    
+    jQuery('input[name=course_price]').val(newFinalPrice);
 
     $('#country_id').on('change', function () {
         var countryId = this.value;

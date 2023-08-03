@@ -213,9 +213,10 @@ class BookingController extends Controller {
                 $orders = new Order;
                 $orders->course_id = $request->course_id;
                 $courseDatail = Course::where('id', $request->course_id)->first();
+                // $priceData = $courseDatail ? $courseDatail->coursePrice($courseDatail->id) : [];
                 $coursePriceDatail = CoursePrice::where('course_id', $request->course_id)->where('country_id', $request->country_id)->first();
 
-                $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->price) ? $coursePriceDatail->price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
+                $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->first_price) ? $coursePriceDatail->first_price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
 
                 $orders->course_type = !empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : (!empty($request->course_type) ? $request->course_type : '');
                 /* currency b mil rahi hai, check krlena thik hai */

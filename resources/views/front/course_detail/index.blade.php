@@ -87,6 +87,8 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                 $newPrice = $priceDefault;
                                             }
                                         ?>
+                                        <input type="hidden" name="admin_offer" id="adminOffer" value="{{$offerPercentage}}">
+
                                         <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}">
                                         <input type="hidden" name="new_price" value="{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}">
                                         <s id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
@@ -94,6 +96,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     @else
                                         <input type="hidden" name="base_price" value="{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}"> 
                                         <strong id="basePrice">{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</strong>
+                                        <strong id="newPrice"></strong>
                                     @endif
                                     <input type="hidden" name="first_price" value="{{isset($priceData->first_price) && !empty($priceData->first_price) ? $priceData->first_price : 0}}">
                                     <input type="hidden" name="second_price" value="{{isset($priceData->second_price) && !empty($priceData->second_price) ? $priceData->second_price : 0}}">
@@ -181,14 +184,23 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
         //     courseTakenFull = "full_course";
         // }
         if(courseTaken == "half_course"){
-            jQuery('#basePrice').html(jQuery('input[name=second_price]').val() +'/-');
-            jQuery('input[name=base_price]').val(jQuery('input[name=second_price]').val());
+            var finalPrice = jQuery('input[name=second_price]').val();
             //newLink =  jQuery('#buyACourseLink').attr('href')+'?courseType='+courseTaken;
         } else {
-            jQuery('#basePrice').html(jQuery('input[name=first_price]').val() +'/-');
-            jQuery('input[name=base_price]').val(jQuery('input[name=first_price]').val());
+            var finalPrice = jQuery('input[name=first_price]').val();
             //newLink =  jQuery('#buyACourseLink').attr('href')+'?courseType='+courseTaken;
         }
+        var adminOffer = jQuery('#adminOffer').val();
+        if(adminOffer != undefined && adminOffer != null){
+            jQuery('#basePrice').html(finalPrice +'/-');
+            var newFinalPrice = parseFloat(finalPrice) - parseFloat(parseFloat(finalPrice) * parseFloat(adminOffer)/100);  
+        } else {
+            jQuery('#basePrice').html('');
+            var newFinalPrice = finalPrice;
+        }
+        jQuery('#newPrice').html(newFinalPrice +'/-');
+        jQuery('input[name=base_price]').val(finalPrice);
+
         localStorage.setItem("courseType", courseType);
         localStorage.setItem("courseTaken", courseTaken);
         localStorage.setItem("firstPrice", firstPrice);
