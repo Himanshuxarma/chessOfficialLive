@@ -216,9 +216,22 @@ class BookingController extends Controller {
                 // $priceData = $courseDatail ? $courseDatail->coursePrice($courseDatail->id) : [];
                 $coursePriceDatail = CoursePrice::where('course_id', $request->course_id)->where('country_id', $request->country_id)->first();
 
-                $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->first_price) ? $coursePriceDatail->first_price : (!empty($request->course_price) ? $request->course_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : ''));
+                $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->first_price) ? $coursePriceDatail->first_price : (!empty($courseDatail->price) ? $courseDatail->price : '');
 
                 $orders->course_type = !empty($courseDatail) && !empty($courseDatail->type) ? $courseDatail->type : (!empty($request->course_type) ? $request->course_type : '');
+                if(isset($request->course_taken) && !empty($request->course_taken)){
+                    $courseTaken = $request->course_taken ? $request->course_taken : 'full_course';
+                    if($courseTaken == 'half_course'){
+                        $price = !empty($coursePriceDatail) && !empty($coursePriceDatail->second_price) ? $coursePriceDatail->second_price : (!empty($courseDatail) && !empty($courseDatail->price) ? $courseDatail->price : '');
+                    }
+                }
+                if(isset($request->admin_offer) && !empty($request->admin_offer)){
+                    $price = $price - ($price*$request->admin_offer/100);
+                }
+                if(isset($request->referral_offer) && !empty($request->referral_offer)){
+                    $price = $price - ($price * $request->referral_offer/100);
+                }
+                
                 /* currency b mil rahi hai, check krlena thik hai */
                 $orders->price = $price;
 
@@ -236,7 +249,7 @@ class BookingController extends Controller {
                     } catch (Exception $ex) {
                         
                     }
-                    //return redirect()->route('courseDetails', $request->course_id)->with('success', 'Your demo has been booked, Admin wil look into it and revert you back soon.');
+                    
                     $url = route("courseDetails", [$request->course_id]);
 
                     $price = $price;
@@ -340,7 +353,18 @@ class BookingController extends Controller {
                         $order->payment_status = @$response->status;
                         $order->save();
                     }
+                    $reffereeData = Referral::where('new_user_id', $data['user_id'])->first();
+                    if (isset($reffereeData) && !empty($reffereeData)) {
+                        $reffereeData->is_referee_used = 1;
+                        $reffereeData->save();
+                    }
+                    $refferalData = Referral::where('sent_by', $data['user_id'])->where('is_referee_used', 1)->first();
+                    if (isset($refferalData) && !empty($refferalData)) {
+                        $refferalData->is_referrer_used = 1;
+                        $refferalData->save();
+                    }   
                     DB::commit();
+
                     $url = route("courseDetails", [@$data['courseId']]);
                     return json_encode([
                         'status' => 200,

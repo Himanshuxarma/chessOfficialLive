@@ -28,7 +28,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                         </div> */ ?>
                         
                         <div class="sc_section post_thumb thumb">
-                            <a href="javascript:void(0);">
+                            <a href="javascript:void(0)">
                                 @if(!empty($courses->image))
                                 	@php $courseImg = asset('/uploads/course').'/'.$courses->image; @endphp
                                 @else
@@ -43,37 +43,37 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                         <div class="course_detail_button">
                             <ul>
                                 <li class="squareButton light ico ">
-                                    <a href="javascript:void(0);"> {{$courses->class}} Session</a>
+                                    <a href="javascript:void(0)"> {{$courses->class}} Session</a>
                                 </li>
                                 <li class="squareButton light ico">
                                     
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-year" title="Comments - 1"
-                                        href="javascript:void(0);">{{$courses->age}} Age</a>
+                                        href="javascript:void(0)">{{$courses->age}} Age</a>
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-classroom" title="Comments - 1"
-                                        href="javascript:void(0);">{{$courses->batch}} Batch</a>
+                                        href="javascript:void(0)">{{$courses->batch}} Batch</a>
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-comment-1" title="Comments - 1"
-                                        href="javascript:void(0);">{{$courses->hrs_training}} Hrs Training</a>
+                                        href="javascript:void(0)">{{$courses->hrs_training}} Hrs Training</a>
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-comment-1" title="Comments - 1"
-                                        href="javascript:void(0);">{{$courses->format}} Format</a>
+                                        href="javascript:void(0)">{{$courses->format}} Format</a>
                                 </li>
                                 <li class="squareButton light ico">
                                     <a class="icon-clock" title="Comments - 1"
-                                        href="javascript:void(0);">{{$courses->duration}} Duration</a>
+                                        href="javascript:void(0)">{{$courses->duration}} Duration</a>
                                 </li>
 							</ul>
                         </div>
                         <div class="booking-section justify-end d-flex  flex-wrap">
                             @php $priceData =  $courses->coursePrice($courses->id); @endphp
                             <h2 class="d-flex p-0 m-0 mb-10 mr-20">
-                                <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif d-flex m-0" href="javascript:void(0);">
+                                <a class="@if(!empty($offers) && !empty($offers->offer_id)) price_with_offer @else icon_money @endif d-flex m-0" href="javascript:void(0)">
                                     <strong>
                                         {{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
                                     </strong>
@@ -139,7 +139,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 
                         <div class="columns1_2 p-30 m-0">
                             <h2 class="post_title">
-                                <a href="javascript:void(0);">{{$data->title}}</a>
+                                <a href="javascript:void(0)">{{$data->title}}</a>
                             </h2>
                             <div class="postStandard">
                                 <p>{{$data->description}}</p>
@@ -200,7 +200,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
         }
         jQuery('#newPrice').html(newFinalPrice +'/-');
         jQuery('input[name=base_price]').val(finalPrice);
-
+        alert(firstPrice);
         localStorage.setItem("courseType", courseType);
         localStorage.setItem("courseTaken", courseTaken);
         localStorage.setItem("firstPrice", firstPrice);

@@ -134,6 +134,7 @@ $offers = \Helper::getoffersbycourse($courseData->id);
                         <input type="hidden" name="course_price_currency" value="{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}">
                         <input type="hidden" name="course_price" value="{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($courseData->price) ? $courseData->price : 0.00) }}">
                         <input type="hidden" name="course_type" value="{{!empty($courseData) && !empty($courseData->type) ? $courseData->type : ''}}">
+                        <input type="hidden" name="course_taken" value="">
                         <div class="columns1_2 margin_top_mini margin_bottom_mini">
                             <label for="date_of_demo"><i class="fa fa-calendar"></i>Starting Date</label>
                             <input type="date" id="date_of_demo" name="date_of_demo" class="form-control">
@@ -177,7 +178,6 @@ $(document).ready(function () {
     } else {
         var finalAmount = secondPrice;
     }
-
     var adminOffer = jQuery('#adminOffer').val();
     if(adminOffer != undefined && adminOffer != null){
         jQuery('#basePrice').html(finalAmount +'/-');
@@ -186,17 +186,17 @@ $(document).ready(function () {
         jQuery('#basePrice').html('');
         var newFinalPrice = finalAmount;
     }
-    alert(newFinalPrice);
     var amountIfReference = 0;
     if(referrenceOffer != "" && referrenceOffer != undefined){
         amountIfReference = parseFloat(newFinalPrice) - parseFloat(parseFloat(newFinalPrice) * parseFloat(referrenceOffer)/100);
-        jQuery('#basePrice').html(newFinalPrice).removeClass('hide');
+        jQuery('#basePrice').html(newFinalPrice.toFixed(2)).removeClass('hide');
         jQuery('#newPrice').html(amountIfReference.toFixed(2));
         jQuery('.refferal_alert').html('Refferal offer applied').css('display', 'block');
     } else {
-        jQuery('#newPrice').html(newFinalPrice);
+        jQuery('#newPrice').html(newFinalPrice.toFixed(2));
     }
     jQuery('input[name=course_price]').val(newFinalPrice);
+    jQuery('input[name=course_taken').val(courseTaken);
 
     $('#country_id').on('change', function () {
         var countryId = this.value;
@@ -307,6 +307,7 @@ function paymentRezarPay(price, courseId, orderId, user_id, currency) {
                 },
                 success: function (response) {
                     console.log(response);
+                    localStorage.clear();
                     jQuery(".fee_error").show();
                     jQuery(".fee_error").text("");
                     if (response.status == "200") {
@@ -314,7 +315,7 @@ function paymentRezarPay(price, courseId, orderId, user_id, currency) {
                         toastr.success(response.msg);
                         setTimeout(function () {
                             window.location = response.url;
-                        }, 3000);
+                        }, 2000);
                     } else if (response.status == "501") {
                         jQuery.each(response.errors, function (i, file) {
                             jQuery('#' + i).after('<span class="fee_error">' + file + '</span>');

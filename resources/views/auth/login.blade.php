@@ -155,7 +155,7 @@
       return true;
     }
 
-  jQuery(document).on('cli`ck', '#forgotPasswordFormLink', function(){
+  jQuery(document).on('click', '#forgotPasswordFormLink', function(){
     jQuery('#loginForm').addClass('d-none');
     jQuery('#forgotPasswordForm').removeClass('d-none');
   });
