@@ -90,14 +90,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 												@if(!empty($offers) && !empty($offers->offer_id))
 													<?php 
-														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+														$priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 														$offerPercentage = $offers->amount ? $offers->amount : 0;
 														$newPrice = (float)$priceDefault - ((float)$priceDefault * ((int)$offerPercentage/100));
 													?>
-													<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+													<s>{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
 													{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
 												@else 
-													{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+													{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
 												@endif
 											</strong>
 										</a>

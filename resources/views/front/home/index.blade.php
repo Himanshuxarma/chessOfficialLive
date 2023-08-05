@@ -90,7 +90,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 																<div class="sc_blogger_content">
 																
-																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
+																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) > 50 ) ? substr(strip_tags($course->description), 0, 150).' ...' : strip_tags($course->description)}}</div>
 																</div>
 															</a>
 														</div>
@@ -111,14 +111,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 																	@if(!empty($offers) && !empty($offers->offer_id))
 																		<?php 
-																			$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																			$priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0);
 																			$offerPercentage = $offers->amount ? $offers->amount : 0;
 																			$newPrice = !empty($priceDefault) ? ($priceDefault - ($priceDefault * ($offerPercentage/100))) : 0;
 																		?>
-																		<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																		<s>{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0)}}</s>
 																		{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
 																	@else 
-																		{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+																		{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($course) && !empty($course->price) ? $course->price.'/-' : 0)}}
 																	@endif
 																	</p>
 																	
@@ -153,7 +153,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 											@php 
 												$offers = \Helper::getoffersbycourse($course->id);
 												$priceData =  $course->coursePrice($course->id);
-												$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($course) && !empty($course->price) ? $course->price : 0);
+												$price = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0);
 												$classes = !empty($course) && !empty($course->class) ? $course->class : 0;
 												$perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
 											@endphp
@@ -173,7 +173,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																<img  class="home-page-course" alt="Babysitting: Dealing With Temper Tantrums" src="{{$courseImg}}">
 																<div class="sc_blogger_content">
 																
-																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) < 100 ) ? substr(strip_tags($course->description), 0, 100).' ...' : strip_tags($course->description)}}</div>
+																	<div class="sc_blogger_content_inner">{{ strlen(strip_tags($course->description) > 50 ) ? substr(strip_tags($course->description), 0, 150).' ...' : strip_tags($course->description)}}</div>
 																</div>
 															</a>
 														</div>
@@ -194,14 +194,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 																	{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 																	@if(!empty($offers) && !empty($offers->offer_id))
 																		<?php 
-																			$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+																			$priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0);
 																			$offerPercentage = $offers->amount ? $offers->amount : 0;
 																			$newPrice = !empty($priceDefault) ? ($priceDefault - ($priceDefault * ($offerPercentage/100))) : 0;
 																		?>
-																		<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0)}}</s>
+																		<s>{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0)}}</s>
 																		{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
 																	@else 
-																		{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+																		{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($course) && !empty($course->price) ? $course->price.'/-' : 0)}}
 																	@endif
 																	</p>
 																	
@@ -264,8 +264,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 														@endif
 															<img alt="" src="{{$testimonialsImg}}">
 														</div>
+														
 														<div class="sc_team_item_info">
-															<h3 class="sc_team_item_title"><a href="javascript:void(0);">{{$data->title}}</a></h3>
+														<div class="testi_country_flag_img">
+														
+														@if((!empty($data->CountryID) && $data->CountryID->country_flag != '') ? $data->CountryID->country_flag : 'N/A')
+														@php $country_flag = asset('/uploads/country').'/'.$data->CountryID->country_flag; @endphp
+														@else
+														@php $country_flag = '/assets/front/images/300*300.jpg'; @endphp
+														@endif
+															<img alt="" src="{{$country_flag}}"style="width:10%">
+														</div>
+														
+															<h3 class="sc_team_item_title mytitle"><a href="javascript:void(0);">{{$data->title}}</a></h3>
 															<?php $description = strip_tags($data->description); ?>
 															<div class="sc_team_item_position theme_accent2"><?php echo strlen($description) > 100  ? substr($description, 0, 100).' ...' : $description; ?></div>
 															<ul class="sc_team_item_socials">

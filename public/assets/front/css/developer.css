@@ -443,6 +443,15 @@ border-radius: 4px;
 text-transform: uppercase; */
 
 
+.mytitle {
+	position: relative;
+	left: 40px;
+}
+.testi_country_flag_img{
+		position: absolute;
+		left: 30px;
+}
+
 
 /* }
 .login a:hover{
