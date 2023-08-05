@@ -85,6 +85,7 @@ use App\Http\Controllers\Auth\LoginController;
         Route::get('/contact-us', [App\Http\Controllers\Front\EnquiriesController::class, 'index'])->name("contactForm");
         Route::post('contact/store', [App\Http\Controllers\Front\EnquiriesController::class, 'sendEmail'])->name('contactsSave');
         Route::post('testimonial/store', [App\Http\Controllers\Front\HomeController::class, 'storeReview'])->name('reviewSave');
+        Route::get('testimonial-deltails/{id}', [App\Http\Controllers\Front\HomeController::class, 'testimonial_details'])->name('testimonialDetails');
 
         Route::post('booking-payment-online', [App\Http\Controllers\Front\BookingController::class, 'bookingPaymentOnline'])->name('booking.payment.online');
 

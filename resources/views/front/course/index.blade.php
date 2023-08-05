@@ -40,7 +40,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<a href="javascript:void(0);" data-filter=".article_main_course">One to One Courses</a>
 								</li>
 								<li class="squareButton">
-									<a href="javascript:void(0);" data-filter=".article_academy_course">Academy Courses</a>
+									<a href="javascript:void(0);" data-filter=".article_academy_course">Group Sessions</a>
 								</li>
 								
 								

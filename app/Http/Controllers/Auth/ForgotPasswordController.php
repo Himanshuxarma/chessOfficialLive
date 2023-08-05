@@ -21,7 +21,7 @@ class ForgotPasswordController extends Controller
      */
 
     public function showForgetPasswordForm(){
-      return view('admin.auth.forgetPassword');
+      return view('auth.admin.forgetPassword');
     } 
 
     /**
@@ -31,7 +31,7 @@ class ForgotPasswordController extends Controller
      */
 
     public function postForgetPasswordForm(Request $request){
-      if(Route::current()->getPrefix()=='admin'){
+      if(Route::current()->getPrefix()=='/admin'){
         if($request->email){
             $userData = User::where('email', $request->email)->where('role', 'admin')->first();
             if($userData){
@@ -64,7 +64,7 @@ class ForgotPasswordController extends Controller
     
     
     public function adminResetPassword(){
-      return view('admin.auth.forgetPasswordLink');
+      return view('auth.admin.forgetPasswordLink');
     }
 
     public function resetPassword(){
@@ -78,7 +78,7 @@ class ForgotPasswordController extends Controller
        */
 
       public function showResetPasswordForm($token) { 
-        return view('admin.auth.forgetPasswordLink', ['token' => $token]);
+        return view('auth.admin.forgetPasswordLink', ['token' => $token]);
       } 
 
       /**
