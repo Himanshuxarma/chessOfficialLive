@@ -33,7 +33,7 @@ class pageController extends Controller
     }
 
     public function chess_official_academy(){
-      $chessOfficialAcademy = Page::where('slug', 'chessofficial-academy')->first();
+      $chessOfficialAcademy = Page::where('slug', 'chessofficial-group-sessions')->first();
       return view('front.pages.chess_official_academy',compact('chessOfficialAcademy'));
     }
 }

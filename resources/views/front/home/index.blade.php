@@ -22,39 +22,33 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 <div class="sc_content main d-flex flex-wrap justify-center">
                                     <div class="sc_column_item_1 p-10 odd first">
                                         <div class="sc_title_icon sc_title_top sc_size_huge">
-                                            <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                width="50px" height="50px" />
+                                            <img src="{{asset('assets/front/images/icon1.png')}}" alt="" width="50px" height="50px" />
                                         </div>
-                                        <h6 class="sc_title sc_title_iconed style_1">Funny educational games</h6>
+                                        <h6 class="sc_title sc_title_iconed style_1">Enhance Memory Capacity</h6>
                                     </div>
                                     <div class="sc_column_item_2 p-10 even">
                                         <div class="sc_title_icon sc_title_top sc_size_huge">
-                                            <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                width="50px" height="50px" />
+                                            <img src="{{asset('assets/front/images/icon2.png')}}" alt="" width="50px" height="50px" />
                                         </div>
-                                        <h6 class="sc_title sc_title_iconed style_1">Outside activities</h6>
+                                        <h6 class="sc_title sc_title_iconed style_1">Improves Imagination & Creativity</h6>
                                     </div>
                                     <div class="sc_column_item_3 p-10 odd">
                                         <div class="sc_title_icon sc_title_top sc_size_huge">
-                                            <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                width="50px" height="50px" />
+                                            <img src="{{asset('assets/front/images/icon3.png')}}" alt="" width="50px" height="50px" />
                                         </div>
-                                        <h6 class="sc_title sc_title_iconed style_1">Babysitter last minute service</h6>
+                                        <h6 class="sc_title sc_title_iconed style_1">Problem Solving & Decision Making</h6>
                                     </div>
                                     <div class="sc_column_item_4 p-10 even">
                                         <div class="sc_title_icon sc_title_top sc_size_huge">
-                                            <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                width="50px" height="50px" />
+                                            <img src="{{asset('assets/front/images/icon4.png')}}" alt="" width="50px" height="50px" />
                                         </div>
-                                        <h6 class="sc_title sc_title_iconed style_1">Drawing, coloring, and painting
-                                        </h6>
+                                        <h6 class="sc_title sc_title_iconed style_1">Improve SchoolWork & Grades</h6>
                                     </div>
                                     <div class="sc_column_item_5 p-10 odd">
                                         <div class="sc_title_icon sc_title_top sc_size_huge">
-                                            <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                width="50px" height="50px" />
+                                            <img src="{{asset('assets/front/images/icon5.png')}}" alt="" width="50px" height="50px" />
                                         </div>
-                                        <h6 class="sc_title sc_title_iconed style_1">Book a Sitter!</h6>
+                                        <h6 class="sc_title sc_title_iconed style_1">Improves Cognitive Skills</h6>
                                     </div>
 
                                 </div>
@@ -65,8 +59,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 <div class="sc_content main ">
                                     <div class="aligncenter ">
                                         <h2 class="sc_title style_2 sc_title_regular">Our Classes</h2>
-                                        <h4 class="sc_undertitle style_1">We design digital toys not just for kids, but
-                                            with kids</h4>
+                                        <h4 class="sc_undertitle style_1">Chess is not always about winning but sometimes it's simply about learning.</h4>
                                     </div>
                                     <div class="course-group">
 
@@ -77,13 +70,10 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                 @php
                                                 $offers = \Helper::getoffersbycourse($course->id);
                                                 $priceData = $course->coursePrice($course->id);
-                                                $price = !empty($priceData) && !empty($priceData->price) ?
-                                                $priceData->price : (!empty($course) && !empty($course->price) ?
-                                                $course->price : 0);
-                                                $classes = !empty($course) && !empty($course->class) ? $course->class :
-                                                0;
-                                                $perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) :
-                                                0;
+                                                $price = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0);
+                                                $classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+                                                $perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
+                                                
                                                 @endphp
                                                 <div class="columns1_3 column_item_{{$course->id}} odd first">
                                                     <article class="sc_blogger_item">
@@ -175,13 +165,9 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                 @php
                                                 $offers = \Helper::getoffersbycourse($course->id);
                                                 $priceData = $course->coursePrice($course->id);
-                                                $price = !empty($priceData) && !empty($priceData->first_price) ?
-                                                $priceData->first_price : (!empty($course) && !empty($course->price) ?
-                                                $course->price : 0);
-                                                $classes = !empty($course) && !empty($course->class) ? $course->class :
-                                                0;
-                                                $perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) :
-                                                0;
+                                                $price = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($course) && !empty($course->price) ? $course->price : 0);
+                                                $classes = !empty($course) && !empty($course->class) ? $course->class : 0;
+                                                $perSessionPrice = !empty($classes) ? ((float)$price / (int)$classes) : 0;
                                                 @endphp
                                                 <div class="columns1_3 column_item_{{$course->id}} odd first">
                                                     <article class="sc_blogger_item">
@@ -293,27 +279,24 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                     <div class="item">
                                                         <div class="sc_team_item">
                                                             <div class="sc_team_item_avatar">
-                                                                @if(!empty($data->image))
-                                                                @php $testimonialsImg =
-                                                                asset('/uploads/testimonials').'/'.$data->image; @endphp
-                                                                @else
-                                                                @php $testimonialsImg =
-                                                                '/assets/front/images/300*300.jpg'; @endphp
-                                                                @endif
+                                                                <?php 
+                                                                if(!empty($data->image)){
+                                                                    $testimonialsImg = asset('/uploads/testimonials').'/'.$data->image;
+                                                                } else {
+                                                                    $testimonialsImg = '/assets/front/images/300*300.jpg';
+                                                                }
+                                                                ?>
                                                                 <img alt="" src="{{$testimonialsImg}}">
                                                             </div>
                                                             <div class="sc_team_item_info">
                                                                 <div class="testi_country_flag_img">
-                                                                    @if((!empty($data->CountryID) &&
-                                                                    $data->CountryID->country_flag != '') ?
-                                                                    $data->CountryID->country_flag : 'N/A')
-                                                                    @php $country_flag =
-                                                                    asset('/uploads/country').'/'.$data->CountryID->country_flag;
-                                                                    @endphp
-                                                                    @else
-                                                                    @php $country_flag =
-                                                                    '/assets/front/images/300*300.jpg'; @endphp
-                                                                    @endif
+                                                                    <?php
+                                                                    if((!empty($data->country_id) && !empty($data->CountryID) && !empty($data->CountryID->country_flag))){
+                                                                        $country_flag = asset('/uploads/country').'/'.$data->CountryID->country_flag;
+                                                                    } else {
+                                                                        $country_flag = '/assets/front/images/300*300.jpg';
+                                                                    }
+                                                                    ?>
                                                                     <img alt="" src="{{$country_flag}}" style="width:10%">
                                                                 </div>
                                                                 <h3 class="sc_team_item_title mytitle">
@@ -323,7 +306,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                                 <div class="sc_team_item_position theme_accent2">
                                                                     <?php echo strlen($description) > 100  ? substr($description, 0, 100).' ...' : $description; ?>
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -418,17 +400,16 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <div class="sc_parallax_content parallax_image_3">
                                         <div class="sc_content main ">
                                             <div class="columnsWrap sc_columns sc_columns_count_2">
-                                                <div class="columns1_2 sc_column_item sc_column_item_1 odd first">
-                                                    <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt=""
-                                                        width="400px" height="400px" />
-                                                </div>
-                                                <div
-                                                    class="columns1_2 sc_column_item sc_column_item_2 even text-sm-center">
-                                                    <h3 class="sc_title style_3">We will take care of your kids</h3>
-                                                    <span class="sc_highlight style_2">Aenean nec vestibulum dui. Sed
-                                                        vestibulum varius interdum. Nulla euismod venenatis erat quis
-                                                        interdum. Nullam leo lorem, porttitor ac blandit eget, venenatis
-                                                        vel purus. Mauris vitae mi risus.</span>
+                                                <div class="columns1 sc_column_item sc_column_item_2 even text-sm-center">
+                                                    <h2 class="sc_title style_1">FIDE Arena Chess Masters: Unlocking the Benefits of Learning Chess from the Best</h2>
+                                                    </br>
+                                                    <span class="sc_highlight style_2">
+                                                        <p>Chess is a timeless game that has captivated minds for centuries. From its humble origins to its current status as a global phenomenon, chess continues to intrigue and challenge players of all ages and skill levels. The FIDE Arena Chess Masters stands as a testament to the pinnacle of chess excellence, offering a unique and unparalleled learning experience for aspiring players.</p>
+                                                        <p>The FIDE Arena Chess Masters consist of some of the world's finest chess players, each boasting exceptional skills and accomplishments in the game. These Grandmasters and International Masters have devoted countless hours to perfecting their craft, developing a deep understanding of chess strategy and tactics.</p>
+                                                        <p>These masters frequently engage in high-stakes battles against one another, showcasing their strategic prowess and deep understanding of the game. As learners delve into these games, they gain exposure to complex positions, unconventional moves, and strategic ideas that are rarely encountered in casual play.</p>
+                                                        <p>The FIDE Arena Chess Masters present an unparalleled opportunity for chess enthusiasts to learn from the best and take their game to new heights. With their unmatched expertise, diverse playing styles, and interactive learning opportunities, these masters offer a unique and enriching learning experience. Chess, as taught by the FIDE Arena Chess Masters, goes beyond a mere game; it becomes a journey of self-improvement, sharpening the mind, and embracing the spirit of competition.</p>
+                                                        <p>Whether you are a seasoned player or a novice to the game, learning from the FIDE Arena Chess Masters can undoubtedly benefit your chess skills and enrich your appreciation for the timeless game of chess.</p>
+                                                    </span>
                                                     <div class="margin_top_small">
                                                         <div
                                                             class="sc_button sc_button_style_global sc_button_size_huge squareButton global huge">

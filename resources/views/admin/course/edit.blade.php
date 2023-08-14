@@ -40,7 +40,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="class">Session</label>
-                                        <input type="text" name="class" value="{{$course->class}}" class="form-control" require placeholder="class">
+                                        <input type="number" min="1" name="class" value="{{$course->class}}" class="form-control" require placeholder="class">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input type="text" value="{{$course->price}}" name="price" class="form-control" require placeholder="Enter  price">
+                                        <input type="number" min="1" value="{{$course->price}}" name="price" class="form-control" require placeholder="Enter  price">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -67,13 +67,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="batch">Batch</label>
-                                        <input type="text" name="batch" value="{{$course->batch}}" class="form-control"require placeholder="Enter  batch">
+                                        <input type="number" min="1" name="batch" value="{{$course->batch}}" class="form-control"require placeholder="Enter  batch">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="hrs_training">Hrs Training</label>
-                                        <input type="text" name="hrs_training" class="form-control"value="{{$course->hrs_training}}" require placeholder="Enter  hrs_training">
+                                        <input type="number" min="1" name="hrs_training" class="form-control"value="{{$course->hrs_training}}" require placeholder="Enter Hrs Training">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="duration">Duration</label>
-                                        <input type="text" name="duration" class="form-control" value="{{$course->duration}}" require placeholder="Enter  duration">
+                                        <input type="number" min="1" name="duration" class="form-control" value="{{$course->duration}}" require placeholder="Enter  duration">
                                     </div>
                                 </div>
                             </div>

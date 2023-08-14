@@ -79,7 +79,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										@endif
 									</ul>
 									@php 
-										$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+										$price = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 										$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
 										$perSessionPrice = (float)$price / (int)$classes;
 									@endphp

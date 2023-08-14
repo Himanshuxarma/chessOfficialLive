@@ -39,7 +39,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="class">Session</label>
-                                        <input type="text" name="class" class="form-control" require placeholder="Session">
+                                        <input type="number" min="1" name="class" class="form-control" require placeholder="Session">
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input type="text" name="price" class="form-control" require placeholder="Enter  price">
+                                        <input type="number" min="1" name="price" class="form-control" require placeholder="Enter  price">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -67,13 +67,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="batch">Batch</label>
-                                        <input type="text" name="batch" class="form-control" require placeholder="Enter  batch">
+                                        <input type="number" min="1" name="batch" class="form-control" require placeholder="Enter  batch">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="hrs_training">Hrs Training</label>
-                                        <input type="text" name="hrs_training" class="form-control" require placeholder="Enter  hrs_training">
+                                        <input type="number" min="1" name="hrs_training" class="form-control" require placeholder="Enter Hrs Training">
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="duration">Duration</label>
-                                        <input type="text" name="duration" class="form-control" require placeholder="Enter  duration">
+                                        <input type="number" min="1" name="duration" class="form-control" require placeholder="Enter  duration">
                                     </div>
                                 </div>
 

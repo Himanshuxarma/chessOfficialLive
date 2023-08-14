@@ -3,7 +3,7 @@
 
 @endsection
 @section('content')
-<!-- <?php
+<?php
 $countryId = 6;
 if(session()->has('SiteCountry')){
 $countryId = session()->get('SiteCountry');
@@ -37,27 +37,31 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 <div class="form-container sc_columns p-0">
                                     <div class="sc_column_item">
                                         <div class="user-dashboard sc_contact_form sc_contact_form_contact">
-                                            @if(!empty($testimonialsDetails->image))
-                                            @php $testimonialsImg =
-                                            asset('/uploads/testimonials').'/'.$testimonialsDetails->image; @endphp
-                                            @else
-                                            @php $testimonialsImg = '/assets/front/images/300*300.jpg'; @endphp
-                                            @endif
-                                            <img src="{{$testimonialsImg}}" alt="" style="width:300px;height:300px">
-                                            <div class="">
-
-                                                @if((!empty($testimonialsDetails->CountryID) &&
-                                                $testimonialsDetails->CountryID->country_flag !=
-                                                '') ? $testimonialsDetails->CountryID->country_flag : 'N/A')
-                                                @php $country_flag =
-                                                asset('/uploads/country').'/'.$testimonialsDetails->CountryID->country_flag;
-                                                @endphp
-                                                @else
-                                                @php $country_flag = '/assets/front/images/300*300.jpg'; @endphp
-                                                @endif
-                                                <img alt="" src="{{$country_flag}}" style="width:10%">
+                                           <div class="d-flex flex-wrap"> 
+                                                <div class="img-sec mr-20">
+                                                @if(!empty($testimonialsDetails->image))
+                                                    @php $testimonialsImg =
+                                                    asset('/uploads/testimonials').'/'.$testimonialsDetails->image; @endphp
+                                                    @else
+                                                    @php $testimonialsImg = '/assets/front/images/300*300.jpg'; @endphp
+                                                    @endif
+                                                    <img src="{{$testimonialsImg}}" alt="" style="width:300px;height:300px">
+                                                </div>
+                                                <div class="right-sec">
+                                                    <div class="flag-img">
+                                                        <?php
+                                                        if(!empty($testimonialsDetails->country_id) && !empty($testimonialsDetails->CountryID) && !empty($testimonialsDetails->CountryID->country_flag)){
+                                                            $country_flag = asset('/uploads/country').'/'.$testimonialsDetails->CountryID->country_flag;
+                                                        } else {
+                                                            $country_flag = '/assets/front/images/300*300.jpg';
+                                                        }
+                                                        ?>
+                                                        <img alt="" src="{{$country_flag}}" style="width:10%">
+                                                    </div>
+                                                    <h3 class="sc_team_item_title ">{{$testimonialsDetails->title}}</h3>
+                                                    <div class="user-detail">{{$testimonialsDetails->created_at->format('d/m/Y/h:i:s A')}}</div>
+                                                </div>
                                             </div>
-                                            <h3 class="sc_team_item_title ">{{$testimonialsDetails->title}}</h3>
                                             <div class="sc_team_item_position ">
                                                 {{ strlen(strip_tags($testimonialsDetails->description)) > 50  ? substr(strip_tags($testimonialsDetails->description), 0, 2000).' ...' : strip_tags($testimonialsDetails->description) }}
                                             </div>
@@ -67,7 +71,60 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 </div>
                             </div>
                         </section>
-                        <section class=" testimonial_form">
+                        <section class="skyblue_section bg_pattern_6">
+                            <div class="container">
+                                <div class="sc_section  bg_tint_light">
+                                    <div class="sc_content main ">
+                                        <div class="aligncenter ">
+                                            <h2 class="sc_title sc_title_regular">Testimonials</h2>
+                                            <h4 class="sc_undertitle style_2">We have gathered the best team of teachers and trainers</h4>
+                                        </div>
+                                        <div class="sc_team no_padding">
+                                            <div class="sc_columns">
+                                                <div class="owl-carousel testimonials owl-theme">
+                                                    @foreach($testimonials as $data)
+                                                    <div class="item">
+                                                        <div class="sc_team_item">
+                                                            <div class="sc_team_item_avatar">
+                                                                <?php 
+                                                                if(!empty($data->image)){
+                                                                    $testimonialsImg = asset('/uploads/testimonials').'/'.$data->image;
+                                                                } else {
+                                                                    $testimonialsImg = '/assets/front/images/300*300.jpg';
+                                                                }
+                                                                ?>
+                                                                <img alt="" src="{{$testimonialsImg}}">
+                                                            </div>
+                                                            <div class="sc_team_item_info">
+                                                                <div class="testi_country_flag_img">
+                                                                    <?php
+                                                                    if((!empty($data->country_id) && !empty($data->CountryID) && !empty($data->CountryID->country_flag))){
+                                                                        $country_flag = asset('/uploads/country').'/'.$data->CountryID->country_flag;
+                                                                    } else {
+                                                                        $country_flag = '/assets/front/images/300*300.jpg';
+                                                                    }
+                                                                    ?>
+                                                                    <img alt="" src="{{$country_flag}}" style="width:10%">
+                                                                </div>
+                                                                <h3 class="sc_team_item_title mytitle">
+																	<a href="{{route('testimonialDetails',$data->id)}}">{{$data->title}}</a>
+                                                                </h3>
+                                                                <?php $description = strip_tags($data->description); ?>
+                                                                <div class="sc_team_item_position theme_accent2">
+                                                                    <?php echo strlen($description) > 100  ? substr($description, 0, 100).' ...' : $description; ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="skyblue_section bg_pattern_6 testimonial_form">
                             <div class="container main p-0">
                                 <div class="form-container sc_columns p-0">
                                     <div class="sc_column_item">
@@ -144,7 +201,5 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
             </section>
         </div>
     </div>
-</div> -->
-
-<h1>COMING SOON </h1>
+</div>
 @endsection

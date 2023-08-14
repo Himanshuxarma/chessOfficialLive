@@ -237,25 +237,35 @@ class CourseController extends Controller
 	}
 
 	public function store_course_curriculum(Request $request){
-		// dd($request);
 		if($request){
 			$data = [];
-			// dd($request);
-			foreach($request['data'] as $postData){
-				// dd($postData);
-				if(!empty( $postData['image'])){
-					$fileName = time() . '.' . $postData['image']->getClientOriginalExtension();
-					$postData['image']->move(public_path('uploads/course_curriculum'), $fileName);
+			foreach($request['data'] as $key=>$postData){
+				$carriculamData = CourseCurriculum::find($postData['course_carriculam_id']);
+				if (!empty($postData['image'])) {
+					$path = public_path() . '/uploads/course_curriculum';
+					//code for remove old file
+					// die('hiii idher aaya');
+					if ($postData['image'] != '' && $postData['image'] != null) {
+						$file_old = $path . $postData['image'];
+						if (file_exists($file_old)) {
+							unlink($file_old);
+						}
+					}
+					$fileName = time().'_'.$key.'.' . $postData['image']->getClientOriginalExtension();
+					$postData['image']->move(public_path('/uploads/course_curriculum'), $fileName);
 					$postData['image'] = $fileName;
+				} else {
+					$postData['image'] = !empty($carriculamData->image) && !empty($carriculamData->image) ? $carriculamData->image : '';
 				}
-					$data[] = [
+				$data[] = [
 					'course_id'=>$request->course_id,
 					'title'=>isset($postData['title']) && !empty($postData['title']) ? $postData['title'] : '',
 					'description'=>isset($postData['description']) && !empty($postData['description']) ? $postData['description'] : '',
 					'image'=>isset($postData['image']) && !empty($postData['image']) ? $postData['image'] : '',
 					'status'=>isset($postData['status']) && !empty($postData['status']) ? $postData['status'] : 0,
-					
 				];
+				// echo '<pre>'; print_r($postData);
+				//dd($data);
 				
 			}
 			// dd($data);

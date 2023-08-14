@@ -72,7 +72,7 @@ use App\Http\Controllers\Auth\LoginController;
         Route::post('/book_a_demo', [App\Http\Controllers\Front\CourseController::class, 'bookDemo'])->name('book-a-demo');
         Route::get('/pages/guidelines', [App\Http\Controllers\Front\PageController::class, 'guidelines'])->name("class.guidelines");
         Route::get('/pages/terms-conditions', [App\Http\Controllers\Front\PageController::class, 'terms_conditions'])->name("terms.conditions");
-        Route::get('/pages/chessofficial-academy', [App\Http\Controllers\Front\PageController::class, 'chess_official_academy'])->name("chess_official_academy");
+        Route::get('/pages/chessofficial-group-sessions', [App\Http\Controllers\Front\PageController::class, 'chess_official_academy'])->name("chess_official_group_sessions");
         Route::get('/pages/why-chessofficial', [App\Http\Controllers\Front\PageController::class, 'why_chessofficial'])->name("why_chessofficial");
         Route::get('/pages/privacy-policy', [App\Http\Controllers\Front\PageController::class, 'privacy_policy'])->name("privacy.policy");
         Route::get('/pages/about-us', [App\Http\Controllers\Front\PageController::class, 'about_us'])->name("about.us");
