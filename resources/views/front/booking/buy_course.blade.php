@@ -170,7 +170,7 @@ $(document).ready(function () {
     var secondPrice = localStorage.getItem("secondPrice");
     if(courseTaken == null){
         courseTaken = "full_course";
-        firstPrice = jQuery("#newPrice").html();
+        firstPrice = jQuery("input[name=base_price]").val();
     }
     var referrenceOffer = jQuery('#reference_offer').val();
     if(courseTaken == null || courseTaken == undefined || String(courseTaken) == "full_course"){
@@ -178,9 +178,10 @@ $(document).ready(function () {
     } else {
         var finalAmount = secondPrice;
     }
+    // alert(finalAmount);
     var adminOffer = jQuery('#adminOffer').val();
     if(adminOffer != undefined && adminOffer != null){
-        jQuery('#basePrice').html(finalAmount +'/-');
+        jQuery('#basePrice').html(finalAmount);
         var newFinalPrice = parseFloat(finalAmount) - parseFloat(parseFloat(finalAmount) * parseFloat(adminOffer)/100);  
     } else {
         jQuery('#basePrice').html('');

@@ -1911,7 +1911,7 @@ ul#mainmenu .menu-panel ul.columns>li ul{max-width:260px; }
 .post:after { content:""; display:block; clear:both; height:0;}
 
 /*.post .thumb { width:550px;}*/
-.post .thumb img{ width:100%;}
+.post .thumb img{ width:60%;}
 
 .post + .post{ margin:0 0 50px 0; padding:0;}
 .post.no_margin { margin-bottom:0;}
