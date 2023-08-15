@@ -189,7 +189,10 @@ $(document).ready(function () {
     }
     var amountIfReference = 0;
     if(referrenceOffer != "" && referrenceOffer != undefined){
+        alert(referrenceOffer);
+        alert("singh");
         amountIfReference = parseFloat(newFinalPrice) - parseFloat(parseFloat(newFinalPrice) * parseFloat(referrenceOffer)/100);
+        alert(amountIfReference);
         jQuery('#basePrice').html(newFinalPrice.toFixed(2)).removeClass('hide');
         jQuery('#newPrice').html(amountIfReference.toFixed(2));
         jQuery('.refferal_alert').html('Refferal offer applied').css('display', 'block');

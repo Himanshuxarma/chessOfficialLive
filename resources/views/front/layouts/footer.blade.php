@@ -22,7 +22,7 @@
 							<a href="{{route('contactForm')}}" style="color:#FFF;">Contact</a>
 						</li>
 						<li>
-							<a href="{{route('chess_official_academy')}}" style="color:#FFF;">ChessOfficial Academy</a>
+							<a href="{{route('chess_official_group_sessions')}}" style="color:#FFF;">ChessOfficial Group Sessions</a>
 						</li>
 						<li>
 							<a href="javascrit:void(0);" style="color:#FFF;">ChessOfficial One to One</a>

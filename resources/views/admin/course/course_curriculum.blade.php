@@ -12,7 +12,8 @@
                         @csrf
                         <input type="hidden" name="course_id" value="{{$courseData->id}}">
                         <div class="card-body">
-                            @for($i= 0; $i < 8; $i++)
+                            @for($i= 0; $i < 5; $i++)
+                            <input type="hidden" name="data[{{$i}}][course_carriculam_id]" value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->id) ? $courseCurriculum[$i]->id : 0}}">
                              <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -31,8 +32,14 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="image"> Image {{$i+1}} </label>
+                                        @if(!empty($courseCurriculum[$i]->image))
+										@php $course_curriculumImg = asset('/uploads/course_curriculum').'/'.$courseCurriculum[$i]->image; @endphp
+										@else
+										@php $course_curriculumImg = "/assets/admin/img/admin/blank.png"; @endphp
+									@endif
                                         <input type="file" name="data[{{$i}}][image]" class="form-control"
                                             value="{{(isset($courseCurriculum[$i]) && !empty($courseCurriculum[$i]) && $courseCurriculum[$i]->image) ? $courseCurriculum[$i]->image : 0}}"require>
+                                            <img src="{{$course_curriculumImg}}" width="100px" />
                                             
                                     </div>
                                 </div>

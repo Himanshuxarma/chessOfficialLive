@@ -93,5 +93,11 @@ class HomeController extends Controller
         }
 
     }
+    public function testimonial_details($id){
+        $testimonialsDetails = Testimonial::find($id);
+        $testimonials = Testimonial::where('status',1)->get();
+        $country = Country::all();
+        return view('front.testimonialDetails.index',compact('testimonialsDetails','testimonials', 'country'));
+    }
 
 }

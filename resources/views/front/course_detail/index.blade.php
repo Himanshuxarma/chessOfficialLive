@@ -38,7 +38,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                             </a>
                         </div>
                         <div class="postStandard">
-                            <p>{{ strlen(strip_tags($courses->description) < 100 ) ? substr(strip_tags($courses->description), 0, 1500).' ...' : strip_tags($courses->description)}} </p>
+                            <p style="color:#000"><b>{{ !empty($courses->description) ? strip_tags($courses->description) : ''}} </b></p>
                         </div>
                         <div class="course_detail_button">
                             <ul>
@@ -49,24 +49,19 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-year" title="Comments - 1"
-                                        href="javascript:void(0)">{{$courses->age}} Age</a>
+                                    <a class="icon-year" title="Comments - 1" href="javascript:void(0)">{{$courses->age}} Age</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-classroom" title="Comments - 1"
-                                        href="javascript:void(0)">{{$courses->batch}} Batch</a>
+                                    <a class="icon-classroom" title="Comments - 1" href="javascript:void(0)">{{$courses->batch}} Batch</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-comment-1" title="Comments - 1"
-                                        href="javascript:void(0)">{{$courses->hrs_training}} Hrs Training</a>
+                                    <a class="icon-comment-1" title="Comments - 1" href="javascript:void(0)">{{$courses->hrs_training}} Hrs Training</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-comment-1" title="Comments - 1"
-                                        href="javascript:void(0)">{{$courses->format}} Format</a>
+                                    <a class="icon-comment-1" title="Comments - 1" href="javascript:void(0)">{{$courses->format}} Format</a>
                                 </li>
                                 <li class="squareButton light ico">
-                                    <a class="icon-clock" title="Comments - 1"
-                                        href="javascript:void(0)">{{$courses->duration}} Duration</a>
+                                    <a class="icon-clock" title="Comments - 1" href="javascript:void(0)">{{$courses->duration}} Duration</a>
                                 </li>
 							</ul>
                         </div>
@@ -205,7 +200,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
         localStorage.setItem("courseTaken", courseTaken);
         localStorage.setItem("firstPrice", firstPrice);
         localStorage.setItem("secondPrice", secondPrice);
-        // alert(newLink);
         //jQuery('#buyACourseLink').attr('href', newLink);
         // alert(jQuery('#buyACourseLink').attr('href'));
     });

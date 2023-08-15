@@ -40,7 +40,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 									<a href="javascript:void(0);" data-filter=".article_main_course">One to One Courses</a>
 								</li>
 								<li class="squareButton">
-									<a href="javascript:void(0);" data-filter=".article_academy_course">Academy Courses</a>
+									<a href="javascript:void(0);" data-filter=".article_academy_course">Group Sessions</a>
 								</li>
 								
 								
@@ -79,7 +79,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 										@endif
 									</ul>
 									@php 
-										$price = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+										$price = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 										$classes = !empty($data) && !empty($data->class) ? $data->class : 0;
 										$perSessionPrice = (float)$price / (int)$classes;
 									@endphp
@@ -90,14 +90,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 												{{!empty($priceData) && !empty($priceData->currency) ? $priceData->currency : (!empty($countryDetails) && !empty($countryDetails->currency) ? $countryDetails->currency : '₹')}}
 												@if(!empty($offers) && !empty($offers->offer_id))
 													<?php 
-														$priceDefault = !empty($priceData) && !empty($priceData->price) ? $priceData->price : (!empty($data) && !empty($data->price) ? $data->price : 0);
+														$priceDefault = !empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price : (!empty($data) && !empty($data->price) ? $data->price : 0);
 														$offerPercentage = $offers->amount ? $offers->amount : 0;
 														$newPrice = (float)$priceDefault - ((float)$priceDefault * ((int)$offerPercentage/100));
 													?>
-													<s>{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
+													<s>{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}</s>
 													{{!empty($newPrice) && !empty($newPrice) ? $newPrice.'/-' : 0}}
 												@else 
-													{{!empty($priceData) && !empty($priceData->price) ? $priceData->price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
+													{{!empty($priceData) && !empty($priceData->first_price) ? $priceData->first_price.'/-' : (!empty($data) && !empty($data->price) ? $data->price.'/-' : 0)}}
 												@endif
 											</strong>
 										</a>
