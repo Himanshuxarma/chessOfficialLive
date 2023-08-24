@@ -400,15 +400,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                     <div class="sc_parallax_content parallax_image_3">
                                         <div class="sc_content main ">
                                             <div class="columnsWrap sc_columns sc_columns_count_2">
-                                                <div class="columns1 sc_column_item sc_column_item_2 even text-sm-center">
+                                                <div class="columns1_2 sc_column_item sc_column_item_1 odd first">
+                                                    <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="400px" height="400px"/>
+                                                </div>
+												<div class="columns1_2 sc_column_item sc_column_item_2 even text-sm-center">
                                                     <h2 class="sc_title style_1">FIDE Arena Chess Masters: Unlocking the Benefits of Learning Chess from the Best</h2>
                                                     </br>
                                                     <span class="sc_highlight style_2">
-                                                        <p>Chess is a timeless game that has captivated minds for centuries. From its humble origins to its current status as a global phenomenon, chess continues to intrigue and challenge players of all ages and skill levels. The FIDE Arena Chess Masters stands as a testament to the pinnacle of chess excellence, offering a unique and unparalleled learning experience for aspiring players.</p>
-                                                        <p>The FIDE Arena Chess Masters consist of some of the world's finest chess players, each boasting exceptional skills and accomplishments in the game. These Grandmasters and International Masters have devoted countless hours to perfecting their craft, developing a deep understanding of chess strategy and tactics.</p>
-                                                        <p>These masters frequently engage in high-stakes battles against one another, showcasing their strategic prowess and deep understanding of the game. As learners delve into these games, they gain exposure to complex positions, unconventional moves, and strategic ideas that are rarely encountered in casual play.</p>
-                                                        <p>The FIDE Arena Chess Masters present an unparalleled opportunity for chess enthusiasts to learn from the best and take their game to new heights. With their unmatched expertise, diverse playing styles, and interactive learning opportunities, these masters offer a unique and enriching learning experience. Chess, as taught by the FIDE Arena Chess Masters, goes beyond a mere game; it becomes a journey of self-improvement, sharpening the mind, and embracing the spirit of competition.</p>
-                                                        <p>Whether you are a seasoned player or a novice to the game, learning from the FIDE Arena Chess Masters can undoubtedly benefit your chess skills and enrich your appreciation for the timeless game of chess.</p>
+                                                        <p>Chess is a timeless game that has captivated minds for centuries. From its humble origins to its current status as a global phenomenon, chess continues to intrigue and challenge players of all ages and skill levels. The FIDE Arena Chess Masters stands as a testament to the pinnacle of chess excellence, offering a unique and unparalleled learning experience for aspiring players.</br>The FIDE Arena Chess Masters consist of some of the world's finest chess players, each boasting exceptional skills and accomplishments in the game. These Grandmasters and International Masters have devoted countless hours to perfecting their craft, developing a deep understanding of chess strategy and tactics.</p>
                                                     </span>
                                                     <div class="margin_top_small">
                                                         <div
