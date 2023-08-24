@@ -165,11 +165,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 @endsection
 @section('customscript')
 <script>
+    var courseTaken, courseType, firstPrice, secondPrice;
     jQuery(document).on('change', '#course_type', function(){
-        var courseTaken = jQuery(this).val();
-        var courseType = jQuery(this).data('course-type');
-        var firstPrice = jQuery('input[name=first_price]').val();
-        var secondPrice = jQuery('input[name=second_price]').val();
+        courseTaken = jQuery(this).val();
+        courseType = jQuery(this).data('course-type');
+        firstPrice = jQuery('input[name=first_price]').val();
+        secondPrice = jQuery('input[name=second_price]').val();
         // let courseTakenVariable = "";
         // if(courseType=="main_course"){
         //     courseTakenHalf = "half_course";

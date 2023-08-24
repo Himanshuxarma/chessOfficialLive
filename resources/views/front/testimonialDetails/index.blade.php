@@ -59,7 +59,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                         <img alt="" src="{{$country_flag}}" style="width:10%">
                                                     </div>
                                                     <h3 class="sc_team_item_title ">{{$testimonialsDetails->title}}</h3>
-                                                    <div class="user-detail">{{$testimonialsDetails->created_at->format('d/m/Y/h:i:s A')}}</div>
+                                                    <div class="user-detail">Lorem Ipsum</div>
                                                 </div>
                                             </div>
                                             <div class="sc_team_item_position ">
@@ -124,7 +124,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                 </div>
                             </div>
                         </section>
-                        <section class="skyblue_section bg_pattern_6 testimonial_form">
+                        <section class=" testimonial_form">
                             <div class="container main p-0">
                                 <div class="form-container sc_columns p-0">
                                     <div class="sc_column_item">
