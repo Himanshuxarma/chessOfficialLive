@@ -65,7 +65,18 @@
 
 
 @media (max-width: 768px) {
-
+	
+	.masonryWrap .masonry .isotopePadding .masonryMore .squareButton {
+		margin-left: -4px;
+	}
+.bookinDemoBtn{
+	width:142px;
+	margin-right:-6px;
+}
+.viewDetailBtn{
+	width:137px;
+	margin-right:-27px;
+}
 	.justify-end{
 		justify-content:center	;
 	   }
@@ -145,6 +156,8 @@
 		margin-top:10px;
 		border-top:solid 1px #ccc;
 	}
+	
+	
 	
 	.owl-carousel .owl-nav button{ position: relative; }
 	.owl-carousel .owl-nav button.owl-next{ right:0; top:0; transform: none;  }

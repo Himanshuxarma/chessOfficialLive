@@ -11,6 +11,7 @@ use App\Models\Testimonial;
 use App\Models\Faq;
 use App\Models\Country;
 use App\Models\CourseFeature;
+use App\Rules\ReCaptcha;
 
 class HomeController extends Controller
 {
@@ -74,7 +75,8 @@ class HomeController extends Controller
             'title' => 'required',
             'image' => 'required',
             'country_id' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'g-recaptcha-response' => ['required', new ReCaptcha]
         ]);
         // dd($request);
         $review = new Testimonial;

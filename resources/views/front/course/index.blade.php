@@ -118,12 +118,12 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 											</strong>
 										</a>
 									</div>
-									<div class="masonryMore">
+									<div class="masonryMore bookingBtn">
 										<ul class="d-flex">
-											<li class="squareButton light ico">
+											<li class="squareButton light ico bookinDemoBtn">
 												<a  href="{{route('booking.Deatail', $data->id)}}">Book a Demo</a>
 											</li>
-											<li class="squareButton light ico view-details-button">
+											<li class="squareButton light ico view-details-button viewDetailBtn">
 												<a  href="{{route('courseDetails', $data->id)}}">View Details</a>
 											</li>
 										</ul>

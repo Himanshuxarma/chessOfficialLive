@@ -378,6 +378,14 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class="message">
+                                                    <div class="">
+                                                        <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                                                        @if ($errors->has('g-recaptcha-response'))
+                                                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                                 <div class="sc_contact_form_button">
                                                     <div
                                                         class="squareButton sc_button_size sc_button_style_global global ico">
@@ -478,5 +486,6 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
 </div>
 @endsection
 @section('customscript')
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
+

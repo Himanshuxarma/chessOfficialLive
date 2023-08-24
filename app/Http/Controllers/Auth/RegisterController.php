@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Mail\newCustomerMail;
 use Mail;
+use App\Rules\ReCaptcha;
 
 class RegisterController extends Controller
 {
@@ -68,7 +69,8 @@ class RegisterController extends Controller
             'full_name' => 'required',
             'email' => 'required|unique:users|email',
             'phone' => 'required|unique:users|numeric',
-            'register_password' => 'required|min:6'
+            'register_password' => 'required|min:6',
+            'g-recaptcha-response' => ['required', new ReCaptcha]
         ]);
         $data = $request->all();
         $str = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';

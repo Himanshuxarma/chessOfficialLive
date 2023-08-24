@@ -67,9 +67,17 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="message">
+                            <div class="">
+                                <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="sc_contact_form_button">
                             <div class="squareButton sc_button_size sc_button_style_global global ico">
-                                <button type="submit" class="contact_form_submit icon-comment-1">Send Message</button>
+                                <button type="submit" class="contact_form_submit icon-comment-1">Send</button>
                             </div>
                         </div>
 
@@ -81,6 +89,7 @@
         </div>
     </div>
 </section>
-
-
+@endsection
+@section('customscript')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

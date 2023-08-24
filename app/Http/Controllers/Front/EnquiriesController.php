@@ -13,6 +13,8 @@ use App\Models\Service;
 use App\Models\Testimonial;
 use App\Models\Category;
 use App\Models\Employee;
+use App\Rules\ReCaptcha;
+
 
 class EnquiriesController extends Controller{
 
@@ -39,7 +41,8 @@ class EnquiriesController extends Controller{
 			'email' => 'required|email',
 			'phone' => 'required|numeric',
 			'subject' => 'required',
-			'message' => 'required'
+			'message' => 'required',
+			'g-recaptcha-response' => ['required', new ReCaptcha]
 		]);
 		$contacts = new Enquiry;
 		$contacts->full_name = $request->full_name;
@@ -60,7 +63,6 @@ class EnquiriesController extends Controller{
 			} else {
 				return redirect()->route('contactForm')->with('error', 'Something went wrong.');
 			}
-			
 		}
 		
 	}

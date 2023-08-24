@@ -1,5 +1,4 @@
 <script> var ajaxUrl = "{{url('/')}}"; </script>
-<script type='text/javascript' src='{{asset("assets/front/js/vendor/jquery-1.11.3.min.js")}}'></script>
 <script type='text/javascript' src='{{asset("assets/front/js/owl.carousel.min.js")}}'></script>
 <script type='text/javascript' src='{{asset("assets/front/js/vendor/jquery-migrate.min.js")}}'></script>
 <script type='text/javascript' src='{{asset("assets/front/js/vendor/revslider/rs-plugin/js/jquery.themepunch.tools.min.js")}}'></script>
@@ -21,10 +20,6 @@
 
 <script type='text/javascript' src="{{asset('/custom/assets/js/toastr.min.js')}}"></script>
 <script type='text/javascript' src="{{asset('/custom/assets/js/sweetalert-dev.js')}}"></script>
-
-
-
- 
 <script>
   $('.hero-slider').owlCarousel({
     loop:true,
