@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <?php
+$settings = App\Helpers\Helper::getSettings();
 $countryId = 6;
 if(session()->has('SiteCountry')){
 $countryId = session()->get('SiteCountry');
@@ -409,7 +410,10 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                         <div class="sc_content main ">
                                             <div class="columnsWrap sc_columns sc_columns_count_2">
                                                 <div class="columns1_2 sc_column_item sc_column_item_1 odd first">
-                                                    <img src="{{asset('assets/front/images/chess-3413414.png')}}" alt="" width="400px" height="400px"/>
+                                                <?php
+												    $footerLOgo = (!empty($settings) && !empty($settings->front_logo)) ? asset('uploads/settings').'/'.$settings->front_logo : asset('assets/front/images/chess-3413414.png');
+											    ?>
+                                                    <img src="{{$footerLOgo}}" alt="" width="40%"/>
                                                 </div>
 												<div class="columns1_2 sc_column_item sc_column_item_2 even text-sm-center">
                                                     <h2 class="sc_title style_1">FIDE Arena Chess Masters: Unlocking the Benefits of Learning Chess from the Best</h2>
