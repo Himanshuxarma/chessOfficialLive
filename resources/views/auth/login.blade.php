@@ -83,7 +83,7 @@
         <div class="sc_contact_form sc_contact_form_contact">
           <div class="columns1 w-full margin_top_mini margin_bottom_mini">
             <label for="mobilephone">Mobile</label>
-            <input type="text" id="mobilephone" class="form-control" name="phone" placeholder="Enter your Mobile">
+            <input type="text" id="mobilephone" class="form-control" name="phone" placeholder="+919828XXXXXX">
             @if ($errors->has('phone'))
               <span class="text-danger">{{ $errors->first('phone') }}</span>
             @endif
@@ -91,7 +91,7 @@
         </div>
         <div class="d-flex">
           <div class="registration-button squareButton light">
-            <button type="submit" class="mt-4">Send Otp</button>
+            <button type="submit" class="mt-4">One Time Otp</button>
           </div>
           <div class="registration-button squareButton light">
               <button type="button" id="loginFormLink" class="alignright">Login</button>

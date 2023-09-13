@@ -3,6 +3,11 @@ section{
 	display: inline-block;
 	width: 100%;
 }
+.testi_img_set{
+	object-fit: cover;
+	width: 50px;
+	height: 252px;
+}
 #booking_frm{
 	height: 100%;
 	width: 100%;

@@ -287,7 +287,7 @@ $countryDetails = App\Helpers\Helper::getCountryData($countryId);
                                                                     $testimonialsImg = '/assets/front/images/300*300.jpg';
                                                                 }
                                                                 ?>
-                                                                <img alt="" src="{{$testimonialsImg}}">
+                                                                <img class="testi_img_set" alt="" src="{{$testimonialsImg}}">
                                                             </div>
                                                             <div class="sc_team_item_info">
                                                                 <div class="testi_country_flag_img">

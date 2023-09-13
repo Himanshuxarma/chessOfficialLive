@@ -25,6 +25,7 @@ class DashboardController extends Controller
     }
   
   	public function index(){
+		// dd(Auth::guard('customer')->user());
 		if(Auth::guard('customer')->check()){
 			$customer = Auth::guard('customer')->user();
 			$country = Country::all();

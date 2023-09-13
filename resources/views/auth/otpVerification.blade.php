@@ -19,7 +19,7 @@
   
     <div class="form-left" id="login-side">
       <form action="{{ route('otp.getlogin') }}" method="post" id="loginForm">
-        <div class="form-heading"><h3>Otp</h3></div>
+        <div class="form-heading"><h3>Never share your OTP with anyone </h3></div>
         {{ csrf_field() }}
         <input type="hidden" name="user_id" value="{{$user_id}}" />
         <div class="sc_contact_form sc_contact_form_contact">

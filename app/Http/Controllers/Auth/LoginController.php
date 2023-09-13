@@ -264,12 +264,11 @@ class LoginController extends Controller
      */
 
     public function loginWithOtp(Request $request) {
-        // dd("sonu");
          /* Validation */
          $request->validate([
             'user_id' => 'required|exists:users,id',
             'otp' => 'required'
-        ]);
+        ]);;
         /* Validation Logic */
          $userOtp   = UserOtp::where('user_id', $request->user_id)->where('otp', $request->otp)->first();
          $now = now();
@@ -285,16 +284,12 @@ class LoginController extends Controller
             $userOtp->update([
                 'expire_at' => now()
             ]);
-            dd(Auth::check());
-            $demo = Auth::login($user);
-            dd($demo);
-            if(Auth::guard('customer')->user($user)->check()){
-                dd("singh");
-                $customer = Auth::guard('customer')->user();
-                dd("singh");
+            
+            Auth::guard('customer')->login($user);
+            if(Auth::guard('customer')->check()){
                 return redirect()->route('front.dashboard')->with('success', 'You have Successfully loggedin'); 
             }else{
-                dd("asasa");
+                // dd("asasa");
                 return redirect(url('/'))->with('error', 'Your Otp is not correct');
             }
 

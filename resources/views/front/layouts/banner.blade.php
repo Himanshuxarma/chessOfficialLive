@@ -11,7 +11,7 @@
          <img src='{{asset("assets/front/images/homebanner1.jpg")}}' alt="learnplay-slide-1">
          <div class="main">
           <div class="slider-content">
-              <div class="heading-sec">Children Chess Academy Course by The Arena Masters</div>
+              <div class="heading-sec">Chessofficial world chess school by Fide Arena Masters</div>
               <div class="short-description">Every chess master happens to be a beginer for once.</div>
               <div class="button-sec sc_button sc_button_style_light sc_button_size_huge squareButton light huge"><a href="{{url('booking')}}" class="">Book A Demo</a></div>
           </div>
@@ -21,7 +21,7 @@
          <img src='{{asset("assets/front/images/homebanner2.jpg")}}' alt="learnplay-slide-1">
          <div class="main">
           <div class="slider-content">
-              <div class="heading-sec">Children Chess Academy Course by The Arena Masters</div>
+              <div class="heading-sec">Chessofficial world chess school by Fide Arena Masters</div>
               <div class="short-description">Every chess master happens to be a beginer for once.</div>
               <div class="button-sec sc_button sc_button_style_light sc_button_size_huge squareButton light huge"><a href="{{url('booking')}}" class="">Book A Demo</a></div>
           </div>
@@ -31,7 +31,7 @@
          <img src='{{asset("assets/front/images/homebanner3.jpg")}}' alt="learnplay-slide-1">
          <div class="main">
           <div class="slider-content">
-              <div class="heading-sec">Children Chess Academy Course by The Arena Masters</div>
+              <div class="heading-sec">Chessofficial world chess school by Fide Arena Masters</div>
               <div class="short-description">Every chess master happens to be a beginer for once.</div>
               <div class="button-sec sc_button sc_button_style_light sc_button_size_huge squareButton light huge"><a href="{{url('booking')}}" class="">Book A Demo</a></div>
           </div>
